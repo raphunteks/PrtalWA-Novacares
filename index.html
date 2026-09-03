@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NovaCare | Futuristic Medical Clinic Portal</title>
+  <title>NovaCare | Futuristic Medical Clinic Portal & Railway Bot Gateway</title>
   
   <!-- Web App & PWA Meta Tags -->
   <meta name="theme-color" content="#f0f7fa">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="NovaCare Portal">
-  <meta name="description" content="Portal Bot WhatsApp Multi-Client & Antrean Broadcast Klinik Medis Futuristik">
+  <meta name="description" content="Portal Bot WhatsApp Multi-Client Railway & Antrean Broadcast Klinik Medis Futuristik">
 
   <!-- Inline Dynamic PWA Manifest via Data URI -->
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22NovaCare%20Futuristic%20Clinic%22%2C%22short_name%22%3A%22NovaCare%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f7fa%22%2C%22theme_color%22%3A%22%2300b4d8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fapi.iconify.design%2Fsolar%3Ahealth-bold-duotone.svg%3Fcolor%3D%252300b4d8%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
@@ -25,12 +25,12 @@
     :root {
       --bg-base: #f0f7fa;
       --bg-gradient: linear-gradient(135deg, #f0f7fa 0%, #e0f2fe 50%, #f8fafc 100%);
-      --bg-card: rgba(255, 255, 255, 0.78);
-      --bg-card-hover: rgba(255, 255, 255, 0.94);
+      --bg-card: rgba(255, 255, 255, 0.82);
+      --bg-card-hover: rgba(255, 255, 255, 0.95);
       --cyan-soft: #00b4d8;
       --cyan-deep: #0077b6;
       --cyan-aqua: #48cae4;
-      --cyan-glow: rgba(0, 180, 216, 0.25);
+      --cyan-glow: rgba(0, 180, 216, 0.22);
       --text-main: #0f172a;
       --text-muted: #475569;
       --border-glass: rgba(255, 255, 255, 0.9);
@@ -63,7 +63,6 @@
     ::-webkit-scrollbar-thumb { background: rgba(0, 180, 216, 0.4); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--cyan-deep); }
 
-    /* Glassmorphism Components */
     .glass-panel {
       background: var(--bg-card);
       backdrop-filter: blur(16px);
@@ -141,7 +140,6 @@
       box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
     }
 
-    /* Navbar */
     .top-navbar {
       position: sticky;
       top: 0;
@@ -189,7 +187,6 @@
       color: var(--cyan-deep);
     }
 
-    /* Hero Section */
     .hero-container {
       max-width: 1240px;
       margin: 36px auto;
@@ -235,7 +232,6 @@
       max-width: 530px;
     }
 
-    /* Interactive Carousel Showcase */
     .carousel-section {
       max-width: 1240px;
       margin: 30px auto;
@@ -272,7 +268,6 @@
       border-radius: 6px;
     }
 
-    /* Features Grid */
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -293,7 +288,6 @@
       margin-bottom: 14px;
     }
 
-    /* Dashboard Layout */
     .portal-view {
       display: none;
       max-width: 1400px;
@@ -309,7 +303,6 @@
       margin-bottom: 20px;
     }
 
-    /* Stat Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -364,7 +357,6 @@
       box-shadow: 0 4px 14px var(--cyan-glow);
     }
 
-    /* Status Indicator Dots */
     .status-dot {
       display: inline-block;
       width: 9px;
@@ -376,7 +368,6 @@
     .status-scanning { background: var(--warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     .status-disconnected { background: var(--danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
 
-    /* Tables */
     .table-responsive {
       overflow-x: auto;
       margin-top: 16px;
@@ -408,7 +399,6 @@
       background: rgba(0, 180, 216, 0.03);
     }
 
-    /* Floating Chat AI & WhatsApp */
     .floating-container {
       position: fixed;
       bottom: 24px;
@@ -448,14 +438,13 @@
       color: #ffffff;
     }
 
-    /* AI Chat Modal Widget */
     .ai-chat-box {
       position: fixed;
       bottom: 90px;
       right: 24px;
-      width: 420px;
+      width: 430px;
       max-width: calc(100vw - 40px);
-      height: 560px;
+      height: 570px;
       display: none;
       flex-direction: column;
       z-index: 1002;
@@ -484,7 +473,7 @@
     }
 
     .ai-bubble {
-      max-width: 84%;
+      max-width: 85%;
       padding: 10px 14px;
       border-radius: 14px;
       line-height: 1.45;
@@ -528,7 +517,6 @@
       gap: 8px;
     }
 
-    /* Modal System */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -543,14 +531,13 @@
 
     .modal-content {
       width: 100%;
-      max-width: 540px;
+      max-width: 550px;
       max-height: 90vh;
       overflow-y: auto;
       padding: 26px;
       background: #ffffff;
     }
 
-    /* Toast Notification */
     .toast-container {
       position: fixed;
       top: 20px;
@@ -603,7 +590,7 @@
     </ul>
 
     <div style="display: flex; align-items: center; gap: 8px;">
-      <!-- External Link: Buka Web Klinik Utama -->
+      <!-- Link Website Utama -->
       <a href="https://novacare-clinic.med.id" target="_blank" class="cyber-btn-secondary" style="padding: 7px 12px; font-size: 0.82rem;" title="Buka Website Resmi">
         <iconify-icon icon="solar:square-top-down-bold"></iconify-icon>
         <span>Web Utama</span>
@@ -630,7 +617,6 @@
   </header>
 
   <main id="publicLandingView">
-    <!-- Hero Section -->
     <section class="hero-container" id="beranda">
       <div>
         <div class="hero-badge">
@@ -639,7 +625,7 @@
         </div>
         <h1 class="hero-title">Automasi Pelayanan Pasien dengan <span>Presisi AI Klinis</span></h1>
         <p class="hero-desc">
-          Integrasi terpadu pemantauan bot WhatsApp multi-client Railway, antrean broadcast cerdas, dan asisten telemetri multi-model Gemini 3.8 / 3.7 / 3.5 berkecepatan tinggi.
+          Integrasi terpadu pemantauan bot WhatsApp multi-client Railway (Akshra Core Engine), antrean broadcast cerdas, dan asisten telemetri multi-model Gemini 3.8 / 3.7 / 3.5 berkecepatan tinggi.
         </p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
           <a href="#reservasi" class="cyber-btn">
@@ -659,16 +645,16 @@
           Status Jaringan Bot Klinis (Live)
         </h3>
         <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 18px;">
-          Pemantauan heartbeat waktu nyata dari cluster Railway yang aktif melayani pasien.
+          Pemantauan heartbeat waktu nyata dari cluster Railway Akshra yang aktif melayani pasien.
         </p>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
-            <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-connected"></span>Poli Utama WhatsApp</span>
-            <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--success); font-weight: 700;">ONLINE (24ms)</span>
+            <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-connected"></span>NovaCare Akshra Core Bot (Railway)</span>
+            <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--success); font-weight: 700;">ONLINE (18ms)</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
             <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-connected"></span>Rawat Inap Pod Alert</span>
-            <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--success); font-weight: 700;">ONLINE (38ms)</span>
+            <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--success); font-weight: 700;">ONLINE (34ms)</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
             <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-scanning"></span>Farmasi Dispenser Bot</span>
@@ -678,7 +664,6 @@
       </div>
     </section>
 
-    <!-- Interactive Carousel Showcase -->
     <section class="carousel-section" id="showcase">
       <div class="glass-panel carousel-card">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
@@ -704,7 +689,6 @@
       </div>
     </section>
 
-    <!-- Services Grid -->
     <section class="feature-grid" id="layanan">
       <div class="glass-panel feature-card">
         <iconify-icon icon="solar:bed-bold-duotone" class="feature-icon"></iconify-icon>
@@ -718,7 +702,7 @@
         <iconify-icon icon="solar:server-bold-duotone" class="feature-icon"></iconify-icon>
         <h3 style="margin-bottom: 8px; color: var(--cyan-deep);">Integrasi Multi-Nomor</h3>
         <p style="font-size: 0.88rem; color: var(--text-muted);">
-          Kelola instance Baileys Railway terpisah untuk tiap poli klinik tanpa bentrok antrean dan risiko nomor terblokir.
+          Kelola instance Baileys Railway terpisah (btwwa-akshra-production) untuk tiap poli klinik tanpa risiko bentrok antrean.
         </p>
       </div>
 
@@ -731,7 +715,6 @@
       </div>
     </section>
 
-    <!-- Patient Booking Online Form -->
     <section style="max-width: 760px; margin: 50px auto; padding: 0 24px;" id="reservasi">
       <div class="glass-panel" style="padding: 32px;">
         <div style="text-align: center; margin-bottom: 24px;">
@@ -776,7 +759,6 @@
       </div>
     </section>
 
-    <!-- Contact & Map Embed Section -->
     <section style="max-width: 1240px; margin: 40px auto 60px; padding: 0 24px;" id="kontak">
       <div class="glass-panel" style="padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
         <div>
@@ -820,11 +802,10 @@
   </main>
 
   <div id="portalDashboardView" class="portal-view">
-    <!-- Dashboard Top Bar -->
     <div class="glass-panel portal-header">
       <div>
         <div style="font-size: 0.8rem; color: var(--cyan-deep); font-weight: 700; letter-spacing: 0.8px;">PORTAL MONITORING KLINIS</div>
-        <h2 id="dashWelcomeText" style="font-size: 1.4rem; color: var(--text-main);">Pusat Kendali Bot WhatsApp</h2>
+        <h2 id="dashWelcomeText" style="font-size: 1.4rem; color: var(--text-main);">Pusat Kendali Bot WhatsApp & Railway</h2>
       </div>
       <div style="display: flex; align-items: center; gap: 14px;">
         <div style="text-align: right;">
@@ -871,7 +852,6 @@
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
     <div class="tabs-nav" style="margin-bottom: 20px;">
       <button class="tab-btn active" id="tabLogsBtn" onclick="switchDashboardTab('chatLogs')">
         <iconify-icon icon="solar:chat-line-bold"></iconify-icon>
@@ -899,7 +879,6 @@
       </button>
     </div>
 
-    <!-- TAB 1: Chat Logs Monitoring Feed -->
     <div id="tabContentLogs" class="glass-panel" style="padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
         <div style="display: flex; gap: 10px; flex-wrap: wrap; flex: 1;">
@@ -953,12 +932,11 @@
       </div>
     </div>
 
-    <!-- TAB 2: Broadcast Queue Manager -->
     <div id="tabContentBroadcast" class="glass-panel" style="display: none; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
         <div>
           <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Manajemen Antrean Broadcast Medis</h3>
-          <p style="font-size: 0.84rem; color: var(--text-muted);">Monitor dan kelola antrean pengiriman pesan massal terjadwal ke pasien.</p>
+          <p style="font-size: 0.84rem; color: var(--text-muted);">Monitor dan kelola antrean pengiriman pesan massal terjadwal ke pasien via worker Railway.</p>
         </div>
         <div style="display: flex; gap: 8px;">
           <button class="cyber-btn-secondary" onclick="exportDataAction('BroadcastQueue')">
@@ -1011,12 +989,11 @@
       </div>
     </div>
 
-    <!-- TAB 3: Railway Client Management -->
     <div id="tabContentClients" class="glass-panel" style="display: none; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <div>
           <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Daftar Node Client Bot WhatsApp</h3>
-          <p style="font-size: 0.84rem; color: var(--text-muted);">Kelola instance Baileys yang terpasang di platform Railway.</p>
+          <p style="font-size: 0.84rem; color: var(--text-muted);">Kelola instance Baileys terpasang di platform Railway (btwwa-akshra-production).</p>
         </div>
         <button id="btnAddClientTrigger" class="cyber-btn" onclick="openAddClientModal()">
           <iconify-icon icon="solar:add-circle-bold"></iconify-icon>
@@ -1045,7 +1022,6 @@
       </div>
     </div>
 
-    <!-- TAB 4: Clinical Templates -->
     <div id="tabContentTemplates" class="glass-panel" style="display: none; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <div>
@@ -1058,11 +1034,10 @@
       </div>
     </div>
 
-    <!-- TAB 5: Patient Bookings Queue -->
     <div id="tabContentBookings" class="glass-panel" style="display: none; padding: 24px;">
       <div style="margin-bottom: 20px;">
         <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Antrean Reservasi Pasien Masuk</h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted);">Permintaan registrasi online dari form landing page publik.</p>
+        <p style="font-size: 0.84rem; color: var(--text-muted);">Permintaan registrasi online dari formulir pendaftaran landing page publik.</p>
       </div>
       <div class="table-responsive">
         <table class="cyber-table">
@@ -1084,7 +1059,6 @@
       </div>
     </div>
 
-    <!-- TAB 6: AI Gemini Multi-Model Configuration -->
     <div id="tabContentAiConfig" class="glass-panel" style="display: none; padding: 24px;">
       <div style="margin-bottom: 20px;">
         <h3 style="font-size: 1.15rem; color: var(--cyan-deep); display: flex; align-items: center; gap: 8px;">
@@ -1143,7 +1117,6 @@
     </a>
   </div>
 
-  <!-- AI Gemini Chatbox Modal -->
   <div id="aiChatBox" class="glass-panel ai-chat-box">
     <div class="ai-chat-header">
       <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -1174,7 +1147,7 @@
     <div id="aiChatMessages" class="ai-chat-body">
       <div class="ai-bubble bubble-model">
         <span class="ai-model-tag">Sistem Online</span><br>
-        Halo! Saya asisten pintar NovaCare. Ada yang bisa saya bantu mengenai jadwal dokter, prosedur rawat inap smart pod, atau integrasi bot WhatsApp?
+        Halo! Saya asisten bionik pintar NovaCare. Ada yang bisa saya bantu mengenai jadwal dokter, prosedur rawat inap smart pod, atau integrasi bot WhatsApp?
       </div>
     </div>
 
@@ -1186,7 +1159,6 @@
     </form>
   </div>
 
-  <!-- Auth Login Modal -->
   <div id="authModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -1213,7 +1185,6 @@
     </div>
   </div>
 
-  <!-- Add Broadcast Queue Modal -->
   <div id="broadcastModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
@@ -1227,8 +1198,8 @@
         <div style="margin-bottom: 12px;">
           <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Instance Client Pengirim</label>
           <select id="bcClientId" class="cyber-input" required>
-            <option value="CLI-0001">CLI-0001 (NovaCare Poli Utama)</option>
-            <option value="CLI-0002">CLI-0002 (NovaCare Rawat Inap AI)</option>
+            <option value="CLI-0001">CLI-0001 (NovaCare Akshra Core Bot)</option>
+            <option value="CLI-0002">CLI-0002 (NovaCare Rawat Inap Pod)</option>
             <option value="CLI-0003">CLI-0003 (NovaCare Farmasi Digital)</option>
           </select>
         </div>
@@ -1252,7 +1223,6 @@
     </div>
   </div>
 
-  <!-- Add/Edit Client Modal -->
   <div id="clientModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
@@ -1274,19 +1244,19 @@
         </div>
         <div style="margin-bottom: 12px;">
           <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Railway Base URL</label>
-          <input type="url" id="clRailwayUrl" class="cyber-input" placeholder="https://btwa-ranap-production.up.railway.app" required>
+          <input type="url" id="clRailwayUrl" class="cyber-input" placeholder="https://btwwa-akshra-production.up.railway.app" required>
         </div>
         <div style="margin-bottom: 12px;">
           <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Status Default</label>
           <select id="clStatus" class="cyber-input">
-            <option value="SCANNING">SCANNING</option>
             <option value="CONNECTED">CONNECTED</option>
+            <option value="SCANNING">SCANNING</option>
             <option value="DISCONNECTED">DISCONNECTED</option>
           </select>
         </div>
         <div style="margin-bottom: 20px;">
           <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Catatan / Deskripsi</label>
-          <input type="text" id="clNotes" class="cyber-input" placeholder="Instance poli gigi telemetri">
+          <input type="text" id="clNotes" class="cyber-input" placeholder="Instance Akshra Railway Production">
         </div>
         <button type="submit" id="btnSaveClientSubmit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 11px;">
           <iconify-icon icon="solar:disk-bold"></iconify-icon>
@@ -1296,7 +1266,6 @@
     </div>
   </div>
 
-  <!-- Railway Live QR Scanner Modal -->
   <div id="qrModal" class="modal-overlay">
     <div class="glass-panel modal-content" style="text-align: center;">
       <h3 style="font-size: 1.2rem; margin-bottom: 8px; color: var(--cyan-deep);">Pindai Kode QR WhatsApp Baileys</h3>
@@ -1305,18 +1274,23 @@
       </p>
 
       <div style="background: #ffffff; padding: 16px; border-radius: 12px; display: inline-block; margin-bottom: 16px; border: 1px solid var(--border-subtle); box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=NOVACARE-AUTH-PAIRING" alt="QR Code" style="display: block; width: 210px; height: 210px;">
+        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fbtwwa-akshra-production.up.railway.app%2Fqr" alt="QR Code" style="display: block; width: 210px; height: 210px;">
       </div>
 
       <div id="qrStatusText" style="font-size: 0.86rem; color: var(--cyan-deep); font-weight: 600; margin-bottom: 16px;">
         Menunggu pemindaian dari perangkat...
       </div>
 
-      <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup Jendela</button>
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <a id="btnOpenRailwayLiveQr" href="https://btwwa-akshra-production.up.railway.app/qr" target="_blank" class="cyber-btn" style="padding: 7px 14px; font-size: 0.82rem;">
+          <iconify-icon icon="solar:arrow-right-up-bold"></iconify-icon>
+          Buka Live Endpoint QR
+        </a>
+        <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup Jendela</button>
+      </div>
     </div>
   </div>
 
-  <!-- Message Detail Modal -->
   <div id="msgDetailModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <h3 style="font-size: 1.2rem; margin-bottom: 14px; color: var(--cyan-deep);">Detail Pesan WhatsApp</h3>
@@ -1327,7 +1301,6 @@
     </div>
   </div>
 
-  <!-- iOS PWA Install Guide Modal -->
   <div id="iosGuideModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="text-align: center; margin-bottom: 16px;">
@@ -1346,12 +1319,12 @@
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
+  <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
-    // URL Endpoint REST API Google Apps Script (Bisa di-deploy ke Vercel / GitHub)
     var GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCZcC8VXfTkivJ2o1gfDwv2iaXIKofAnJhfONNp4ZFGT_gWvDAqQAGUkdE7_fiVnG1/exec";
+    var DEFAULT_RAILWAY_URL = "https://btwwa-akshra-production.up.railway.app";
 
     var appState = {
       user: null,
@@ -1380,19 +1353,15 @@
         {
           tag: 'MULTI-CLIENT ARCHITECTURE',
           title: 'Integrasi Multi-Nomor Terisolasi di Railway Cloud',
-          desc: 'Jalankan nomor customer service poli, farmasi, dan rawat inap pada instance Baileys terpisah sehingga kinerja bot stabil tanpa risiko overload.'
+          desc: 'Jalankan nomor poli, farmasi, dan rawat inap pada instance Baileys Akshra Production terpisah sehingga kinerja bot stabil tanpa risiko overload.'
         }
       ]
     };
 
-    /**
-     * Runner Adaptif: Berjalan cepat via google.script.run di Apps Script,
-     * dan otomatis beralih ke fetch() REST API saat di-host di Vercel / GitHub.
-     */
     function runBackend(functionName, args, onSuccess, onError) {
       args = args || [];
 
-      // Mode 1: Berjalan di dalam Google Apps Script (Internal Web App)
+      // Mode 1: Berjalan di dalam lingkungan Google Apps Script Web App
       if (typeof google !== 'undefined' && google.script && google.script.run) {
         var runner = google.script.run
           .withSuccessHandler(function(res) {
@@ -1402,7 +1371,7 @@
             if (typeof onError === 'function') {
               onError(err);
             } else {
-              showToast('Kesalahan sistem: ' + (err.message || err), 'danger');
+              showToast('Kesalahan backend: ' + (err.message || err), 'danger');
             }
           });
 
@@ -1433,7 +1402,7 @@
           if (typeof onSuccess === 'function') onSuccess(data);
         })
         .catch(function(fetchErr) {
-          console.warn('REST API fetch error, beralih ke fallback canvas:', fetchErr);
+          console.warn('REST API fetch offline, beralih ke fallback canvas:', fetchErr);
           runCanvasPreviewFallback(functionName, args, onSuccess);
         });
         return;
@@ -1489,7 +1458,7 @@
           onSuccess({
             success: true,
             clients: [
-              { clientId: 'CLI-0001', name: 'NovaCare Poli Utama', phone: '6281122334455', railwayUrl: 'https://bot-novacare-poli.up.railway.app', status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama poli' }
+              { clientId: 'CLI-0001', name: 'NovaCare Akshra Core Bot', phone: '6281122334455', railwayUrl: DEFAULT_RAILWAY_URL, status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama Akshra Railway' }
             ],
             stats: { total: 3, connected: 1, scanning: 1, disconnected: 1 }
           });
@@ -1577,9 +1546,6 @@
       }
     }
 
-    /**
-     * Memuat katalog AI Model Google AI Studio dan membangun opsi dropdown.
-     */
     function loadAiModelCatalog() {
       runBackend('getAvailableAiModels', [], function(res) {
         if (res.success && res.models) {
@@ -1627,9 +1593,6 @@
       }
     }
 
-    /**
-     * Tombol Simpan Cepat dari Chatbox Widget langsung ke sheet Settings
-     */
     function saveCurrentChatModelAsDefault() {
       var sel = document.getElementById('chatModelSelector');
       if (!sel) return;
@@ -1667,7 +1630,7 @@
             if (res.isConfigured) {
               statusEl.innerHTML = '<span style="color: var(--success); font-weight: 700;">● Terkonfigurasi</span> (' + res.maskedApiKey + ')';
             } else {
-              statusEl.innerHTML = '<span style="color: var(--danger); font-weight: 700;">● Belum Dikonfigurasi</span> (Masukkan API Key Google AI Studio Anda)';
+              statusEl.innerHTML = '<span style="color: var(--danger); font-weight: 700;">● Belum Dikonfigurasi</span> (Masukkan API Key Google AI Studio)';
             }
           }
         }
@@ -2150,14 +2113,19 @@
     }
 
     function openQrModal(clientId, railwayUrl) {
+      var targetBaseUrl = railwayUrl || DEFAULT_RAILWAY_URL;
+      var liveEndpoint = targetBaseUrl.replace(/\/$/, '') + '/qr';
+
       document.getElementById('qrStatusText').innerText = 'Menghubungkan ke endpoint ' + clientId + '...';
+      document.getElementById('btnOpenRailwayLiveQr').href = liveEndpoint;
       openModal('qrModal');
 
       runBackend('getRailwayQrPayload', [clientId], function(res) {
         if (res.success) {
           var qrImg = document.getElementById('qrImageElement');
-          qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(res.fallbackQrData);
-          document.getElementById('qrStatusText').innerText = 'Pindai kode QR untuk ' + res.clientName;
+          var qrData = res.fallbackQrData || liveEndpoint;
+          qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(qrData);
+          document.getElementById('qrStatusText').innerText = 'Pindai kode QR untuk ' + (res.clientName || 'Railway WhatsApp Bot');
         } else {
           document.getElementById('qrStatusText').innerText = res.message;
         }
@@ -2169,7 +2137,7 @@
       document.getElementById('modalClientId').value = '';
       document.getElementById('clName').value = '';
       document.getElementById('clPhone').value = '';
-      document.getElementById('clRailwayUrl').value = '';
+      document.getElementById('clRailwayUrl').value = DEFAULT_RAILWAY_URL;
       document.getElementById('clNotes').value = '';
       openModal('clientModal');
     }
@@ -2191,7 +2159,7 @@
         clientId: document.getElementById('modalClientId').value,
         name: document.getElementById('clName').value.trim(),
         phone: document.getElementById('clPhone').value.trim(),
-        railwayUrl: document.getElementById('clRailwayUrl').value.trim(),
+        railwayUrl: document.getElementById('clRailwayUrl').value.trim() || DEFAULT_RAILWAY_URL,
         status: document.getElementById('clStatus').value,
         notes: document.getElementById('clNotes').value.trim()
       };

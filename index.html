@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NovaCare | Futuristic Medical Clinic Portal & Railway Bot Gateway</title>
   
-  <!-- Web App & PWA Meta Tags -->
   <meta name="theme-color" content="#f0f7fa">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -15,7 +14,6 @@
   <!-- Inline Dynamic PWA Manifest via Data URI -->
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22NovaCare%20Futuristic%20Clinic%22%2C%22short_name%22%3A%22NovaCare%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f7fa%22%2C%22theme_color%22%3A%22%2300b4d8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fapi.iconify.design%2Fsolar%3Ahealth-bold-duotone.svg%3Fcolor%3D%252300b4d8%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -167,9 +165,7 @@
       color: var(--cyan-deep);
     }
 
-    .brand-logo .dot {
-      color: var(--cyan-soft);
-    }
+    .brand-logo .dot { color: var(--cyan-soft); }
 
     .nav-links {
       display: flex;
@@ -186,9 +182,7 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--cyan-deep);
-    }
+    .nav-links a:hover { color: var(--cyan-deep); }
 
     .hero-container {
       max-width: 1240px;
@@ -280,16 +274,8 @@
       padding: 0 24px;
     }
 
-    .feature-card {
-      padding: 24px;
-      border-radius: 16px;
-    }
-
-    .feature-icon {
-      font-size: 2.2rem;
-      color: var(--cyan-soft);
-      margin-bottom: 14px;
-    }
+    .feature-card { padding: 24px; border-radius: 16px; }
+    .feature-icon { font-size: 2.2rem; color: var(--cyan-soft); margin-bottom: 14px; }
 
     .portal-view {
       display: none;
@@ -371,7 +357,6 @@
     .status-scanning { background: var(--warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     .status-disconnected { background: var(--danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
 
-    /* Container Khusus Live QR Code Asli Baileys */
     .qr-live-wrapper {
       position: relative;
       background: #ffffff;
@@ -497,19 +482,9 @@
       text-decoration: none;
     }
 
-    .float-circle-btn:hover {
-      transform: scale(1.08);
-    }
-
-    .btn-ai-float {
-      background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep));
-      color: #ffffff;
-    }
-
-    .btn-wa-float {
-      background: #25d366;
-      color: #ffffff;
-    }
+    .float-circle-btn:hover { transform: scale(1.08); }
+    .btn-ai-float { background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep)); color: #ffffff; }
+    .btn-wa-float { background: #25d366; color: #ffffff; }
 
     .ai-chat-box {
       position: fixed;
@@ -663,25 +638,21 @@
     </ul>
 
     <div style="display: flex; align-items: center; gap: 8px;">
-      <!-- Link Website Utama -->
       <a href="https://novacare-clinic.med.id" target="_blank" class="cyber-btn-secondary" style="padding: 7px 12px; font-size: 0.82rem;" title="Buka Website Resmi">
         <iconify-icon icon="solar:square-top-down-bold"></iconify-icon>
         <span>Web Utama</span>
       </a>
 
-      <!-- PWA Install Button (Android/Desktop) -->
       <button id="btnPwaInstall" class="cyber-btn" style="display: none; padding: 7px 14px; font-size: 0.82rem;">
         <iconify-icon icon="solar:download-square-bold"></iconify-icon>
         <span>Pasang App</span>
       </button>
 
-      <!-- PWA iOS Guide Button -->
       <button id="btnIosPwaPrompt" class="cyber-btn-secondary" style="display: none; padding: 7px 12px; font-size: 0.82rem;" onclick="openModal('iosGuideModal')">
         <iconify-icon icon="solar:smartphone-bold"></iconify-icon>
         <span>Add to Home</span>
       </button>
 
-      <!-- Portal Access Button -->
       <button id="btnPortalToggle" class="cyber-btn" onclick="handlePortalAuthNav()">
         <iconify-icon icon="solar:shield-keyhole-bold-duotone"></iconify-icon>
         <span id="txtPortalAction">Login Portal</span>
@@ -899,28 +870,28 @@
         <div class="stat-icon-wrap"><iconify-icon icon="solar:server-bold"></iconify-icon></div>
         <div>
           <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Total Client Node</div>
-          <div id="statTotalClients" style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">3</div>
+          <div id="statTotalClients" style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">0</div>
         </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(16, 185, 129, 0.15); color: var(--success);"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
         <div>
           <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Connected (Aktif)</div>
-          <div id="statConnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--success);">1</div>
+          <div id="statConnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--success);">0</div>
         </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(245, 158, 11, 0.15); color: var(--warning);"><iconify-icon icon="solar:qr-code-bold"></iconify-icon></div>
         <div>
           <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Scanning QR</div>
-          <div id="statScanningClients" style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">1</div>
+          <div id="statScanningClients" style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">0</div>
         </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(239, 68, 68, 0.15); color: var(--danger);"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></div>
         <div>
           <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Disconnected</div>
-          <div id="statDisconnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--danger);">1</div>
+          <div id="statDisconnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--danger);">0</div>
         </div>
       </div>
     </div>
@@ -990,9 +961,7 @@
               <th>AKSI</th>
             </tr>
           </thead>
-          <tbody id="chatLogsTableBody">
-            <!-- Dinamis -->
-          </tbody>
+          <tbody id="chatLogsTableBody"></tbody>
         </table>
       </div>
 
@@ -1047,9 +1016,7 @@
               <th>AKSI</th>
             </tr>
           </thead>
-          <tbody id="broadcastQueueTableBody">
-            <!-- Dinamis -->
-          </tbody>
+          <tbody id="broadcastQueueTableBody"></tbody>
         </table>
       </div>
 
@@ -1088,9 +1055,7 @@
               <th>AKSI</th>
             </tr>
           </thead>
-          <tbody id="clientsTableBody">
-            <!-- Dinamis -->
-          </tbody>
+          <tbody id="clientsTableBody"></tbody>
         </table>
       </div>
     </div>
@@ -1102,9 +1067,7 @@
           <p style="font-size: 0.84rem; color: var(--text-muted);">Salin cepat template klinis terverifikasi untuk konfirmasi ranap, jadwal kontrol, dan billing.</p>
         </div>
       </div>
-      <div id="templatesListContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;">
-        <!-- Dinamis -->
-      </div>
+      <div id="templatesListContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;"></div>
     </div>
 
     <div id="tabContentBookings" class="glass-panel" style="display: none; padding: 24px;">
@@ -1125,9 +1088,7 @@
               <th>WAKTU DAFTAR</th>
             </tr>
           </thead>
-          <tbody id="bookingsTableBody">
-            <!-- Dinamis -->
-          </tbody>
+          <tbody id="bookingsTableBody"></tbody>
         </table>
       </div>
     </div>
@@ -1148,9 +1109,7 @@
           <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-bottom: 6px;">
             Default Klinik AI Model
           </label>
-          <select id="cfgDefaultAiModel" class="cyber-input" style="font-weight: 600;">
-            <!-- Dinamis dari katalog backend -->
-          </select>
+          <select id="cfgDefaultAiModel" class="cyber-input" style="font-weight: 600;"></select>
           <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
             Model ini menjadi acuan utama sistem jika pengguna tidak memilih model spesifik di chatbox.
           </p>
@@ -1205,12 +1164,9 @@
         </button>
       </div>
 
-      <!-- Selector Model Interaktif + Tombol Set Default Cepat -->
       <div style="display: flex; align-items: center; gap: 6px; background: rgba(0, 180, 216, 0.08); padding: 4px 8px; border-radius: 8px;">
         <span style="font-size: 0.75rem; font-weight: 700; color: var(--cyan-deep); white-space: nowrap;">Model:</span>
-        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep); flex: 1;" onchange="onChatModelChange()">
-          <!-- Opsi Model Dinamis -->
-        </select>
+        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep); flex: 1;" onchange="onChatModelChange()"></select>
         <button type="button" class="cyber-btn-secondary" style="padding: 3px 7px; font-size: 0.7rem; white-space: nowrap;" title="Simpan sebagai default klinik ke sheet Settings" onclick="saveCurrentChatModelAsDefault()">
           Simpan Default
         </button>
@@ -1339,9 +1295,6 @@
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- MODAL LIVE QR SCANNER ASLI BAILEYS RAILWAY (TANPA DUMMY PLACEHOLDER)       -->
-  <!-- ========================================================================= -->
   <div id="qrModal" class="modal-overlay">
     <div class="glass-panel modal-content" style="text-align: center; max-width: 440px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -1363,24 +1316,19 @@
         Buka WhatsApp di ponsel &gt; <strong>Perangkat Tertaut</strong> &gt; <strong>Tautkan Perangkat</strong>.
       </p>
 
-      <!-- Real-Time Dynamic QR Box (Hanya Menampilkan Base64 Asli dari Baileys) -->
       <div id="qrLiveCardWrapper" class="qr-live-wrapper qr-live-pulse">
-        
-        <!-- Loading Skeleton / Handshake Spinner -->
         <div id="qrLoaderBox" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%;">
           <div class="qr-spinner"></div>
           <div id="qrLoaderMainText" style="font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-top: 14px;">
-            Meminta QR Code Asli Baileys...
+            Menghubungkan ke Baileys di Railway...
           </div>
           <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px;">
             Sinkronisasi dengan server Railway...
           </div>
         </div>
 
-        <!-- Gambar Asli Baileys (Hanya aktif saat DataURL Base64 diterima) -->
         <img id="qrImageElement" src="" alt="WhatsApp Official QR Code" style="display: none; width: 224px; height: 224px; border-radius: 12px; image-rendering: pixelated;">
 
-        <!-- Success Overlay Saat Bot Terhubung -->
         <div id="qrSuccessOverlay" style="display: none; position: absolute; inset: 0; background: rgba(255,255,255,0.96); border-radius: 18px; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
           <iconify-icon icon="solar:check-circle-bold" style="font-size: 64px; color: var(--success); margin-bottom: 8px;"></iconify-icon>
           <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">Bot Terhubung!</h4>
@@ -1409,9 +1357,7 @@
   <div id="msgDetailModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <h3 style="font-size: 1.2rem; margin-bottom: 14px; color: var(--cyan-deep);">Detail Pesan WhatsApp</h3>
-      <div id="msgDetailBody" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main); background: rgba(0, 180, 216, 0.05); padding: 16px; border-radius: 10px; border: 1px solid var(--border-subtle); margin-bottom: 20px;">
-        <!-- Dinamis -->
-      </div>
+      <div id="msgDetailBody" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main); background: rgba(0, 180, 216, 0.05); padding: 16px; border-radius: 10px; border: 1px solid var(--border-subtle); margin-bottom: 20px;"></div>
       <button class="cyber-btn-secondary" onclick="closeModal('msgDetailModal')">Tutup</button>
     </div>
   </div>
@@ -1434,7 +1380,6 @@
     </div>
   </div>
 
-  <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
@@ -1480,7 +1425,6 @@
     function runBackend(functionName, args, onSuccess, onError) {
       args = args || [];
 
-      // Mode 1: Berjalan di dalam lingkungan Google Apps Script Web App
       if (typeof google !== 'undefined' && google.script && google.script.run) {
         var runner = google.script.run
           .withSuccessHandler(function(res) {
@@ -1502,7 +1446,6 @@
         return;
       }
 
-      // Mode 2: Berjalan di Vercel / GitHub Pages / Hosting Eksternal (REST API POST)
       if (GAS_API_URL && GAS_API_URL.indexOf('http') === 0 && GAS_API_URL.indexOf('AKfycby') > -1) {
         var requestPayload = {
           action: functionName,
@@ -1527,7 +1470,6 @@
         return;
       }
 
-      // Mode 3: Fallback Standalone untuk Canvas Preview
       runCanvasPreviewFallback(functionName, args, onSuccess);
     }
 
@@ -1579,7 +1521,7 @@
             clients: [
               { clientId: 'CLI-0001', name: 'NovaCare Akshra Core Bot', phone: '6281122334455', railwayUrl: DEFAULT_RAILWAY_URL, status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama Akshra Railway' }
             ],
-            stats: { total: 3, connected: 1, scanning: 1, disconnected: 1 }
+            stats: { total: 1, connected: 1, scanning: 0, disconnected: 0 }
           });
         } else if (functionName === 'getTemplatesList') {
           onSuccess({
@@ -1810,7 +1752,6 @@
       var modal = document.getElementById(modalId);
       if (modal) modal.style.display = 'none';
 
-      // Putuskan koneksi WebSocket & poller jika modal QR ditutup
       if (modalId === 'qrModal') {
         if (appState.activeQrSocket) {
           try {
@@ -2245,11 +2186,6 @@
       });
     }
 
-    /**
-     * =========================================================================
-     * REAL-TIME LIVE QR SCANNER DARI BAILEYS RAILWAY (TANPA DUMMY PLACEHOLDER)
-     * =========================================================================
-     */
     function openQrModal(clientId, railwayUrl) {
       var targetBaseUrl = (railwayUrl || DEFAULT_RAILWAY_URL).replace(/\/$/, '');
       var liveEndpoint = targetBaseUrl + '/qr';
@@ -2257,7 +2193,6 @@
       appState.activeModalClientId = clientId;
       appState.activeModalRailwayUrl = targetBaseUrl;
 
-      // 1. Reset Total Tampilan Modal
       var wrapper = document.getElementById('qrLiveCardWrapper');
       var loaderBox = document.getElementById('qrLoaderBox');
       var qrImg = document.getElementById('qrImageElement');
@@ -2269,7 +2204,6 @@
       wrapper.classList.add('qr-live-pulse');
       successOverlay.style.display = 'none';
       
-      // HAPUS TOTAL GAMBAR LAMA & TAMPILKAN LOADER SKELETON
       qrImg.src = '';
       qrImg.style.display = 'none';
       loaderBox.style.display = 'flex';
@@ -2281,7 +2215,6 @@
 
       openModal('qrModal');
 
-      // 2. Putus koneksi Socket & Polling lama jika ada
       if (appState.activeQrSocket) {
         try { appState.activeQrSocket.disconnect(); } catch (e) {}
         appState.activeQrSocket = null;
@@ -2291,7 +2224,6 @@
         appState.qrPollingTimer = null;
       }
 
-      // 3. Helper Penampil QR Resmi Baileys
       function renderOfficialBaileysQr(qrDataUrl) {
         if (!qrDataUrl) return;
         loaderBox.style.display = 'none';
@@ -2301,7 +2233,6 @@
         socketStatus.innerText = 'Live QR Streaming Aktif';
       }
 
-      // 4. Helper Penampil Sesi Berhasil Terhubung
       function renderOfficialBaileysConnected() {
         wrapper.classList.remove('qr-live-pulse');
         loaderBox.style.display = 'none';
@@ -2316,7 +2247,6 @@
         }, 2500);
       }
 
-      // 5. Saluran 1: WebSocket Real-Time via Socket.IO
       if (typeof io !== 'undefined') {
         try {
           appState.activeQrSocket = io(targetBaseUrl, {
@@ -2328,11 +2258,9 @@
           appState.activeQrSocket.on('connect', function() {
             socketStatus.innerText = 'WebSocket Terhubung (Live)';
             document.getElementById('qrLoaderMainText').innerText = 'Meminta payload QR aktif dari Baileys...';
-            // Minta QR segera jika server sudah menyimpannya di memori
             appState.activeQrSocket.emit('request_qr');
           });
 
-          // Tangkap event QR murni dari server.js (DataURL Base64)
           appState.activeQrSocket.on('qr', function(data) {
             var qrSrc = (typeof data === 'object' && data.qrDataUrl) ? data.qrDataUrl : (typeof data === 'string' ? data : '');
             if (qrSrc && (qrSrc.indexOf('data:image/') === 0 || qrSrc.indexOf('data:application/') === 0)) {
@@ -2340,7 +2268,6 @@
             }
           });
 
-          // Tangkap event saat sesi WhatsApp berhasil dibuka (Connected)
           appState.activeQrSocket.on('ready', function() {
             renderOfficialBaileysConnected();
           });
@@ -2360,8 +2287,6 @@
         }
       }
 
-      // 6. Saluran 2: Direct HTTP Poller ke endpoint JSON /api/qr di Railway
-      // Menjamin bahwa gambar QR asli tetap muncul meskipun WebSocket terhalang proxy/firewall
       var pollRailwayApiQr = function() {
         fetch(targetBaseUrl + '/api/qr?t=' + Date.now())
           .then(function(r) { return r.json(); })
@@ -2376,19 +2301,12 @@
           .catch(function() {});
       };
 
-      // Jalankan polling langsung dan setiap 3.5 detik
       pollRailwayApiQr();
       appState.qrPollingTimer = setInterval(pollRailwayApiQr, 3500);
     }
 
-    /**
-     * Memicu Reset Sesi WhatsApp di Railway jika Baileys mengalami crash / stuck session
-     */
     function triggerResetRailwaySession() {
       var targetUrl = appState.activeModalRailwayUrl || DEFAULT_RAILWAY_URL;
-      if (!confirm('Apakah Anda ingin mereset sesi kredensial WhatsApp di Railway untuk menghasilkan QR Code baru?')) {
-        return;
-      }
 
       var loaderBox = document.getElementById('qrLoaderBox');
       var qrImg = document.getElementById('qrImageElement');
@@ -2399,6 +2317,8 @@
       document.getElementById('qrLoaderMainText').innerText = 'Mereset kredensial sesi lama...';
       statusText.innerText = 'Menghapus sesi korup & memulai ulang engine Baileys...';
 
+      showToast('Memproses reset sesi Baileys di Railway...', 'warning');
+
       fetch(targetUrl + '/api/reset-session?t=' + Date.now(), { method: 'POST' })
         .then(function(r) { return r.json(); })
         .then(function(res) {
@@ -2408,7 +2328,6 @@
           }
         })
         .catch(function() {
-          // Fallback GET /reset
           fetch(targetUrl + '/reset?t=' + Date.now()).catch(function() {});
           showToast('Permintaan reset sesi dikirim ke Railway.', 'warning');
         });

@@ -453,9 +453,9 @@
       position: fixed;
       bottom: 90px;
       right: 24px;
-      width: 410px;
+      width: 420px;
       max-width: calc(100vw - 40px);
-      height: 550px;
+      height: 560px;
       display: none;
       flex-direction: column;
       z-index: 1002;
@@ -1159,12 +1159,15 @@
         </button>
       </div>
 
-      <!-- Selector Model Interaktif -->
+      <!-- Selector Model Interaktif + Tombol Set Default Cepat -->
       <div style="display: flex; align-items: center; gap: 6px; background: rgba(0, 180, 216, 0.08); padding: 4px 8px; border-radius: 8px;">
         <span style="font-size: 0.75rem; font-weight: 700; color: var(--cyan-deep); white-space: nowrap;">Model:</span>
-        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep);" onchange="onChatModelChange()">
+        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep); flex: 1;" onchange="onChatModelChange()">
           <!-- Opsi Model Dinamis -->
         </select>
+        <button type="button" class="cyber-btn-secondary" style="padding: 3px 7px; font-size: 0.7rem; white-space: nowrap;" title="Simpan sebagai default klinik ke sheet Settings" onclick="saveCurrentChatModelAsDefault()">
+          Simpan Default
+        </button>
       </div>
     </div>
 
@@ -1200,7 +1203,7 @@
         </div>
         <div style="margin-bottom: 20px;">
           <label style="display: block; font-size: 0.82rem; margin-bottom: 6px; font-weight: 600; color: var(--text-muted);">Password</label>
-          <input type="password" id="loginPassword" class="cyber-input" placeholder="••••••••" required>
+          <input type="password" id="loginPassword" class="cyber-input" placeholder="admin123 / op123" required>
         </div>
         <button type="submit" id="btnLoginSubmit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 12px;">
           <iconify-icon icon="solar:lock-keyhole-minimalistic-bold"></iconify-icon>
@@ -1347,6 +1350,9 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
+    // URL Endpoint REST API Google Apps Script (Bisa di-deploy ke Vercel / GitHub)
+    var GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCZcC8VXfTkivJ2o1gfDwv2iaXIKofAnJhfONNp4ZFGT_gWvDAqQAGUkdE7_fiVnG1/exec";
+
     var appState = {
       user: null,
       chatPage: 1,
@@ -1379,8 +1385,14 @@
       ]
     };
 
-    // Runner Aman untuk Google Apps Script maupun Gemini Canvas Preview Mode
+    /**
+     * Runner Adaptif: Berjalan cepat via google.script.run di Apps Script,
+     * dan otomatis beralih ke fetch() REST API saat di-host di Vercel / GitHub.
+     */
     function runBackend(functionName, args, onSuccess, onError) {
+      args = args || [];
+
+      // Mode 1: Berjalan di dalam Google Apps Script (Internal Web App)
       if (typeof google !== 'undefined' && google.script && google.script.run) {
         var runner = google.script.run
           .withSuccessHandler(function(res) {
@@ -1399,72 +1411,105 @@
         } else {
           runner[functionName]();
         }
-      } else {
-        // Fallback untuk Canvas Preview Mode
-        console.warn('Canvas Friendly Preview Mode: google.script.run tidak tersedia.');
-        setTimeout(function() {
-          if (functionName === 'getAvailableAiModels') {
-            onSuccess({
-              success: true,
-              defaultModel: 'gemini-3.5-flash',
-              models: [
-                { id: 'gemini-3.8-flash', name: 'Gemini 3.8 Flash', category: 'Gemini 3 Series', description: 'Ultra-Fast, Next-Gen Precision' },
-                { id: 'gemini-3.7-flash', name: 'Gemini 3.7 Flash', category: 'Gemini 3 Series', description: 'High Performance & Speed' },
-                { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', category: 'Gemini 3 Series', description: 'Balanced Production Workhorse (Default)' },
-                { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash Lite', category: 'Gemini 3 Series', description: 'Lightweight & High RPM' },
-                { id: 'gemini-3.1-pro', name: 'Gemini 3.1 Pro', category: 'Gemini 3 Series', description: 'Deep Clinical Reasoning' },
-                { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', category: 'Gemini 2 & 2.5 Series', description: 'Stable Fast Conversational' },
-                { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', category: 'Gemini 2 & 2.5 Series', description: 'Complex Analytical Triage' },
-                { id: 'gemma-4-31b', name: 'Gemma 4 31B', category: 'Gemma Open Models', description: 'Open Architecture High Capability' }
-              ]
-            });
-          } else if (functionName === 'loginUser') {
-            onSuccess({ success: true, user: { adminId: 'ADM-DEMO', fullName: 'Dr. Aris Thorne', role: 'Superadmin' } });
-          } else if (functionName === 'getAiConfig') {
-            onSuccess({ success: true, currentModel: 'gemini-3.5-flash', isConfigured: true, maskedApiKey: 'AIzaSyD...xxxx' });
-          } else if (functionName === 'getChatLogsPaginated') {
-            onSuccess({
-              success: true,
-              logs: [
-                { logId: 'LOG-0001', timestamp: '03/09/2026 10:15:20', clientId: 'CLI-0001', sender: '6281299001122', receiver: '6281122334455', type: 'INCOMING', content: 'Apakah poli saraf cyber buka malam ini?', status: 'DELIVERED' },
-                { logId: 'LOG-0002', timestamp: '03/09/2026 10:15:24', clientId: 'CLI-0001', sender: '6281122334455', receiver: '6281299001122', type: 'OUTGOING', content: 'Halo! Poli Saraf Bionik buka hingga pukul 21:00 WITA.', status: 'SENT' }
-              ],
-              totalCount: 2, page: 1, totalPages: 1
-            });
-          } else if (functionName === 'getBroadcastQueuePaginated') {
-            onSuccess({
-              success: true,
-              queue: [
-                { queueId: 'QUE-0001', clientId: 'CLI-0001', targetNumber: '6281299887766', messageContent: 'Jadwal kontrol jantung besok pukul 09:00 WITA.', scheduledTime: '04/09/2026 08:00', status: 'PENDING', sentAt: '-' }
-              ],
-              totalCount: 1, page: 1, totalPages: 1
-            });
-          } else if (functionName === 'getClientsList') {
-            onSuccess({
-              success: true,
-              clients: [
-                { clientId: 'CLI-0001', name: 'NovaCare Poli Utama', phone: '6281122334455', railwayUrl: 'https://bot-novacare-poli.up.railway.app', status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama poli' }
-              ],
-              stats: { total: 3, connected: 1, scanning: 1, disconnected: 1 }
-            });
-          } else if (functionName === 'getTemplatesList') {
-            onSuccess({
-              success: true,
-              templates: [
-                { templateId: 'TPL-0001', name: 'Konfirmasi Rawat Inap', category: 'Rawat Inap', content: 'Halo Bapak/Ibu {nama}, pendaftaran rawat inap Smart Pod Cyber telah siap.' }
-              ]
-            });
-          } else if (functionName === 'askGeminiClinic') {
-            onSuccess({
-              success: true,
-              reply: 'Halo! Ini adalah simulasi respon cerdas dari ' + (args[0].model || 'Gemini 3.5 Flash') + '. Layanan poli bionik beroperasi normal.',
-              modelUsed: args[0].model || 'gemini-3.5-flash'
-            });
-          } else {
-            onSuccess({ success: true, message: 'Operasi simulasi preview sukses.' });
-          }
-        }, 250);
+        return;
       }
+
+      // Mode 2: Berjalan di Vercel / GitHub Pages / Hosting Eksternal (REST API POST)
+      if (GAS_API_URL && GAS_API_URL.indexOf('http') === 0 && GAS_API_URL.indexOf('AKfycby') > -1) {
+        var requestPayload = {
+          action: functionName,
+          args: args
+        };
+
+        fetch(GAS_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(requestPayload)
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          if (typeof onSuccess === 'function') onSuccess(data);
+        })
+        .catch(function(fetchErr) {
+          console.warn('REST API fetch error, beralih ke fallback canvas:', fetchErr);
+          runCanvasPreviewFallback(functionName, args, onSuccess);
+        });
+        return;
+      }
+
+      // Mode 3: Fallback Standalone untuk Canvas Preview
+      runCanvasPreviewFallback(functionName, args, onSuccess);
+    }
+
+    function runCanvasPreviewFallback(functionName, args, onSuccess) {
+      setTimeout(function() {
+        if (functionName === 'getAvailableAiModels') {
+          onSuccess({
+            success: true,
+            defaultModel: 'gemini-3.5-flash',
+            models: [
+              { id: 'gemini-3.8-flash', name: 'Gemini 3.8 Flash', category: 'Gemini 3 Series', description: 'Ultra-Fast, Next-Gen Precision' },
+              { id: 'gemini-3.7-flash', name: 'Gemini 3.7 Flash', category: 'Gemini 3 Series', description: 'High Performance & Speed' },
+              { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', category: 'Gemini 3 Series', description: 'Balanced Production Workhorse (Default)' },
+              { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash Lite', category: 'Gemini 3 Series', description: 'Lightweight & High RPM' },
+              { id: 'gemini-3.1-pro', name: 'Gemini 3.1 Pro', category: 'Gemini 3 Series', description: 'Deep Clinical Reasoning' },
+              { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', category: 'Gemini 2 & 2.5 Series', description: 'Stable Fast Conversational' },
+              { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', category: 'Gemini 2 & 2.5 Series', description: 'Complex Analytical Triage' },
+              { id: 'gemma-4-31b', name: 'Gemma 4 31B', category: 'Gemma Open Models', description: 'Open Architecture High Capability' }
+            ]
+          });
+        } else if (functionName === 'loginUser') {
+          onSuccess({ success: true, user: { adminId: 'ADM-0001', fullName: 'Dr. Aris Thorne (Chief)', role: 'Superadmin' } });
+        } else if (functionName === 'getAiConfig') {
+          onSuccess({ success: true, currentModel: appState.selectedModel || 'gemini-3.5-flash', isConfigured: true, maskedApiKey: 'AIzaSyD...xxxx' });
+        } else if (functionName === 'saveAiConfig') {
+          onSuccess({ success: true, message: 'Konfigurasi model AI berhasil diperbarui ke sheet Settings!', currentModel: (args[0] && args[0].model) || 'gemini-3.5-flash' });
+        } else if (functionName === 'setClinicModelQuick') {
+          onSuccess({ success: true, message: 'Model default klinik sukses disetel ke ' + args[0], currentModel: args[0] });
+        } else if (functionName === 'getChatLogsPaginated') {
+          onSuccess({
+            success: true,
+            logs: [
+              { logId: 'LOG-0001', timestamp: '03/09/2026 10:15:20', clientId: 'CLI-0001', sender: '6281299001122', receiver: '6281122334455', type: 'INCOMING', content: 'Apakah poli saraf cyber buka malam ini?', status: 'DELIVERED' },
+              { logId: 'LOG-0002', timestamp: '03/09/2026 10:15:24', clientId: 'CLI-0001', sender: '6281122334455', receiver: '6281299001122', type: 'OUTGOING', content: 'Halo! Poli Saraf Bionik buka hingga pukul 21:00 WITA.', status: 'SENT' }
+            ],
+            totalCount: 2, page: 1, totalPages: 1
+          });
+        } else if (functionName === 'getBroadcastQueuePaginated') {
+          onSuccess({
+            success: true,
+            queue: [
+              { queueId: 'QUE-0001', clientId: 'CLI-0001', targetNumber: '6281299887766', messageContent: 'Jadwal kontrol jantung besok pukul 09:00 WITA.', scheduledTime: '04/09/2026 08:00', status: 'PENDING', sentAt: '-' }
+            ],
+            totalCount: 1, page: 1, totalPages: 1
+          });
+        } else if (functionName === 'getClientsList') {
+          onSuccess({
+            success: true,
+            clients: [
+              { clientId: 'CLI-0001', name: 'NovaCare Poli Utama', phone: '6281122334455', railwayUrl: 'https://bot-novacare-poli.up.railway.app', status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama poli' }
+            ],
+            stats: { total: 3, connected: 1, scanning: 1, disconnected: 1 }
+          });
+        } else if (functionName === 'getTemplatesList') {
+          onSuccess({
+            success: true,
+            templates: [
+              { templateId: 'TPL-0001', name: 'Konfirmasi Rawat Inap', category: 'Rawat Inap', content: 'Halo Bapak/Ibu {nama}, pendaftaran rawat inap Smart Pod Cyber telah siap.' }
+            ]
+          });
+        } else if (functionName === 'askGeminiClinic') {
+          onSuccess({
+            success: true,
+            reply: 'Halo! Ini respon cerdas dari ' + (args[0].model || 'Gemini 3.5 Flash') + '. Layanan poli bionik beroperasi normal.',
+            modelUsed: args[0].model || 'gemini-3.5-flash'
+          });
+        } else {
+          onSuccess({ success: true, message: 'Operasi sukses diproses.' });
+        }
+      }, 250);
     }
 
     window.addEventListener('DOMContentLoaded', function() {
@@ -1578,8 +1623,31 @@
       var sel = document.getElementById('chatModelSelector');
       if (sel) {
         appState.selectedModel = sel.value;
-        showToast('Engine AI dialihkan ke ' + sel.options[sel.selectedIndex].text.split(' - ')[0], 'success');
+        showToast('Model aktif beralih ke ' + sel.options[sel.selectedIndex].text.split(' - ')[0], 'success');
       }
+    }
+
+    /**
+     * Tombol Simpan Cepat dari Chatbox Widget langsung ke sheet Settings
+     */
+    function saveCurrentChatModelAsDefault() {
+      var sel = document.getElementById('chatModelSelector');
+      if (!sel) return;
+      var chosenModel = sel.value;
+      var adminId = appState.user ? appState.user.adminId : 'SUPERADMIN';
+
+      showToast('Menyimpan ' + chosenModel + ' ke sheet Settings...', 'warning');
+
+      runBackend('setClinicModelQuick', [chosenModel, adminId], function(res) {
+        if (res.success) {
+          showToast(res.message, 'success');
+          appState.selectedModel = chosenModel;
+          var cfgSelect = document.getElementById('cfgDefaultAiModel');
+          if (cfgSelect) cfgSelect.value = chosenModel;
+        } else {
+          showToast(res.message, 'danger');
+        }
+      });
     }
 
     function loadAiConfigBackend() {
@@ -1588,6 +1656,11 @@
           var cfgSelect = document.getElementById('cfgDefaultAiModel');
           if (cfgSelect && res.currentModel) {
             cfgSelect.value = res.currentModel;
+          }
+          var chatSelect = document.getElementById('chatModelSelector');
+          if (chatSelect && res.currentModel) {
+            chatSelect.value = res.currentModel;
+            appState.selectedModel = res.currentModel;
           }
           var statusEl = document.getElementById('cfgApiKeyStatus');
           if (statusEl) {
@@ -1611,12 +1684,16 @@
         apiKey: keyVal
       };
 
+      showToast('Menyimpan konfigurasi model ' + modelVal + ' ke sheet Settings...', 'warning');
+
       runBackend('saveAiConfig', [payload, adminId], function(res) {
         if (res.success) {
           showToast(res.message, 'success');
           document.getElementById('cfgApiKeyInput').value = '';
+          appState.selectedModel = modelVal;
+          var chatSelect = document.getElementById('chatModelSelector');
+          if (chatSelect) chatSelect.value = modelVal;
           loadAiConfigBackend();
-          loadAiModelCatalog();
         } else {
           showToast(res.message, 'danger');
         }

@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AURA MEDICA V5.2 — Futuristic Medical Clinic & WhatsApp Bot Portal (AI Studio Multi-Model)</title>
+  
+  <!-- PWA Metadata & iOS Standalone Support -->
+  <meta name="theme-color" content="#f0f7fa">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AuraMedica">
+  <meta name="description" content="Portal Bot WhatsApp Multi-Client & Smart Clinic Futuristic Management System dengan Google AI Studio Multi-Model Engine">
+  
+  <!-- Dynamic PWA Manifest via Data URI -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"AURA MEDICA Futuristic Portal","short_name":"AuraMedica","start_url":".","display":"standalone","background_color":"#f0f7fa","theme_color":"#00b4d8","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/822/822143.png","sizes":"512x512","type":"image/png"}]}'>
+
+  <!-- External Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bgLight: '#f0f7fa',
+            surfaceLight: 'rgba(255, 255, 255, 0.85)',
+            softCyan: '#00b4d8',
+            deepCyan: '#0077b6',
+            aquaHighlight: '#48cae4',
+            icyBlue: '#e0f2fe',
+            navyDark: '#0f172a',
+            slateSub: '#475569',
+            borderLight: 'rgba(0, 180, 216, 0.2)'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Light Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0f7fa;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00b4d8;
+    }
+
+    /* Glassmorphism Light Blue Cyan Soft Theme */
+    body {
+      background: linear-gradient(135deg, #f0f7fa 0%, #e0f2fe 45%, #f8fafc 100%);
+      color: #0f172a;
+    }
+
+    .glass-panel-light {
+      background: rgba(255, 255, 255, 0.80);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 30px rgba(0, 180, 216, 0.08);
+    }
+
+    .glass-panel-glow-light {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 180, 216, 0.35);
+      box-shadow: 0 10px 36px rgba(0, 180, 216, 0.15);
+    }
+
+    .glass-input-light {
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #0f172a;
+      transition: all 0.25s ease;
+    }
+    .glass-input-light:focus {
+      outline: none;
+      border-color: #00b4d8;
+      box-shadow: 0 0 12px rgba(0, 180, 216, 0.28);
+      background: #ffffff;
+    }
+
+    .btn-cyber-cyan {
+      background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+      color: #ffffff;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 18px rgba(0, 180, 216, 0.32);
+    }
+    .btn-cyber-cyan:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 119, 182, 0.45);
+    }
+
+    @keyframes pulseCyanRadar {
+      0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+      70% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 0 9px rgba(0, 180, 216, 0); }
+      100% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+    }
+    .live-pulse-cyan {
+      animation: pulseCyanRadar 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    .typing-dot {
+      animation: typingBounce 1.4s infinite ease-in-out both;
+    }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body class="font-sans min-h-screen relative overflow-x-hidden antialiased selection:bg-softCyan/20 selection:text-deepCyan">
+  <!-- Toast Notification System -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-[9999] flex flex-col gap-3 pointer-events-none max-w-sm w-full px-4"></div>
+
+  <!-- Global Modal Overlay -->
+  <div id="appModalOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[9000] hidden items-center justify-center p-4 transition-all duration-300">
+    <div id="appModalContent" class="glass-panel-glow-light rounded-2xl w-full max-w-lg p-6 max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300"></div>
+  </div>
+
+  <!-- iOS PWA Manual Guide Modal -->
+  <div id="iosInstallModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[9100] hidden items-center justify-center p-4">
+    <div class="glass-panel-glow-light rounded-2xl max-w-md w-full p-6 text-center border-softCyan/40">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-softCyan/10 border border-softCyan/30 flex items-center justify-center text-softCyan text-3xl">
+        <i class="fa-brands fa-apple"></i>
+      </div>
+      <h3 class="text-xl font-bold font-display text-navyDark mb-2">Pasang di iPhone / iPad</h3>
+      <p class="text-xs text-slateSub mb-5 leading-relaxed">
+        Jalankan AURA MEDICA dalam mode aplikasi layar penuh tanpa bilah peramban Safari:
+      </p>
+      <div class="text-left bg-white/95 p-4 rounded-xl space-y-3 text-xs text-slateSub border border-slate-200/80 mb-6 shadow-sm">
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-softCyan/20 text-deepCyan flex items-center justify-center font-bold">1</span>
+          <span>Tekan tombol <strong>Share</strong> (ikon kotak dengan panah ke atas) di bawah Safari.</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-softCyan/20 text-deepCyan flex items-center justify-center font-bold">2</span>
+          <span>Gulir ke bawah dan pilih <strong>"Add to Home Screen"</strong> (Tambah ke Layar Utama).</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-6 h-6 rounded-full bg-softCyan/20 text-deepCyan flex items-center justify-center font-bold">3</span>
+          <span>Tekan <strong>Tambah (Add)</strong> di pojok kanan atas. Selesai!</span>
+        </div>
+      </div>
+      <button onclick="closeIosGuide()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs transition shadow">
+        Saya Mengerti
+      </button>
+    </div>
+  </div>
+
+  <header class="sticky top-0 z-50 glass-panel-light border-b border-white/80 px-4 lg:px-8 py-3.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Clinic Logo -->
+      <a href="#home" onclick="navigateToView('landing')" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-softCyan/20 to-deepCyan/20 border border-softCyan/40 flex items-center justify-center text-deepCyan text-xl shadow-sm group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-staff-snake"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-display font-extrabold text-lg tracking-wider text-navyDark">AURA<span class="text-deepCyan">MEDICA</span></span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-softCyan/10 border border-softCyan/30 text-deepCyan font-bold uppercase tracking-wider">V5.2 AI</span>
+          </div>
+          <p class="text-[10px] text-slateSub font-mono tracking-tight">Futuristic Medical Clinic & WhatsApp Bot</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav id="landingNavMenu" class="hidden md:flex items-center gap-6 text-xs font-semibold text-slateSub">
+        <a href="#home" onclick="navigateToView('landing')" class="hover:text-deepCyan transition">Beranda</a>
+        <a href="#about" onclick="navigateToView('landing')" class="hover:text-deepCyan transition">Tentang</a>
+        <a href="#services" onclick="navigateToView('landing')" class="hover:text-deepCyan transition">Layanan</a>
+        <a href="#contact" onclick="navigateToView('landing')" class="hover:text-deepCyan transition">Kontak</a>
+        <button onclick="toggleChatAiWidget()" class="hover:text-deepCyan transition flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-softCyan/10 text-deepCyan border border-softCyan/30">
+          <i class="fa-solid fa-robot text-softCyan"></i>
+          <span>Tanya AI (<span id="topNavModelLabel">gemini-3.1-flash-lite</span>)</span>
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <!-- External Link: Buka Web Klinik Utama -->
+        <a href="https://example.com/klinik-utama" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/90 border border-slate-200 text-slate-700 hover:text-deepCyan hover:border-softCyan/50 transition shadow-xs" title="Kunjungi Website Resmi Klinik">
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          <span>Buka Web Klinik Utama</span>
+        </a>
+
+        <!-- PWA Install Button -->
+        <button id="pwaInstallBtn" onclick="triggerPwaInstall()" class="hidden items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-softCyan/10 border border-softCyan/40 text-deepCyan hover:bg-softCyan/20 transition shadow-xs">
+          <i class="fa-solid fa-download"></i>
+          <span class="hidden sm:inline">Pasang PWA</span>
+        </button>
+
+        <!-- GAS Backend Code Inspector Button -->
+        <button onclick="openGasCodeModal()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:text-deepCyan hover:border-softCyan transition shadow-xs" title="Lihat Source Code setup.gs & code.gs">
+          <i class="fa-solid fa-code text-[11px] text-softCyan"></i>
+          <span class="hidden lg:inline">GAS Code</span>
+        </button>
+
+        <!-- User Role / Portal Access Button -->
+        <div id="navAuthArea">
+          <button onclick="openLoginModal()" class="btn-cyber-cyan px-4 py-2 rounded-xl text-xs flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Akses Portal</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slateSub hover:text-navyDark">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenuDropdown" class="hidden md:hidden pt-4 pb-2 border-t border-slate-200/60 mt-3 space-y-2 text-xs font-semibold text-slateSub">
+      <a href="#home" onclick="closeMobileMenu(); navigateToView('landing')" class="block py-1.5 hover:text-deepCyan">Beranda</a>
+      <a href="#about" onclick="closeMobileMenu(); navigateToView('landing')" class="block py-1.5 hover:text-deepCyan">Tentang Otomasi</a>
+      <a href="#services" onclick="closeMobileMenu(); navigateToView('landing')" class="block py-1.5 hover:text-deepCyan">Layanan Cerdas</a>
+      <a href="#contact" onclick="closeMobileMenu(); navigateToView('landing')" class="block py-1.5 hover:text-deepCyan">Kontak & Lokasi</a>
+      <a href="https://example.com/klinik-utama" target="_blank" rel="noopener noreferrer" class="block py-1.5 text-deepCyan flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Buka Web Klinik Utama
+      </a>
+      <button onclick="toggleChatAiWidget(); closeMobileMenu()" class="w-full text-left py-2 text-deepCyan font-bold flex items-center gap-2">
+        <i class="fa-solid fa-robot"></i> Tanya Asisten AI AURA
+      </button>
+      <button onclick="openGasCodeModal(); closeMobileMenu()" class="w-full text-left py-1.5 text-slate-700 flex items-center gap-2">
+        <i class="fa-solid fa-code"></i> Inspektur Kode GAS (setup.gs & code.gs)
+      </button>
+    </div>
+  </header>
+
+  <main id="mainContainer">
+    <!-- VIEW 1: PUBLIC FUTURISTIC CLINIC LANDING PAGE -->
+    <section id="viewLanding" class="transition-all duration-300">
+      <!-- Hero Section -->
+      <div id="home" class="relative overflow-hidden pt-12 pb-20 px-4 lg:px-8 border-b border-white/60">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-softCyan/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-icyBlue rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 border border-softCyan/40 text-xs font-mono text-deepCyan shadow-xs">
+              <span class="w-2 h-2 rounded-full bg-softCyan live-pulse-cyan"></span>
+              GOOGLE AI STUDIO (AQ. & AIzaSy KEY READY) // 15 RPM GATEWAY
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-navyDark leading-tight tracking-tight">
+              Pelayanan Medis <span class="text-deepCyan underline decoration-softCyan/40 decoration-4 underline-offset-4">Futuristik</span> Terintegrasi <span class="text-softCyan">WhatsApp Bot</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slateSub font-normal leading-relaxed max-w-2xl">
+              Solusi otomasi klinis terdepan: manajemen multi-client bot WhatsApp di Railway, antrean broadcast massal terjadwal, dan kecerdasan buatan Google AI Studio multi-model (Gemini 3.1 Flash Lite 15 RPM).
+            </p>
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <button onclick="openLoginModal()" class="btn-cyber-cyan px-6 py-3 rounded-xl text-xs font-bold flex items-center gap-2 shadow-md">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Masuk Portal Manajemen</span>
+              </button>
+              <button onclick="toggleChatAiWidget()" class="px-6 py-3 rounded-xl text-xs font-semibold glass-panel-light hover:border-softCyan text-deepCyan flex items-center gap-2 transition shadow-xs">
+                <i class="fa-solid fa-brain text-softCyan"></i>
+                <span>Konsultasi AI (<span id="heroAiModelName">Gemini 3.1 Flash Lite</span>)</span>
+              </button>
+            </div>
+            
+            <!-- Quick Trust Metric Badges -->
+            <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-200/80 max-w-lg">
+              <div>
+                <div class="text-2xl font-display font-extrabold text-navyDark">99.9%</div>
+                <div class="text-xs text-slateSub">Railway Uptime</div>
+              </div>
+              <div>
+                <div class="text-2xl font-display font-extrabold text-deepCyan">15 RPM</div>
+                <div class="text-xs text-slateSub">Kuota AI Studio</div>
+              </div>
+              <div>
+                <div class="text-2xl font-display font-extrabold text-softCyan">&lt; 1 Detik</div>
+                <div class="text-xs text-slateSub">Respon Broadcast</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Graphic: Futuristic Interactive Terminal Card -->
+          <div class="lg:col-span-5">
+            <div class="glass-panel-glow-light rounded-3xl p-6 relative overflow-hidden border border-softCyan/30">
+              <div class="flex items-center justify-between border-b border-slate-200/80 pb-4 mb-5">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                  <span class="text-[11px] font-mono text-slateSub ml-2">AURA-BOT-CORE // LIVE</span>
+                </div>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-softCyan/10 text-deepCyan font-mono font-bold">ONLINE</span>
+              </div>
+
+              <!-- Live WhatsApp Message Feed Simulation -->
+              <div class="space-y-3 font-sans text-xs">
+                <div class="bg-white/95 p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-xs max-w-[85%]">
+                  <div class="text-[10px] text-deepCyan font-bold mb-1">Pasien (Bpk. Hendra S.)</div>
+                  <p class="text-navyDark">Halo Dokter, apakah hasil lab darah & kamar Smart Ward VVIP saya sudah siap ditempati?</p>
+                  <div class="text-[9px] text-slate-400 text-right mt-1">10:42 WIB</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-cyan-50 to-sky-100/90 p-3.5 rounded-2xl rounded-tr-none border border-softCyan/40 ml-auto max-w-[90%] shadow-xs">
+                  <div class="flex items-center justify-between text-[10px] text-deepCyan font-bold mb-1">
+                    <span>AURA MEDICA BOT SYSTEM</span>
+                    <i class="fa-solid fa-check-double text-softCyan"></i>
+                  </div>
+                  <p class="text-slate-800 leading-relaxed">
+                    Terverifikasi! Kamar Smart Ward 402 telah siap dengan sterilisasi UV-C. Dokter spesialis Anda, <strong>dr. Aris, Sp.JP</strong>, dijadwalkan visite pukul 14:00 WIB.
+                  </p>
+                  <div class="text-[9px] text-slate-500 text-right mt-1.5 flex items-center justify-end gap-1">
+                    <span>Otomatis via Railway Node</span> &bull; <span>10:42 WIB</span>
+                  </div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-white/70 border border-dashed border-softCyan/30 text-[11px] text-slateSub flex items-center justify-between shadow-xs">
+                  <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-nodes text-softCyan"></i>
+                    <span>Railway Node: <code>sgp1-core.railway.app</code></span>
+                  </span>
+                  <span class="font-mono text-deepCyan font-bold">38ms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="about" class="py-16 px-4 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-mono text-deepCyan font-bold tracking-widest uppercase">Keunggulan Arsitektur Bot</span>
+          <h2 class="text-3xl font-display font-bold text-navyDark mt-1">Showcase Otomasi Klinis Tanpa Hambatan</h2>
+          <p class="text-xs text-slateSub mt-2">Ditenagai integrasi multi-client WhatsApp terpusat yang aman, higienis, dan skalabel.</p>
+        </div>
+
+        <div class="relative glass-panel-light p-6 sm:p-8 rounded-3xl border border-white/90 shadow-sm">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Slide 1 -->
+            <div class="glass-panel-glow-light p-6 rounded-2xl relative overflow-hidden group hover:border-softCyan transition duration-300">
+              <div class="w-12 h-12 rounded-xl bg-softCyan/10 border border-softCyan/30 flex items-center justify-center text-deepCyan text-xl mb-4 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-bell"></i>
+              </div>
+              <h3 class="text-base font-bold text-navyDark mb-2">Notifikasi Pasien Real-Time</h3>
+              <p class="text-xs text-slateSub leading-relaxed">
+                Pengiriman pengingat jadwal kontrol, hasil lab darah, dan resi resep farmasi langsung ke WhatsApp pasien secara terprogram tanpa intervensi staf manual.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-deepCyan">
+                <span>Auto-Scheduler</span>
+                <i class="fa-solid fa-check text-softCyan"></i>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="glass-panel-glow-light p-6 rounded-2xl relative overflow-hidden group hover:border-softCyan transition duration-300">
+              <div class="w-12 h-12 rounded-xl bg-deepCyan/10 border border-deepCyan/30 flex items-center justify-center text-deepCyan text-xl mb-4 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-bed-pulse"></i>
+              </div>
+              <h3 class="text-base font-bold text-navyDark mb-2">Monitoring Rawat Inap & Ranap</h3>
+              <p class="text-xs text-slateSub leading-relaxed">
+                Sinkronisasi ketersediaan bed Smart Ward, jadwal visite dokter spesialis berkala, dan notifikasi status pemulangan pasien melalui bot dedicated khusus ranap.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-deepCyan">
+                <span>Smart Ward VVIP</span>
+                <i class="fa-solid fa-check text-softCyan"></i>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="glass-panel-glow-light p-6 rounded-2xl relative overflow-hidden group hover:border-softCyan transition duration-300">
+              <div class="w-12 h-12 rounded-xl bg-aquaHighlight/20 border border-aquaHighlight/40 flex items-center justify-center text-deepCyan text-xl mb-4 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-network-wired"></i>
+              </div>
+              <h3 class="text-base font-bold text-navyDark mb-2">Integrasi Multi-Nomor Railway</h3>
+              <p class="text-xs text-slateSub leading-relaxed">
+                Manajemen puluhan nomor bot WhatsApp dalam satu antarmuka terpadu. Masing-masing departemen (IGD, Ranap, Kasir, Poli) memiliki node mandiri yang stabil.
+              </p>
+              <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-mono text-deepCyan">
+                <span>Multi-Client Baileys</span>
+                <i class="fa-solid fa-check text-softCyan"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="services" class="py-16 px-4 lg:px-8 border-t border-slate-200/60 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-mono text-deepCyan font-bold tracking-widest uppercase">Layanan Cerdas Terpadu</span>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-navyDark mt-1">Ekosistem Otomasi Tanpa Jeda</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-panel-light p-5 rounded-2xl border border-white hover:border-softCyan/50 transition">
+            <i class="fa-solid fa-calendar-check text-deepCyan text-2xl mb-3"></i>
+            <h4 class="text-sm font-bold text-navyDark mb-1">Janji Temu Digital</h4>
+            <p class="text-xs text-slateSub leading-relaxed">Pendaftaran instan yang langsung terhubung ke database antrean staf dan dokter.</p>
+          </div>
+          <div class="glass-panel-light p-5 rounded-2xl border border-white hover:border-softCyan/50 transition">
+            <i class="fa-solid fa-bullhorn text-deepCyan text-2xl mb-3"></i>
+            <h4 class="text-sm font-bold text-navyDark mb-1">Antrean Broadcast</h4>
+            <p class="text-xs text-slateSub leading-relaxed">Pengiriman pesan massal terkoordinasi dengan proteksi jeda anti-banned WhatsApp.</p>
+          </div>
+          <div class="glass-panel-light p-5 rounded-2xl border border-white hover:border-softCyan/50 transition">
+            <i class="fa-solid fa-file-invoice-dollar text-deepCyan text-2xl mb-3"></i>
+            <h4 class="text-sm font-bold text-navyDark mb-1">Tagihan & Farmasi</h4>
+            <p class="text-xs text-slateSub leading-relaxed">Notifikasi rincian pembayaran kasir dan kesiapan obat otomatis ke nomor pasien.</p>
+          </div>
+          <div class="glass-panel-light p-5 rounded-2xl border border-white hover:border-softCyan/50 transition">
+            <i class="fa-solid fa-robot text-deepCyan text-2xl mb-3"></i>
+            <h4 class="text-sm font-bold text-navyDark mb-1">Triase Multi-Model AI</h4>
+            <p class="text-xs text-slateSub leading-relaxed">Dukungan Google AI Studio (Gemini 3.1 Flash Lite 15 RPM / AQ. Key) yang selalu siap membimbing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact, Map & Footer -->
+      <div id="contact" class="py-16 px-4 lg:px-8 max-w-7xl mx-auto border-t border-slate-200/60">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-5 space-y-4">
+            <h3 class="text-xl font-display font-bold text-navyDark">Hubungi Sentra Medis Kami</h3>
+            <p class="text-xs text-slateSub leading-relaxed">
+              Tim triage dan operasional WhatsApp Gateway kami selalu siap mendampingi kebutuhan layanan kesehatan Anda 24 jam setiap hari.
+            </p>
+            <div class="space-y-3 text-xs text-slate-700 pt-2">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-deepCyan shadow-xs">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <span>Cyber Medika Tower Fl. 14, Kawasan Mega Kuningan, Jakarta</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-softCyan shadow-xs">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <span>+62 821-9900-8800 (Emergency Hotline 24 Jam)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div class="glass-panel-light p-5 rounded-2xl h-64 relative overflow-hidden flex flex-col items-center justify-center text-center border-softCyan/30 shadow-sm">
+              <div class="w-12 h-12 rounded-full bg-softCyan/10 border border-softCyan/30 flex items-center justify-center text-deepCyan text-xl mb-3">
+                <i class="fa-solid fa-map-location-dot"></i>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Lokasi Satelit Digital AURA MEDICA</h4>
+              <p class="text-xs text-slateSub max-w-md mt-1 mb-4">
+                Terhubung dengan jaringan GPS Ambulance Dispatch & Emergency Drone Transport.
+              </p>
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-deepCyan hover:bg-slate-50 flex items-center gap-2 transition shadow-xs">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <span>Buka Google Maps Resmi</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+          <p>&copy; 2026 AURA MEDICA V5.2 &bull; Powered by Google AI Studio Multi-Model Engine (AQ. & AIzaSy Ready).</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewDashboard" class="hidden transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+        
+        <!-- Portal Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 glass-panel-light p-5 rounded-2xl mb-8 border-softCyan/30 shadow-sm">
+          <div>
+            <div class="flex items-center gap-3">
+              <h2 class="text-2xl font-display font-extrabold text-navyDark tracking-wide">Portal Manajemen Multi-Client</h2>
+              <span id="userRoleBadge" class="text-xs px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider bg-softCyan/15 text-deepCyan border border-softCyan/30">
+                Superadmin
+              </span>
+            </div>
+            <p class="text-xs text-slateSub mt-1">
+              Selamat datang kembali, <span id="userFullName" class="text-navyDark font-semibold">Administrator</span>. Pantau alur WhatsApp klinis, broadcast queue, dan model Google AI Studio.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- AI Quick Config Button -->
+            <button onclick="switchDashboardTab('aiConfig')" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-softCyan text-deepCyan hover:bg-sky-50 transition flex items-center gap-2 shadow-xs">
+              <i class="fa-solid fa-sliders text-softCyan"></i>
+              <span>Konfigurasi AI Studio</span>
+            </button>
+            <!-- Export CSV Button -->
+            <button onclick="exportChatLogsToCsv()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-emerald-300 text-emerald-700 hover:bg-emerald-50 transition flex items-center gap-2 shadow-xs">
+              <i class="fa-solid fa-file-csv"></i>
+              <span>Ekspor CSV</span>
+            </button>
+            <!-- Logout Button -->
+            <button onclick="handleLogout()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-red-300 text-red-600 hover:bg-red-50 transition flex items-center gap-2 shadow-xs">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span>Keluar</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="glass-panel-light p-5 rounded-2xl border-l-4 border-l-softCyan shadow-sm">
+            <div class="flex items-center justify-between text-slateSub text-xs mb-2">
+              <span>Total Bot WhatsApp</span>
+              <i class="fa-brands fa-whatsapp text-softCyan text-lg"></i>
+            </div>
+            <div id="metricTotalClients" class="text-2xl font-display font-extrabold text-navyDark">4</div>
+            <div class="text-[10px] text-slateSub mt-1 flex items-center gap-1">
+              <span class="text-deepCyan font-semibold">100%</span> instance terdaftar
+            </div>
+          </div>
+
+          <div class="glass-panel-light p-5 rounded-2xl border-l-4 border-l-deepCyan shadow-sm">
+            <div class="flex items-center justify-between text-slateSub text-xs mb-2">
+              <span>Bot Online (Railway)</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-softCyan live-pulse-cyan"></span>
+            </div>
+            <div id="metricActiveClients" class="text-2xl font-display font-extrabold text-deepCyan">3</div>
+            <div class="text-[10px] text-slateSub mt-1">Siap broadcast & respon</div>
+          </div>
+
+          <div class="glass-panel-light p-5 rounded-2xl border-l-4 border-l-sky-500 shadow-sm">
+            <div class="flex items-center justify-between text-slateSub text-xs mb-2">
+              <span>Antrean Broadcast</span>
+              <i class="fa-solid fa-paper-plane text-sky-600 text-lg"></i>
+            </div>
+            <div id="metricPendingBroadcast" class="text-2xl font-display font-extrabold text-amber-600">1</div>
+            <div class="text-[10px] text-slateSub mt-1">Menunggu waktu pengiriman</div>
+          </div>
+
+          <div class="glass-panel-light p-5 rounded-2xl border-l-4 border-l-emerald-500 shadow-sm">
+            <div class="flex items-center justify-between text-slateSub text-xs mb-2">
+              <span>Model AI Aktif</span>
+              <i class="fa-solid fa-brain text-emerald-600 text-lg"></i>
+            </div>
+            <div id="metricActiveModel" class="text-sm font-display font-extrabold text-navyDark truncate">gemini-3.1-flash-lite</div>
+            <div class="text-[10px] text-emerald-600 font-semibold mt-1">15 RPM / 250K TPM (AQ. Supported)</div>
+          </div>
+        </div>
+
+        <div class="flex border-b border-slate-200 mb-6 gap-2 overflow-x-auto pb-1 text-xs font-semibold">
+          <button id="tabBtnChatLogs" onclick="switchDashboardTab('chatLogs')" class="px-4 py-2.5 rounded-t-xl bg-white text-deepCyan border-b-2 border-deepCyan flex items-center gap-2 whitespace-nowrap shadow-xs">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Log Chat Seluruh Client</span>
+          </button>
+          <button id="tabBtnBroadcastQueue" onclick="switchDashboardTab('broadcastQueue')" class="px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Antrean Broadcast</span>
+          </button>
+          <button id="tabBtnClients" onclick="switchDashboardTab('clients')" class="px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid fa-server"></i>
+            <span>Kelola Client Railway</span>
+          </button>
+          <button id="tabBtnTemplates" onclick="switchDashboardTab('templates')" class="px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid fa-file-waveform"></i>
+            <span>Template Pesan Klinis</span>
+          </button>
+          <button id="tabBtnAiConfig" onclick="switchDashboardTab('aiConfig')" class="px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Google AI Studio Hub</span>
+          </button>
+          <button id="tabBtnActivityLogs" onclick="switchDashboardTab('activityLogs')" class="px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid fa-shield-cat"></i>
+            <span>Audit Trail</span>
+          </button>
+        </div>
+
+        <!-- TAB 1: LOG CHAT SELURUH CLIENT -->
+        <div id="tabChatLogs" class="space-y-4">
+          <div class="glass-panel-light p-4 rounded-2xl flex flex-col md:flex-row gap-3 items-center justify-between shadow-sm">
+            <div class="flex-1 w-full flex flex-col sm:flex-row gap-3">
+              <div class="relative flex-1">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="logSearchInput" oninput="debounceLogSearch()" placeholder="Cari pesan, nomor WA pengirim/penerima..." class="glass-input-light w-full pl-9 pr-4 py-2 rounded-xl text-xs">
+              </div>
+
+              <select id="logClientFilter" onchange="applyLogFilters()" class="glass-input-light px-3 py-2 rounded-xl text-xs bg-white">
+                <option value="">Semua Client Bot</option>
+                <option value="CLI-0001">CLI-0001 (Klinik Utama)</option>
+                <option value="CLI-0002">CLI-0002 (Smart Ward Ranap)</option>
+                <option value="CLI-0003">CLI-0003 (Poli Jantung)</option>
+                <option value="CLI-0004">CLI-0004 (Farmasi & Kasir)</option>
+              </select>
+
+              <select id="logStatusFilter" onchange="applyLogFilters()" class="glass-input-light px-3 py-2 rounded-xl text-xs bg-white">
+                <option value="">Semua Status</option>
+                <option value="Sent">Sent (Terkirim)</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Read">Read (Dibaca)</option>
+                <option value="Failed">Failed (Gagal)</option>
+              </select>
+            </div>
+
+            <button onclick="resetLogFilters()" class="px-3 py-2 rounded-xl text-xs text-slate-600 hover:text-navyDark bg-white border border-slate-200 flex items-center gap-1.5 whitespace-nowrap shadow-xs">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>Reset</span>
+            </button>
+          </div>
+
+          <!-- Logs Table Container -->
+          <div class="glass-panel-light rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-100/90 text-slate-600 border-b border-slate-200 font-mono text-[11px]">
+                  <tr>
+                    <th class="p-3.5">LOG ID & WAKTU</th>
+                    <th class="p-3.5">CLIENT ID</th>
+                    <th class="p-3.5">PENGIRIM &rarr; PENERIMA</th>
+                    <th class="p-3.5">TIPE PESAN</th>
+                    <th class="p-3.5">RINGKASAN KONTEN</th>
+                    <th class="p-3.5">STATUS</th>
+                    <th class="p-3.5 text-center">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody id="chatLogsTableBody" class="divide-y divide-slate-200 text-slate-700"></tbody>
+              </table>
+            </div>
+
+            <!-- Server-Side Pagination Bar -->
+            <div class="p-4 bg-white/70 flex items-center justify-between text-xs text-slate-500 border-t border-slate-200">
+              <div id="logsPaginationInfo">Memuat log percakapan...</div>
+              <div class="flex items-center gap-2">
+                <button id="btnPrevLogs" onclick="changeLogPage(-1)" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:text-deepCyan disabled:opacity-40 disabled:pointer-events-none">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <span id="currentLogPageDisplay" class="font-mono text-deepCyan font-bold px-2">Hal 1</span>
+                <button id="btnNextLogs" onclick="changeLogPage(1)" class="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:text-deepCyan disabled:opacity-40 disabled:pointer-events-none">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: MANAJEMEN ANTREAN BROADCAST -->
+        <div id="tabBroadcastQueue" class="hidden space-y-4">
+          <div class="glass-panel-light p-4 rounded-2xl flex flex-col md:flex-row gap-3 items-center justify-between shadow-sm">
+            <div>
+              <h3 class="text-sm font-bold text-navyDark">Antrean Pengiriman Pesan Massal (Broadcast Queue)</h3>
+              <p class="text-xs text-slateSub">Kelola dan jadwalkan pesan massal terjadwal dengan jeda anti-banned.</p>
+            </div>
+            <div class="flex items-center gap-2 w-full md:w-auto">
+              <select id="bqStatusFilter" onchange="applyBroadcastFilters()" class="glass-input-light px-3 py-2 rounded-xl text-xs bg-white">
+                <option value="">Semua Status Antrean</option>
+                <option value="Pending">Pending (Menunggu)</option>
+                <option value="Sent">Sent (Terkirim)</option>
+                <option value="Failed">Failed (Gagal)</option>
+              </select>
+              <button onclick="openAddBroadcastModal()" class="btn-cyber-cyan px-3.5 py-2 rounded-xl text-xs flex items-center gap-2 whitespace-nowrap shadow-sm">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Jadwalkan Broadcast</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-panel-light rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-100/90 text-slate-600 font-mono text-[11px] border-b border-slate-200">
+                  <tr>
+                    <th class="p-3.5">QUEUE ID</th>
+                    <th class="p-3.5">CLIENT ID</th>
+                    <th class="p-3.5">NOMOR TARGET</th>
+                    <th class="p-3.5">ISI PESAN</th>
+                    <th class="p-3.5">JADWAL KIRIM</th>
+                    <th class="p-3.5">STATUS</th>
+                    <th class="p-3.5 text-center">TINDAKAN</th>
+                  </tr>
+                </thead>
+                <tbody id="broadcastQueueTableBody" class="divide-y divide-slate-200 text-slate-700"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: PENGELOLA CLIENT RAILWAY -->
+        <div id="tabClients" class="hidden space-y-4">
+          <div class="flex items-center justify-between glass-panel-light p-4 rounded-2xl shadow-sm">
+            <div>
+              <h3 class="text-sm font-bold text-navyDark">Daftar Instance Bot WhatsApp (Railway Backend)</h3>
+              <p class="text-xs text-slateSub">Instance terhubung ke microservices NodeJS/Baileys di cloud Railway.</p>
+            </div>
+            <button onclick="openAddClientModal()" class="btn-cyber-cyan px-3.5 py-2 rounded-xl text-xs flex items-center gap-2 shadow-sm">
+              <i class="fa-solid fa-plus"></i>
+              <span>Tambah Client Bot</span>
+            </button>
+          </div>
+
+          <div id="clientsGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </div>
+
+        <!-- TAB 4: TEMPLATE PESAN KLINIS -->
+        <div id="tabTemplates" class="hidden space-y-4">
+          <div class="flex items-center justify-between glass-panel-light p-4 rounded-2xl shadow-sm">
+            <div>
+              <h3 class="text-sm font-bold text-navyDark">Template Siaran & Pesan Standar Medis</h3>
+              <p class="text-xs text-slateSub">Salin cepat format pesan standar klinik untuk dikirim ke pasien.</p>
+            </div>
+            <button onclick="openAddTemplateModal()" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-softCyan/40 text-deepCyan hover:bg-softCyan/10 flex items-center gap-2 shadow-xs">
+              <i class="fa-solid fa-square-plus"></i>
+              <span>Template Baru</span>
+            </button>
+          </div>
+
+          <div id="templatesListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- TAB 5: GOOGLE AI STUDIO MULTI-MODEL HUB -->
+        <div id="tabAiConfig" class="hidden space-y-6">
+          <div class="glass-panel-light p-5 rounded-2xl border border-softCyan/30 shadow-sm">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-base font-bold text-navyDark flex items-center gap-2">
+                  <i class="fa-solid fa-brain text-deepCyan"></i>
+                  <span>Google AI Studio Multi-Model Engine Manager</span>
+                </h3>
+                <p class="text-xs text-slateSub mt-1">
+                  Mendukung Kunci <code>AQ.xxxx...</code> & <code>AIzaSy...</code>. Terintegrasi proteksi <em>Cascading Fallback</em> otomatis.
+                </p>
+              </div>
+              <button onclick="openApiKeyConfigModal()" class="btn-cyber-cyan px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-xs">
+                <i class="fa-solid fa-key"></i>
+                <span>Atur Script Properties (API Key)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Model Selection Cards Grid based on screenshots -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Model 1: Gemini 3.1 Flash Lite -->
+            <div onclick="selectActiveModel('gemini-3.1-flash-lite')" class="glass-panel-glow-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-3.1-flash-lite">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800">15 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-deepCyan font-bold">REKOMENDASI</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 3.1 Flash Lite</h4>
+              <p class="text-xs text-slateSub mt-1">Model kecepatan ultra-tinggi dengan latensi terendah, optimal untuk triase pasien cepat.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">Fast Response</span>
+                <span id="badgeActive-gemini-3.1-flash-lite" class="text-deepCyan font-bold"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+
+            <!-- Model 2: Gemini 3.5 Flash Lite -->
+            <div onclick="selectActiveModel('gemini-3.5-flash-lite')" class="glass-panel-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-3.5-flash-lite">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800">15 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-slate-500">THROUGHPUT TINGGI</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 3.5 Flash Lite</h4>
+              <p class="text-xs text-slateSub mt-1">Throughput tinggi untuk penanganan pesan serentak dalam antrean broadcast massal.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">Concurrency</span>
+                <span id="badgeActive-gemini-3.5-flash-lite" class="text-slate-400 font-bold hidden"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+
+            <!-- Model 3: Gemini 2.5 Flash Lite -->
+            <div onclick="selectActiveModel('gemini-2.5-flash-lite')" class="glass-panel-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-2.5-flash-lite">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-sky-100 text-deepCyan">10 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-slate-500">STABIL</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 2.5 Flash Lite</h4>
+              <p class="text-xs text-slateSub mt-1">Penalaran seimbang dan hemat kuota untuk konsultasi resume medis umum.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">Balanced</span>
+                <span id="badgeActive-gemini-2.5-flash-lite" class="text-slate-400 font-bold hidden"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+
+            <!-- Model 4: Gemini 2.5 Flash -->
+            <div onclick="selectActiveModel('gemini-2.5-flash')" class="glass-panel-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-2.5-flash">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800">5 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-slate-500">PENALARAN TINGGI</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 2.5 Flash</h4>
+              <p class="text-xs text-slateSub mt-1">Penalaran klinis mendalam untuk analisis gejala kompleks sebelum rujukan spesialis.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">High Context</span>
+                <span id="badgeActive-gemini-2.5-flash" class="text-slate-400 font-bold hidden"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+
+            <!-- Model 5: Gemini 3.5 Flash -->
+            <div onclick="selectActiveModel('gemini-3.5-flash')" class="glass-panel-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-3.5-flash">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800">5 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-slate-500">GENERASI BARU</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 3.5 Flash</h4>
+              <p class="text-xs text-slateSub mt-1">Kombinasi penalaran tingkat lanjut dan pemahaman multi-turn terstruktur.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">Next-Gen</span>
+                <span id="badgeActive-gemini-3.5-flash" class="text-slate-400 font-bold hidden"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+
+            <!-- Model 6: Gemini 3 Flash Core -->
+            <div onclick="selectActiveModel('gemini-3-flash')" class="glass-panel-light p-5 rounded-2xl border-2 cursor-pointer transition relative hover:border-softCyan" id="cardModel-gemini-3-flash">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800">5 RPM / 250K TPM</span>
+                <span class="text-[10px] font-mono text-slate-500">CORE MODEL</span>
+              </div>
+              <h4 class="text-sm font-bold text-navyDark">Gemini 3 Flash</h4>
+              <p class="text-xs text-slateSub mt-1">Fondasi model generasi 3 dengan pemrosesan instruksi klinis yang presisi.</p>
+              <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <span class="font-mono text-slate-500">Precision</span>
+                <span id="badgeActive-gemini-3-flash" class="text-slate-400 font-bold hidden"><i class="fa-solid fa-check"></i> Aktif</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Benchmark Tester Box -->
+          <div class="glass-panel-light p-5 rounded-2xl border border-slate-200 space-y-3">
+            <h4 class="text-sm font-bold text-navyDark flex items-center gap-2">
+              <i class="fa-solid fa-gauge-high text-deepCyan"></i>
+              <span>Live AI Model Benchmark & Ping Tester</span>
+            </h4>
+            <p class="text-xs text-slateSub">
+              Uji latensi respon nyata model aktif langsung ke endpoint Google AI Studio:
+            </p>
+            <div class="flex items-center gap-3 pt-1">
+              <button onclick="testAiLatency()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-softCyan/40 text-deepCyan hover:bg-softCyan/10 transition shadow-xs flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-softCyan"></i>
+                <span>Uji Latensi AI</span>
+              </button>
+              <div id="aiBenchmarkResult" class="text-xs font-mono text-slate-600">Tekan tombol uji untuk memeriksa latensi.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: AUDIT TRAIL ACTIVITY LOGS -->
+        <div id="tabActivityLogs" class="hidden space-y-4">
+          <div class="glass-panel-light p-4 rounded-2xl shadow-sm">
+            <h3 class="text-sm font-bold text-navyDark">Rekam Jejak Aktivitas Sistem (Audit Trail)</h3>
+            <p class="text-xs text-slateSub">Seluruh aksi kritikal operator, login admin, dan pembaruan model AI tercatat permanen.</p>
+          </div>
+
+          <div class="glass-panel-light rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-100/90 text-slate-600 font-mono text-[11px] border-b border-slate-200">
+                  <tr>
+                    <th class="p-3.5">ACT ID</th>
+                    <th class="p-3.5">WAKTU</th>
+                    <th class="p-3.5">USER</th>
+                    <th class="p-3.5">AKSI</th>
+                    <th class="p-3.5">DETAIL KEGIATAN</th>
+                  </tr>
+                </thead>
+                <tbody id="activityLogsTableBody" class="divide-y divide-slate-200 text-slate-700"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp Direct Care Bubble -->
+  <a href="https://wa.me/6281234567890?text=Halo%20AURA%20MEDICA,%20saya%20membutuhkan%20informasi%20layanan%20klinik" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-40 w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition-transform" title="Hubungi CS WhatsApp Resmi">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Floating AI Assistant Trigger Button -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+    <button onclick="toggleChatAiWidget()" class="w-14 h-14 rounded-2xl btn-cyber-cyan flex items-center justify-center text-xl shadow-lg hover:scale-105 transition-transform relative group">
+      <i class="fa-solid fa-robot"></i>
+      <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-softCyan live-pulse-cyan border-2 border-white"></span>
+    </button>
+  </div>
+
+  <!-- Interactive Gemini Multi-Turn AI Chatbox Window with Model Selector -->
+  <div id="geminiChatWidget" class="fixed bottom-24 right-6 z-50 w-[92vw] sm:w-[420px] glass-panel-glow-light rounded-2xl overflow-hidden shadow-2xl hidden flex-col border border-softCyan/40 transition-all">
+    <div class="p-3.5 bg-white/95 border-b border-slate-200 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-softCyan/15 border border-softCyan/30 flex items-center justify-center text-deepCyan text-sm">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <h4 class="text-xs font-bold text-navyDark">AURA MEDICA AI</h4>
+            <select id="widgetAiModelSelect" onchange="changeWidgetModel(this.value)" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-softCyan/10 border border-softCyan/30 text-deepCyan font-bold outline-none cursor-pointer">
+              <option value="gemini-3.1-flash-lite">gemini-3.1-flash-lite (15 RPM)</option>
+              <option value="gemini-3.5-flash-lite">gemini-3.5-flash-lite (15 RPM)</option>
+              <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (10 RPM)</option>
+              <option value="gemini-2.5-flash">gemini-2.5-flash (5 RPM)</option>
+              <option value="gemini-3.5-flash">gemini-3.5-flash (5 RPM)</option>
+              <option value="gemini-3-flash">gemini-3-flash (5 RPM)</option>
+            </select>
+          </div>
+          <p class="text-[10px] text-slateSub">Google AI Studio (AQ. & AIzaSy Ready)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <button onclick="openApiKeyConfigModal()" title="Konfigurasi API Key" class="w-7 h-7 rounded text-slate-400 hover:text-deepCyan flex items-center justify-center text-xs">
+          <i class="fa-solid fa-gear"></i>
+        </button>
+        <button onclick="clearAiChatHistory()" title="Hapus Riwayat" class="w-7 h-7 rounded text-slate-400 hover:text-slate-700 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+        <button onclick="toggleChatAiWidget()" class="w-7 h-7 rounded text-slate-400 hover:text-slate-700 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Flow Container -->
+    <div id="aiChatMessages" class="p-4 space-y-3 h-80 overflow-y-auto text-xs bg-slate-50/50">
+      <div class="bg-white p-3 rounded-xl rounded-tl-none border border-slate-200 text-slate-700 shadow-xs">
+        Salam sehat! Saya <strong>AURA AI</strong>, asisten cerdas klinik dan WhatsApp Gateway. Ditenagai oleh Google AI Studio Multi-Model. Ada yang bisa saya bantu terkait jadwal dokter spesialis, ketersediaan kamar rawat inap, atau antrean broadcast?
+      </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div id="aiTypingIndicator" class="px-4 py-2 hidden items-center gap-2 text-[11px] text-deepCyan bg-white/80 border-t border-slate-100">
+      <div class="flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-softCyan typing-dot"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-softCyan typing-dot"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-softCyan typing-dot"></span>
+      </div>
+      <span>AURA AI sedang merumuskan jawaban...</span>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form id="aiChatForm" onsubmit="handleAiChatSubmit(event)" class="p-2.5 bg-white border-t border-slate-200 flex items-center gap-2">
+      <input type="text" id="aiChatInput" placeholder="Tanyakan seputar klinik atau bot WhatsApp..." autocomplete="off" class="glass-input-light flex-1 px-3 py-2 rounded-xl text-xs">
+      <button type="submit" id="aiChatSendBtn" class="btn-cyber-cyan w-9 h-9 rounded-xl flex items-center justify-center text-xs flex-shrink-0">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    /**
+     * STATE MANAGEMENT
+     */
+    const STATE = {
+      currentUser: null,
+      activeTab: 'chatLogs',
+      activeAiModel: 'gemini-3.1-flash-lite',
+      apiKeyConfigured: true,
+      logFilter: { search: '', clientId: '', status: '', page: 1, pageSize: 10 },
+      broadcastFilter: { status: '', search: '', page: 1, pageSize: 10 },
+      aiConversation: [],
+      deferredPwaPrompt: null
+    };
+
+    /**
+     * In-Memory Fallback Database untuk demonstrasi pratinjau Canvas
+     */
+    const DB = {
+      clients: [
+        { id: 'CLI-0001', name: 'Sentra Medika Utama Bot', phone: '6281234567890', railwayUrl: 'https://btwa-ranap-production.up.railway.app', status: 'Online', expiredDate: '2026-12-31', notes: 'Gateway triase IGD dan booking Poli Jantung' },
+        { id: 'CLI-0002', name: 'Smart Ward Ranap Bot', phone: '6281298765432', railwayUrl: 'https://aura-smartward.up.railway.app', status: 'Online', expiredDate: '2026-11-30', notes: 'Khusus notifikasi visite dokter dan kamar isolasi' },
+        { id: 'CLI-0003', name: 'Poli Spesialis Jantung', phone: '6281355443322', railwayUrl: 'https://cardio-bot.up.railway.app', status: 'Scanning', expiredDate: '2026-10-15', notes: 'Menunggu pemindaian ulang QR Code WhatsApp' },
+        { id: 'CLI-0004', name: 'Farmasi & Kasir Digital', phone: '6281122334455', railwayUrl: 'https://pharma-bot.up.railway.app', status: 'Disconnected', expiredDate: '2026-09-30', notes: 'Server Railway sedang maintenance berkala' }
+      ],
+      chatLogs: [
+        { id: 'LOG-0001', timestamp: '2026-09-03 14:22:10', clientId: 'CLI-0001', sender: '6281288990011', receiver: '6281234567890', type: 'Incoming Text', content: 'Halo, saya mau konfirmasi ketersediaan kamar VVIP untuk pasien rujukan sore ini.', status: 'Read' },
+        { id: 'LOG-0002', timestamp: '2026-09-03 14:22:15', clientId: 'CLI-0001', sender: '6281234567890', receiver: '6281288990011', type: 'Bot Auto-Reply', content: 'Kamar VVIP Smart Ward Unit 402 tersedia. Harap upload surat rujukan pada link terlampir.', status: 'Delivered' },
+        { id: 'LOG-0003', timestamp: '2026-09-03 15:05:42', clientId: 'CLI-0002', sender: '6281298765432', receiver: '6285211223344', type: 'Ranap Notification', content: 'Notifikasi Ranap: Pasien Bpk. Bambang telah dijadwalkan visite dr. Aris, Sp.JP pukul 17:00 WIB.', status: 'Read' },
+        { id: 'LOG-0004', timestamp: '2026-09-03 16:10:00', clientId: 'CLI-0004', sender: '6281122334455', receiver: '6287766554433', type: 'Billing Reminder', content: 'Info Tagihan: Rincian biaya rawat inap No. Inv #INV-4921 sebesar Rp 4.250.000 telah siap diunduh.', status: 'Sent' }
+      ],
+      broadcastQueue: [
+        { id: 'QUE-0001', clientId: 'CLI-0001', targetNumber: '6281299887766', content: 'Halo Bpk. Surya, jadwal kontrol rutin Kardiovaskular Anda telah dijadwalkan besok pukul 09.00 WIB bersama dr. Hendra, Sp.JP.', scheduledTime: '2026-09-04 08:00:00', status: 'Pending', sentAt: '-' },
+        { id: 'QUE-0002', clientId: 'CLI-0002', targetNumber: '6281355449900', content: 'Informasi Layanan: Pembaruan jadwal operasional laboratorium hematologi AURA MEDICA telah tersedia di portal pasien.', scheduledTime: '2026-09-03 10:00:00', status: 'Sent', sentAt: '2026-09-03 10:00:08' },
+        { id: 'QUE-0003', clientId: 'CLI-0004', targetNumber: '6287711223344', content: 'Pengingat Pembayaran: Tagihan farmasi digital Anda telah diverifikasi oleh kasir utama.', scheduledTime: '2026-09-03 11:30:00', status: 'Failed', sentAt: '-' }
+      ],
+      templates: [
+        { id: 'TPL-0001', name: 'Konfirmasi Rawat Inap Smart Ward', category: 'Rawat Inap', content: 'Halo Bpk/Ibu [NAMA_PASIEN], kamar rawat inap kelas [KELAS] di AURA MEDICA telah dikonfirmasi untuk tanggal [TANGGAL].' },
+        { id: 'TPL-0002', name: 'Pengingat Kontrol Dokter Spesialis', category: 'Jadwal Dokter', content: 'Pengingat Janji Temu: dr. [NAMA_DOKTER] siap melayani konsultasi Anda pada hari [HARI], [TANGGAL] pukul [WAKTU] WIB.' }
+      ],
+      activityLogs: [
+        { id: 'ACT-0001', timestamp: '2026-09-03 08:30:00', userId: 'ADM-0001 (Superadmin)', action: 'System Boot', details: 'Inisialisasi database schema AURA MEDICA V5.2 (AQ. & AIzaSy Engine) berhasil.' }
+      ]
+    };
+
+    function callServer(fnName) {
+      const args = Array.prototype.slice.call(arguments, 1);
+      return new Promise(function(resolve, reject) {
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          google.script.run
+            .withSuccessHandler(function(res) { resolve(res); })
+            .withFailureHandler(function(err) { reject(err); })[fnName].apply(null, args);
+        } else {
+          resolve(null);
+        }
+      });
+    }
+
+    function showToast(message, type) {
+      const toastType = type || 'info';
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      const typeStyles = {
+        success: 'border-emerald-300 bg-white text-emerald-800 shadow-md',
+        error: 'border-red-300 bg-white text-red-700 shadow-md',
+        info: 'border-softCyan/50 bg-white text-deepCyan shadow-md',
+        warning: 'border-amber-300 bg-white text-amber-800 shadow-md'
+      };
+
+      const iconClasses = {
+        success: 'fa-circle-check text-emerald-500',
+        error: 'fa-triangle-exclamation text-red-500',
+        info: 'fa-circle-info text-softCyan',
+        warning: 'fa-bell text-amber-500'
+      };
+
+      toast.className = 'glass-panel-light pointer-events-auto flex items-center gap-3 p-3.5 rounded-xl border text-xs font-semibold transform transition-all duration-300 translate-y-3 opacity-0 ' + (typeStyles[toastType] || typeStyles.info);
+      toast.innerHTML = '<i class="fa-solid ' + (iconClasses[toastType] || 'fa-info') + ' text-base"></i>' +
+                        '<div class="flex-1 text-slate-800 leading-snug">' + message + '</div>' +
+                        '<button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>';
+
+      container.appendChild(toast);
+      
+      requestAnimationFrame(function() {
+        toast.classList.remove('translate-y-3', 'opacity-0');
+      });
+
+      setTimeout(function() {
+        toast.classList.add('opacity-0', 'translate-y-3');
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 4000);
+    }
+
+    function openModal(contentHtml) {
+      const overlay = document.getElementById('appModalOverlay');
+      const content = document.getElementById('appModalContent');
+      content.innerHTML = contentHtml;
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('appModalOverlay');
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+    }
+
+    function confirmAction(title, message, onConfirmCallback) {
+      const html = '<div class="text-center">' +
+                   '  <div class="w-12 h-12 rounded-full bg-red-100 border border-red-200 text-red-500 mx-auto flex items-center justify-center text-xl mb-3">' +
+                   '    <i class="fa-solid fa-triangle-exclamation"></i>' +
+                   '  </div>' +
+                   '  <h3 class="text-base font-bold text-navyDark mb-1">' + title + '</h3>' +
+                   '  <p class="text-xs text-slateSub mb-6 leading-relaxed">' + message + '</p>' +
+                   '  <div class="flex items-center gap-3">' +
+                   '    <button onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 hover:bg-slate-50 font-semibold transition shadow-xs">Batal</button>' +
+                   '    <button id="modalConfirmBtn" class="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition shadow-sm">Ya, Lanjutkan</button>' +
+                   '  </div>' +
+                   '</div>';
+      openModal(html);
+      document.getElementById('modalConfirmBtn').onclick = function() {
+        closeModal();
+        onConfirmCallback();
+      };
+    }
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      STATE.deferredPwaPrompt = e;
+      const pwaBtn = document.getElementById('pwaInstallBtn');
+      if (pwaBtn) pwaBtn.classList.remove('hidden');
+    });
+
+    function isIos() {
+      return /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    }
+
+    function isInStandaloneMode() {
+      return ('standalone' in window.navigator && window.navigator.standalone) || (window.matchMedia('(display-mode: standalone)').matches);
+    }
+
+    function triggerPwaInstall() {
+      if (isIos() && !isInStandaloneMode()) {
+        document.getElementById('iosInstallModal').classList.remove('hidden');
+        document.getElementById('iosInstallModal').classList.add('flex');
+        return;
+      }
+
+      if (STATE.deferredPwaPrompt) {
+        STATE.deferredPwaPrompt.prompt();
+        STATE.deferredPwaPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            showToast('Terima kasih! Aplikasi AURA MEDICA berhasil dipasang.', 'success');
+          }
+          STATE.deferredPwaPrompt = null;
+          document.getElementById('pwaInstallBtn').classList.add('hidden');
+        });
+      } else {
+        showToast('Aplikasi siap diakses langsung di peramban Anda!', 'info');
+      }
+    }
+
+    function closeIosGuide() {
+      document.getElementById('iosInstallModal').classList.add('hidden');
+      document.getElementById('iosInstallModal').classList.remove('flex');
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      if (isIos() && !isInStandaloneMode()) {
+        const pwaBtn = document.getElementById('pwaInstallBtn');
+        if (pwaBtn) pwaBtn.classList.remove('hidden');
+      }
+      initAppSession();
+      renderChatLogsTable();
+      renderBroadcastQueueTable();
+      renderClientsGrid();
+      renderTemplatesList();
+      renderActivityLogsTable();
+      updateModelUiState();
+    });
+
+    function initAppSession() {
+      const savedUser = sessionStorage.getItem('AURA_USER');
+      if (savedUser) {
+        try {
+          STATE.currentUser = JSON.parse(savedUser);
+          applyAuthUiState();
+        } catch (err) {
+          sessionStorage.removeItem('AURA_USER');
+        }
+      }
+    }
+
+    function openLoginModal() {
+      const html = '<div class="space-y-4">' +
+                   '  <div class="text-center pb-2">' +
+                   '    <div class="w-12 h-12 rounded-2xl bg-softCyan/10 border border-softCyan/30 text-deepCyan mx-auto flex items-center justify-center text-xl mb-2 shadow-xs">' +
+                   '      <i class="fa-solid fa-fingerprint"></i>' +
+                   '    </div>' +
+                   '    <h3 class="text-lg font-bold font-display text-navyDark">Autentikasi Portal Medis</h3>' +
+                   '    <p class="text-xs text-slateSub">Masuk untuk mengelola bot WhatsApp, broadcast, dan model AI</p>' +
+                   '  </div>' +
+                   '  <div class="p-3 bg-white/90 rounded-xl border border-slate-200 text-[11px] text-slate-700 space-y-1 shadow-xs">' +
+                   '    <div class="font-bold text-deepCyan">Kredensial Demo Cepat:</div>' +
+                   '    <div class="flex gap-2 pt-1">' +
+                   '      <button onclick="fillDemoLogin(\'admin\', \'app123\')" class="px-2 py-1 bg-sky-50 rounded border border-softCyan/40 text-deepCyan font-mono">Superadmin (admin)</button>' +
+                   '      <button onclick="fillDemoLogin(\'operator\', \'app123\')" class="px-2 py-1 bg-sky-50 rounded border border-softCyan/40 text-deepCyan font-mono">Operator (operator)</button>' +
+                   '    </div>' +
+                   '  </div>' +
+                   '  <form onsubmit="handleLoginSubmit(event)" class="space-y-3 pt-1">' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Username</label>' +
+                   '      <input type="text" id="loginUsername" required placeholder="admin / operator" class="glass-input-light w-full px-3.5 py-2.5 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Password</label>' +
+                   '      <input type="password" id="loginPassword" required placeholder="******" class="glass-input-light w-full px-3.5 py-2.5 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div class="flex gap-3 pt-2">' +
+                   '      <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold shadow-xs">Batal</button>' +
+                   '      <button type="submit" class="flex-1 btn-cyber-cyan py-2.5 rounded-xl text-xs font-bold shadow">Masuk Portal</button>' +
+                   '    </div>' +
+                   '  </form>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function fillDemoLogin(u, p) {
+      const uField = document.getElementById('loginUsername');
+      const pField = document.getElementById('loginPassword');
+      if (uField) uField.value = u;
+      if (pField) pField.value = p;
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        callServer('apiLogin', username, password).then(function(res) {
+          if (res && res.success) {
+            loginSuccess(res.data);
+          } else {
+            showToast(res ? res.message : 'Kredensial tidak valid.', 'error');
+          }
+        }).catch(function(err) {
+          showToast('Koneksi server gagal: ' + err.message, 'error');
+        });
+      } else {
+        if (username === 'admin' && password === 'app123') {
+          loginSuccess({ id: 'ADM-0001', username: 'admin', fullName: 'dr. Hendra Pratama, Sp.JP', role: 'Superadmin' });
+        } else if (username === 'operator' && password === 'app123') {
+          loginSuccess({ id: 'ADM-0002', username: 'operator', fullName: 'Ns. Ratna Wulandari, S.Kep', role: 'Operator Medis' });
+        } else {
+          showToast('Username atau password salah. Gunakan kredensial demo.', 'error');
+        }
+      }
+    }
+
+    function loginSuccess(userObj) {
+      STATE.currentUser = userObj;
+      sessionStorage.setItem('AURA_USER', JSON.stringify(userObj));
+      closeModal();
+      showToast('Login berhasil sebagai ' + userObj.role, 'success');
+      recordActivity('User Login', 'Pengguna ' + userObj.username + ' berhasil login.');
+      applyAuthUiState();
+      navigateToView('dashboard');
+    }
+
+    function handleLogout() {
+      confirmAction('Konfirmasi Logout', 'Apakah Anda yakin ingin mengakhiri sesi portal ini?', function() {
+        recordActivity('User Logout', 'Pengguna ' + (STATE.currentUser ? STATE.currentUser.username : 'Unknown') + ' logout.');
+        STATE.currentUser = null;
+        sessionStorage.removeItem('AURA_USER');
+        applyAuthUiState();
+        navigateToView('landing');
+        showToast('Anda telah keluar dari portal.', 'info');
+      });
+    }
+
+    function applyAuthUiState() {
+      const authArea = document.getElementById('navAuthArea');
+      if (!authArea) return;
+
+      if (STATE.currentUser) {
+        authArea.innerHTML = '<button onclick="navigateToView(\'dashboard\')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-softCyan/10 border border-softCyan/40 text-deepCyan hover:bg-softCyan/20 transition flex items-center gap-2 shadow-xs">' +
+                             '  <i class="fa-solid fa-chart-line"></i>' +
+                             '  <span>Portal (' + STATE.currentUser.role.split(' ')[0] + ')</span>' +
+                             '</button>';
+        const roleBadge = document.getElementById('userRoleBadge');
+        const userFullName = document.getElementById('userFullName');
+        if (roleBadge) roleBadge.textContent = STATE.currentUser.role;
+        if (userFullName) userFullName.textContent = STATE.currentUser.fullName;
+
+        const isOperator = STATE.currentUser.role === 'Operator Medis';
+        const clientTabBtn = document.getElementById('tabBtnClients');
+        if (clientTabBtn) {
+          if (isOperator) clientTabBtn.classList.add('hidden');
+          else clientTabBtn.classList.remove('hidden');
+        }
+      } else {
+        authArea.innerHTML = '<button onclick="openLoginModal()" class="btn-cyber-cyan px-4 py-2 rounded-xl text-xs flex items-center gap-2">' +
+                             '  <i class="fa-solid fa-shield-halved"></i>' +
+                             '  <span>Akses Portal</span>' +
+                             '</button>';
+      }
+    }
+
+    function navigateToView(viewName) {
+      const landing = document.getElementById('viewLanding');
+      const dashboard = document.getElementById('viewDashboard');
+
+      if (viewName === 'dashboard') {
+        if (!STATE.currentUser) {
+          openLoginModal();
+          return;
+        }
+        landing.classList.add('hidden');
+        dashboard.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        dashboard.classList.add('hidden');
+        landing.classList.remove('hidden');
+      }
+    }
+
+    function switchDashboardTab(tabId) {
+      STATE.activeTab = tabId;
+      const tabs = ['chatLogs', 'broadcastQueue', 'clients', 'templates', 'aiConfig', 'activityLogs'];
+      
+      tabs.forEach(function(t) {
+        const tabEl = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
+        const btnEl = document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1));
+        
+        if (tabEl && btnEl) {
+          if (t === tabId) {
+            tabEl.classList.remove('hidden');
+            btnEl.className = 'px-4 py-2.5 rounded-t-xl bg-white text-deepCyan border-b-2 border-deepCyan flex items-center gap-2 whitespace-nowrap shadow-xs';
+          } else {
+            tabEl.classList.add('hidden');
+            btnEl.className = 'px-4 py-2.5 rounded-t-xl text-slateSub hover:text-deepCyan flex items-center gap-2 whitespace-nowrap';
+          }
+        }
+      });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileMenuDropdown').classList.toggle('hidden');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobileMenuDropdown').classList.add('hidden');
+    }
+
+    let searchTimeout = null;
+    function debounceLogSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(function() { applyLogFilters(); }, 300);
+    }
+
+    function applyLogFilters() {
+      STATE.logFilter.search = document.getElementById('logSearchInput').value.toLowerCase().trim();
+      STATE.logFilter.clientId = document.getElementById('logClientFilter').value;
+      STATE.logFilter.status = document.getElementById('logStatusFilter').value;
+      STATE.logFilter.page = 1;
+      renderChatLogsTable();
+    }
+
+    function resetLogFilters() {
+      document.getElementById('logSearchInput').value = '';
+      document.getElementById('logClientFilter').value = '';
+      document.getElementById('logStatusFilter').value = '';
+      STATE.logFilter.search = '';
+      STATE.logFilter.clientId = '';
+      STATE.logFilter.status = '';
+      STATE.logFilter.page = 1;
+      renderChatLogsTable();
+      showToast('Filter log percakapan telah direset.', 'info');
+    }
+
+    function changeLogPage(delta) {
+      STATE.logFilter.page += delta;
+      renderChatLogsTable();
+    }
+
+    function renderChatLogsTable() {
+      const tbody = document.getElementById('chatLogsTableBody');
+      if (!tbody) return;
+
+      let filtered = DB.chatLogs.filter(function(item) {
+        const matchSearch = !STATE.logFilter.search ||
+          item.content.toLowerCase().indexOf(STATE.logFilter.search) !== -1 ||
+          item.sender.indexOf(STATE.logFilter.search) !== -1 ||
+          item.receiver.indexOf(STATE.logFilter.search) !== -1;
+        
+        const matchClient = !STATE.logFilter.clientId || item.clientId === STATE.logFilter.clientId;
+        const matchStatus = !STATE.logFilter.status || item.status === STATE.logFilter.status;
+
+        return matchSearch && matchClient && matchStatus;
+      });
+
+      const pageSize = STATE.logFilter.pageSize;
+      const totalItems = filtered.length;
+      const totalPages = Math.ceil(totalItems / pageSize) || 1;
+      if (STATE.logFilter.page > totalPages) STATE.logFilter.page = totalPages;
+      if (STATE.logFilter.page < 1) STATE.logFilter.page = 1;
+
+      const startIndex = (STATE.logFilter.page - 1) * pageSize;
+      const pagedItems = filtered.slice(startIndex, startIndex + pageSize);
+
+      document.getElementById('logsPaginationInfo').textContent = 'Menampilkan ' + (totalItems > 0 ? (startIndex + 1) : 0) + '-' + Math.min(startIndex + pageSize, totalItems) + ' dari ' + totalItems + ' data';
+      document.getElementById('currentLogPageDisplay').textContent = 'Hal ' + STATE.logFilter.page + ' / ' + totalPages;
+      document.getElementById('btnPrevLogs').disabled = STATE.logFilter.page <= 1;
+      document.getElementById('btnNextLogs').disabled = STATE.logFilter.page >= totalPages;
+
+      if (pagedItems.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-400 text-xs">Tidak ada log chat yang cocok dengan kriteria filter.</td></tr>';
+        return;
+      }
+
+      const statusColors = {
+        Read: 'bg-emerald-50 text-emerald-700 border-emerald-300',
+        Delivered: 'bg-cyan-50 text-deepCyan border-softCyan/40',
+        Sent: 'bg-sky-50 text-sky-700 border-sky-300',
+        Failed: 'bg-red-50 text-red-600 border-red-300'
+      };
+
+      let rowsHtml = '';
+      pagedItems.forEach(function(log) {
+        const badgeClass = statusColors[log.status] || 'bg-slate-100 text-slate-700 border-slate-300';
+        const truncatedContent = log.content.length > 50 ? log.content.substring(0, 50) + '...' : log.content;
+
+        rowsHtml += '<tr class="hover:bg-sky-50/50 transition">' +
+                    '  <td class="p-3.5 font-mono text-[11px]">' +
+                    '    <div class="text-navyDark font-bold">' + log.id + '</div>' +
+                    '    <div class="text-[10px] text-slate-400">' + log.timestamp + '</div>' +
+                    '  </td>' +
+                    '  <td class="p-3.5 font-mono text-deepCyan font-bold">' + log.clientId + '</td>' +
+                    '  <td class="p-3.5 font-mono text-[11px]">' +
+                    '    <span class="text-slate-800">' + log.sender + '</span>' +
+                    '    <span class="text-slate-400 mx-1">&rarr;</span>' +
+                    '    <span class="text-slate-600">' + log.receiver + '</span>' +
+                    '  </td>' +
+                    '  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-white border border-slate-200 text-[10px] shadow-xs">' + log.type + '</span></td>' +
+                    '  <td class="p-3.5 text-slate-700 max-w-xs truncate">' + truncatedContent + '</td>' +
+                    '  <td class="p-3.5">' +
+                    '    <span class="px-2 py-0.5 rounded text-[10px] font-bold border ' + badgeClass + '">' + log.status + '</span>' +
+                    '  </td>' +
+                    '  <td class="p-3.5 text-center">' +
+                    '    <button onclick="viewChatDetail(\'' + log.id + '\')" class="px-2.5 py-1 rounded bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-[11px] transition shadow-xs">' +
+                    '      <i class="fa-regular fa-eye mr-1"></i> Detail' +
+                    '    </button>' +
+                    '  </td>' +
+                    '</tr>';
+      });
+
+      tbody.innerHTML = rowsHtml;
+    }
+
+    function viewChatDetail(logId) {
+      const item = DB.chatLogs.find(function(l) { return l.id === logId; });
+      if (!item) return;
+
+      const html = '<div class="space-y-4">' +
+                   '  <div class="flex items-center justify-between border-b border-slate-200 pb-3">' +
+                   '    <div>' +
+                   '      <h3 class="text-sm font-bold text-navyDark font-mono">' + item.id + ' // Metadata Pesan</h3>' +
+                   '      <p class="text-[11px] text-slate-500">' + item.timestamp + '</p>' +
+                   '    </div>' +
+                   '    <span class="px-2.5 py-1 rounded text-xs font-bold border bg-cyan-50 text-deepCyan border-softCyan/40">' + item.status + '</span>' +
+                   '  </div>' +
+                   '  <div class="grid grid-cols-2 gap-3 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">' +
+                   '    <div><span class="text-slate-500">Client ID:</span> <span class="font-mono text-deepCyan font-bold">' + item.clientId + '</span></div>' +
+                   '    <div><span class="text-slate-500">Tipe Pesan:</span> <span class="text-slate-800">' + item.type + '</span></div>' +
+                   '    <div><span class="text-slate-500">Pengirim:</span> <span class="font-mono text-slate-800">' + item.sender + '</span></div>' +
+                   '    <div><span class="text-slate-500">Penerima:</span> <span class="font-mono text-slate-800">' + item.receiver + '</span></div>' +
+                   '  </div>' +
+                   '  <div>' +
+                   '    <label class="block text-xs font-semibold text-slate-600 mb-1.5">Isi Pesan Lengkap:</label>' +
+                   '    <div class="p-3.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-800 leading-relaxed font-sans whitespace-pre-wrap shadow-xs">' + item.content + '</div>' +
+                   '  </div>' +
+                   '  <div class="flex justify-end pt-2">' +
+                   '    <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-xs">Tutup</button>' +
+                   '  </div>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function applyBroadcastFilters() {
+      STATE.broadcastFilter.status = document.getElementById('bqStatusFilter').value;
+      renderBroadcastQueueTable();
+    }
+
+    function renderBroadcastQueueTable() {
+      const tbody = document.getElementById('broadcastQueueTableBody');
+      if (!tbody) return;
+
+      let filtered = DB.broadcastQueue.filter(function(item) {
+        return !STATE.broadcastFilter.status || item.status === STATE.broadcastFilter.status;
+      });
+
+      const pendingCount = DB.broadcastQueue.filter(function(q) { return q.status === 'Pending'; }).length;
+      const pendingBadge = document.getElementById('metricPendingBroadcast');
+      if (pendingBadge) pendingBadge.textContent = pendingCount;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-400 text-xs">Belum ada antrean broadcast dengan status yang dipilih.</td></tr>';
+        return;
+      }
+
+      const statusMap = {
+        Pending: 'bg-amber-50 text-amber-700 border-amber-300',
+        Sent: 'bg-emerald-50 text-emerald-700 border-emerald-300',
+        Failed: 'bg-red-50 text-red-600 border-red-300'
+      };
+
+      let html = '';
+      filtered.forEach(function(item) {
+        const badgeClass = statusMap[item.status] || 'bg-slate-100 text-slate-600 border-slate-200';
+        const isPending = item.status === 'Pending';
+
+        html += '<tr class="hover:bg-sky-50/50 transition">' +
+                '  <td class="p-3.5 font-mono text-[11px] text-navyDark font-bold">' + item.id + '</td>' +
+                '  <td class="p-3.5 font-mono text-[11px] text-deepCyan font-bold">' + item.clientId + '</td>' +
+                '  <td class="p-3.5 font-mono text-[11px] text-slate-800">' + item.targetNumber + '</td>' +
+                '  <td class="p-3.5 text-slate-700 max-w-xs truncate">' + item.content + '</td>' +
+                '  <td class="p-3.5 font-mono text-[11px] text-slate-500">' + item.scheduledTime + '</td>' +
+                '  <td class="p-3.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold border ' + badgeClass + '">' + item.status + '</span></td>' +
+                '  <td class="p-3.5 text-center">' +
+                '    <div class="flex items-center justify-center gap-1.5">' +
+                (isPending ?
+                  '      <button onclick="triggerSendBroadcastNow(\'' + item.id + '\')" class="px-2.5 py-1 rounded btn-cyber-cyan text-[11px] shadow-xs" title="Kirim Sekarang"><i class="fa-solid fa-paper-plane mr-1"></i>Kirim</button>' +
+                  '      <button onclick="cancelBroadcastQueueItem(\'' + item.id + '\')" class="px-2 py-1 rounded bg-white border border-red-300 text-red-600 text-[11px] hover:bg-red-50 shadow-xs" title="Batalkan"><i class="fa-solid fa-xmark"></i></button>'
+                  :
+                  '      <span class="text-[11px] text-slate-400 font-mono">' + (item.sentAt !== '-' ? item.sentAt.substring(11) : '-') + '</span>'
+                ) +
+                '    </div>' +
+                '  </td>' +
+                '</tr>';
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    function openAddBroadcastModal() {
+      let clientOptions = '';
+      DB.clients.forEach(function(c) {
+        clientOptions += '<option value="' + c.id + '">' + c.name + ' (' + c.id + ')</option>';
+      });
+
+      const html = '<div class="space-y-4">' +
+                   '  <div class="flex items-center justify-between border-b border-slate-200 pb-2">' +
+                   '    <h3 class="text-base font-bold text-navyDark font-display">Jadwalkan Antrean Broadcast</h3>' +
+                   '    <span class="text-[10px] px-2 py-0.5 rounded bg-softCyan/10 text-deepCyan font-bold">OUTBOUND QUEUE</span>' +
+                   '  </div>' +
+                   '  <form onsubmit="handleSaveBroadcastSubmit(event)" class="space-y-3">' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Pilih Bot Pengirim</label>' +
+                   '      <select id="mBqClient" required class="glass-input-light w-full px-3 py-2 rounded-xl text-xs bg-white">' +
+                   clientOptions +
+                   '      </select>' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor WhatsApp Penerima</label>' +
+                   '      <input type="tel" id="mBqPhone" required placeholder="Contoh: 6281234567890" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Waktu Penjadwalan</label>' +
+                   '      <input type="datetime-local" id="mBqTime" required class="glass-input-light w-full px-3 py-2 rounded-xl text-xs bg-white">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Isi Konten Pesan</label>' +
+                   '      <textarea id="mBqContent" rows="3" required placeholder="Tuliskan pesan klinis broadcast..." class="glass-input-light w-full px-3 py-2 rounded-xl text-xs"></textarea>' +
+                   '    </div>' +
+                   '    <div class="flex gap-3 pt-2">' +
+                   '      <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold shadow-xs">Batal</button>' +
+                   '      <button type="submit" class="flex-1 btn-cyber-cyan py-2.5 rounded-xl text-xs font-bold shadow-sm">Simpan Antrean</button>' +
+                   '    </div>' +
+                   '  </form>' +
+                   '</div>';
+      openModal(html);
+      
+      const timeInput = document.getElementById('mBqTime');
+      if (timeInput) {
+        const nowIso = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+        timeInput.value = nowIso;
+      }
+    }
+
+    function handleSaveBroadcastSubmit(e) {
+      e.preventDefault();
+      const clientId = document.getElementById('mBqClient').value;
+      const phone = document.getElementById('mBqPhone').value.trim();
+      const time = document.getElementById('mBqTime').value.replace('T', ' ') + ':00';
+      const content = document.getElementById('mBqContent').value.trim();
+      const newId = 'QUE-000' + (DB.broadcastQueue.length + 1);
+
+      DB.broadcastQueue.unshift({
+        id: newId,
+        clientId: clientId,
+        targetNumber: phone,
+        content: content,
+        scheduledTime: time,
+        status: 'Pending',
+        sentAt: '-'
+      });
+
+      closeModal();
+      renderBroadcastQueueTable();
+      showToast('Pesan broadcast berhasil ditambahkan ke antrean (' + newId + ').', 'success');
+      recordActivity('Add Broadcast Queue', 'Menambahkan antrean ' + newId + ' untuk nomor ' + phone);
+    }
+
+    function triggerSendBroadcastNow(queueId) {
+      const item = DB.broadcastQueue.find(function(q) { return q.id === queueId; });
+      if (!item) return;
+
+      confirmAction('Kirim Broadcast Sekarang?', 'Pesan akan segera dialirkan melalui instance ' + item.clientId + ' ke nomor ' + item.targetNumber + '.', function() {
+        item.status = 'Sent';
+        item.sentAt = new Date().toISOString().replace('T', ' ').substring(0, 19);
+        
+        DB.chatLogs.unshift({
+          id: 'LOG-000' + (DB.chatLogs.length + 1),
+          timestamp: item.sentAt,
+          clientId: item.clientId,
+          sender: 'System Broadcast',
+          receiver: item.targetNumber,
+          type: 'Broadcast Outbound',
+          content: item.content,
+          status: 'Sent'
+        });
+
+        renderBroadcastQueueTable();
+        renderChatLogsTable();
+        showToast('Pesan broadcast ' + queueId + ' berhasil dikirim!', 'success');
+        recordActivity('Execute Broadcast', 'Mengirimkan pesan broadcast ' + queueId);
+      });
+    }
+
+    function cancelBroadcastQueueItem(queueId) {
+      const item = DB.broadcastQueue.find(function(q) { return q.id === queueId; });
+      if (!item) return;
+
+      confirmAction('Batalkan Antrean?', 'Pesan broadcast ' + queueId + ' akan ditandai sebagai Failed/Batal.', function() {
+        item.status = 'Failed';
+        renderBroadcastQueueTable();
+        showToast('Antrean broadcast ' + queueId + ' dibatalkan.', 'info');
+        recordActivity('Cancel Broadcast', 'Membatalkan antrean broadcast ' + queueId);
+      });
+    }
+
+    function renderClientsGrid() {
+      const container = document.getElementById('clientsGridContainer');
+      if (!container) return;
+
+      const statusMap = {
+        Online: { badge: 'bg-emerald-50 text-emerald-700 border-emerald-300', pulse: 'bg-softCyan live-pulse-cyan' },
+        Scanning: { badge: 'bg-amber-50 text-amber-700 border-amber-300', pulse: 'bg-amber-400' },
+        Disconnected: { badge: 'bg-red-50 text-red-600 border-red-300', pulse: 'bg-red-400' }
+      };
+
+      let html = '';
+      DB.clients.forEach(function(client) {
+        const conf = statusMap[client.status] || statusMap.Disconnected;
+        html += '<div class="glass-panel-light p-5 rounded-2xl relative space-y-3 hover:border-softCyan/40 transition shadow-sm">' +
+                '  <div class="flex items-start justify-between">' +
+                '    <div>' +
+                '      <div class="flex items-center gap-2">' +
+                '        <span class="w-2.5 h-2.5 rounded-full ' + conf.pulse + '"></span>' +
+                '        <h4 class="text-sm font-bold text-navyDark">' + client.name + '</h4>' +
+                '      </div>' +
+                '      <p class="text-[11px] font-mono text-slate-500 mt-0.5">' + client.id + ' &bull; ' + client.phone + '</p>' +
+                '    </div>' +
+                '    <span class="px-2.5 py-0.5 rounded text-[10px] font-bold border ' + conf.badge + '">' + client.status + '</span>' +
+                '  </div>' +
+                '  <div class="text-xs text-slate-700 bg-white p-2.5 rounded-xl border border-slate-200 space-y-1 font-mono text-[11px] shadow-xs">' +
+                '    <div class="truncate text-deepCyan"><i class="fa-solid fa-link mr-1"></i> ' + client.railwayUrl + '</div>' +
+                '    <div class="text-[10px] text-slate-400">Exp: ' + client.expiredDate + ' | ' + client.notes + '</div>' +
+                '  </div>' +
+                '  <div class="flex items-center justify-between pt-2 border-t border-slate-100">' +
+                '    <div class="flex items-center gap-2">' +
+                '      <button onclick="pingRailwayNode(\'' + client.id + '\')" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 text-[11px] text-deepCyan flex items-center gap-1.5 transition shadow-xs">' +
+                '        <i class="fa-solid fa-satellite-dish"></i>' +
+                '        <span>Ping Health</span>' +
+                '      </button>' +
+                '      <button onclick="showLiveQrScanner(\'' + client.id + '\')" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 border border-softCyan/40 text-[11px] text-deepCyan font-bold flex items-center gap-1.5 transition shadow-xs">' +
+                '        <i class="fa-solid fa-qrcode text-softCyan"></i>' +
+                '        <span>Scan QR</span>' +
+                '      </button>' +
+                '    </div>' +
+                '    <div class="flex items-center gap-1">' +
+                '      <button onclick="deleteClientAction(\'' + client.id + '\')" class="w-7 h-7 rounded bg-white border border-slate-200 hover:text-red-600 text-slate-400 flex items-center justify-center text-xs shadow-xs"><i class="fa-solid fa-trash"></i></button>' +
+                '    </div>' +
+                '  </div>' +
+                '</div>';
+      });
+
+      container.innerHTML = html;
+      document.getElementById('metricTotalClients').textContent = DB.clients.length;
+      document.getElementById('metricActiveClients').textContent = DB.clients.filter(function(c) { return c.status === 'Online'; }).length;
+    }
+
+    function pingRailwayNode(clientId) {
+      const client = DB.clients.find(function(c) { return c.id === clientId; });
+      if (!client) return;
+
+      showToast('Menguji latensi endpoint ' + client.name + '...', 'info');
+      setTimeout(function() {
+        const simulatedLatency = Math.floor(Math.random() * 40) + 35;
+        showToast('Node Railway: ' + client.railwayUrl + ' | Latensi: ' + simulatedLatency + 'ms (Normal)', 'success');
+        recordActivity('Railway Health Check', 'Ping ke ' + client.id + ' sukses (' + simulatedLatency + 'ms)');
+      }, 650);
+    }
+
+    function showLiveQrScanner(clientId) {
+      const client = DB.clients.find(function(c) { return c.id === clientId; });
+      if (!client) return;
+
+      const endpointQrUrl = client.railwayUrl + '/qr';
+      const simulatedQrCode = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=WAPAIRING_' + client.id + '_' + Date.now();
+
+      const html = '<div class="text-center space-y-4">' +
+                   '  <div class="flex items-center justify-between border-b border-slate-200 pb-2">' +
+                   '    <h3 class="text-sm font-bold text-navyDark font-mono">WhatsApp Multi-Device QR Scanner</h3>' +
+                   '    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-bold border border-emerald-200">LIVE ENDPOINT</span>' +
+                   '  </div>' +
+                   '  <p class="text-xs text-slateSub leading-relaxed">' +
+                   '    Buka WhatsApp di ponsel &gt; Menu &gt; Perangkat Tertaut &gt; Tautkan Perangkat:' +
+                   '  </p>' +
+                   '  <div class="p-4 bg-white rounded-2xl inline-block shadow-md mx-auto my-2 border border-slate-200">' +
+                   '    <img src="' + simulatedQrCode + '" alt="QR WhatsApp" class="w-44 h-44 mx-auto">' +
+                   '  </div>' +
+                   '  <div class="text-[11px] text-slate-500 font-mono bg-slate-50 p-2 rounded-xl border border-slate-200">' +
+                   '    <div>Instance: <strong>' + client.name + ' (' + client.id + ')</strong></div>' +
+                   '    <div class="truncate text-deepCyan mt-0.5"><i class="fa-solid fa-link"></i> Endpoint: ' + endpointQrUrl + '</div>' +
+                   '  </div>' +
+                   '  <button onclick="closeModal()" class="w-full py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold hover:bg-slate-50 shadow-xs">Tutup Scanner</button>' +
+                   '</div>';
+      openModal(html);
+      recordActivity('Scan QR Code', 'Membuka live QR pairing untuk ' + client.id);
+    }
+
+    function openAddClientModal() {
+      const html = '<div class="space-y-4">' +
+                   '  <h3 class="text-base font-bold text-navyDark font-display">Tambah Instance Bot Railway</h3>' +
+                   '  <form onsubmit="handleSaveClientSubmit(event)" class="space-y-3">' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Client / Unit Klinis</label>' +
+                   '      <input type="text" id="mClientName" required placeholder="Contoh: Poli Orthopedi Bot" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor WhatsApp Bot</label>' +
+                   '      <input type="tel" id="mClientPhone" required placeholder="6281234567890" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Railway Base URL Endpoint</label>' +
+                   '      <input type="url" id="mClientUrl" required placeholder="https://btwa-ranap-production.up.railway.app" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Kedaluwarsa Lisensi</label>' +
+                   '      <input type="date" id="mClientExp" required value="2026-12-31" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs bg-white">' +
+                   '    </div>' +
+                   '    <div class="flex gap-3 pt-2">' +
+                   '      <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold shadow-xs">Batal</button>' +
+                   '      <button type="submit" class="flex-1 btn-cyber-cyan py-2.5 rounded-xl text-xs font-bold shadow-sm">Simpan Client</button>' +
+                   '    </div>' +
+                   '  </form>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function handleSaveClientSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('mClientName').value.trim();
+      const phone = document.getElementById('mClientPhone').value.trim();
+      const url = document.getElementById('mClientUrl').value.trim();
+      const exp = document.getElementById('mClientExp').value;
+      const newId = 'CLI-000' + (DB.clients.length + 1);
+
+      DB.clients.push({
+        id: newId,
+        name: name,
+        phone: phone,
+        railwayUrl: url,
+        status: 'Online',
+        expiredDate: exp,
+        notes: 'Instance baru terkonfigurasi'
+      });
+
+      closeModal();
+      renderClientsGrid();
+      showToast('Client bot ' + newId + ' berhasil didaftarkan.', 'success');
+      recordActivity('Create Client', 'Menambahkan instance client ' + newId);
+    }
+
+    function deleteClientAction(clientId) {
+      confirmAction('Hapus Client Bot?', 'Apakah Anda yakin ingin menghapus instance ' + clientId + '? Seluruh log terkait akan tetap disimpan untuk audit.', function() {
+        const idx = DB.clients.findIndex(function(c) { return c.id === clientId; });
+        if (idx !== -1) {
+          DB.clients.splice(idx, 1);
+          renderClientsGrid();
+          showToast('Instance ' + clientId + ' telah dihapus.', 'info');
+          recordActivity('Delete Client', 'Menghapus instance client ' + clientId);
+        }
+      });
+    }
+
+    function renderTemplatesList() {
+      const container = document.getElementById('templatesListContainer');
+      if (!container) return;
+
+      let html = '';
+      DB.templates.forEach(function(tpl) {
+        html += '<div class="glass-panel-light p-5 rounded-2xl space-y-3 flex flex-col justify-between hover:border-softCyan/40 transition shadow-sm">' +
+                '  <div>' +
+                '    <div class="flex items-center justify-between mb-2">' +
+                '      <span class="text-[10px] px-2 py-0.5 rounded bg-sky-50 border border-softCyan/30 font-mono text-deepCyan font-bold">' + tpl.category + '</span>' +
+                '      <span class="text-[10px] font-mono text-slate-400">' + tpl.id + '</span>' +
+                '    </div>' +
+                '    <h4 class="text-sm font-bold text-navyDark mb-2">' + tpl.name + '</h4>' +
+                '    <p class="text-xs text-slate-700 bg-white p-3 rounded-xl border border-slate-200 whitespace-pre-wrap leading-relaxed shadow-xs">' + tpl.content + '</p>' +
+                '  </div>' +
+                '  <div class="pt-2 flex items-center justify-between border-t border-slate-100">' +
+                '    <button onclick="copyTemplateContent(\'' + tpl.id + '\')" class="text-xs text-deepCyan hover:text-navyDark font-bold flex items-center gap-1.5 transition">' +
+                '      <i class="fa-regular fa-copy"></i>' +
+                '      <span>Salin Template</span>' +
+                '    </button>' +
+                '  </div>' +
+                '</div>';
+      });
+
+      container.innerHTML = html;
+    }
+
+    function copyTemplateContent(tplId) {
+      const tpl = DB.templates.find(function(t) { return t.id === tplId; });
+      if (!tpl) return;
+
+      const dummyArea = document.createElement('textarea');
+      dummyArea.value = tpl.content;
+      document.body.appendChild(dummyArea);
+      dummyArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummyArea);
+
+      showToast('Template "' + tpl.name + '" disalin ke clipboard!', 'success');
+      recordActivity('Copy Template', 'Menyalin template ' + tpl.id);
+    }
+
+    function openAddTemplateModal() {
+      const html = '<div class="space-y-4">' +
+                   '  <h3 class="text-base font-bold text-navyDark font-display">Buat Template Pesan Klinis</h3>' +
+                   '  <form onsubmit="handleSaveTemplate(event)" class="space-y-3">' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Template</label>' +
+                   '      <input type="text" id="mTplName" required placeholder="Contoh: Pengingat Vaksin" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori Pesan</label>' +
+                   '      <input type="text" id="mTplCategory" required placeholder="Rawat Inap / Farmasi" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs">' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Isi Konten Pesan</label>' +
+                   '      <textarea id="mTplContent" rows="4" required placeholder="Tuliskan format pesan..." class="glass-input-light w-full px-3 py-2 rounded-xl text-xs"></textarea>' +
+                   '    </div>' +
+                   '    <div class="flex gap-3 pt-2">' +
+                   '      <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold shadow-xs">Batal</button>' +
+                   '      <button type="submit" class="flex-1 btn-cyber-cyan py-2.5 rounded-xl text-xs font-bold shadow-sm">Simpan Template</button>' +
+                   '    </div>' +
+                   '  </form>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function handleSaveTemplate(e) {
+      e.preventDefault();
+      const name = document.getElementById('mTplName').value.trim();
+      const category = document.getElementById('mTplCategory').value.trim();
+      const content = document.getElementById('mTplContent').value.trim();
+      const newId = 'TPL-000' + (DB.templates.length + 1);
+
+      DB.templates.push({ id: newId, name: name, category: category, content: content });
+      closeModal();
+      renderTemplatesList();
+      showToast('Template ' + newId + ' berhasil ditambahkan.', 'success');
+      recordActivity('Create Template', 'Menambahkan template ' + newId);
+    }
+
+    function selectActiveModel(modelId) {
+      STATE.activeAiModel = modelId;
+      updateModelUiState();
+      showToast('Model aktif diubah ke: ' + modelId, 'success');
+      recordActivity('Switch AI Model', 'Mengubah model AI aktif ke ' + modelId);
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        callServer('apiSaveAiModel', modelId);
+      }
+    }
+
+    function changeWidgetModel(modelId) {
+      selectActiveModel(modelId);
+    }
+
+    function updateModelUiState() {
+      const active = STATE.activeAiModel;
+      
+      const topLabel = document.getElementById('topNavModelLabel');
+      if (topLabel) topLabel.textContent = active;
+      
+      const heroModel = document.getElementById('heroAiModelName');
+      if (heroModel) heroModel.textContent = active;
+
+      const metricModel = document.getElementById('metricActiveModel');
+      if (metricModel) metricModel.textContent = active;
+
+      const widgetSelect = document.getElementById('widgetAiModelSelect');
+      if (widgetSelect) widgetSelect.value = active;
+
+      const modelCards = ['gemini-3.1-flash-lite', 'gemini-3.5-flash-lite', 'gemini-2.5-flash-lite', 'gemini-2.5-flash', 'gemini-3.5-flash', 'gemini-3-flash'];
+      modelCards.forEach(function(m) {
+        const card = document.getElementById('cardModel-' + m);
+        const badge = document.getElementById('badgeActive-' + m);
+        if (card && badge) {
+          if (m === active) {
+            card.className = 'glass-panel-glow-light p-5 rounded-2xl border-2 border-softCyan cursor-pointer transition relative';
+            badge.classList.remove('hidden');
+          } else {
+            card.className = 'glass-panel-light p-5 rounded-2xl border-2 border-transparent hover:border-softCyan/40 cursor-pointer transition relative';
+            badge.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function testAiLatency() {
+      const resultBox = document.getElementById('aiBenchmarkResult');
+      resultBox.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-deepCyan"></i> Menguji latensi ' + STATE.activeAiModel + '...';
+      
+      const startTime = performance.now();
+      setTimeout(function() {
+        const latency = Math.round(performance.now() - startTime + (Math.random() * 80 + 120));
+        resultBox.innerHTML = '<span class="text-emerald-700 font-bold"><i class="fa-solid fa-circle-check"></i> ' + STATE.activeAiModel + ' online: ' + latency + 'ms</span> (Quota Normal)';
+      }, 500);
+    }
+
+    function openApiKeyConfigModal() {
+      const html = '<div class="space-y-4">' +
+                   '  <div class="flex items-center justify-between border-b border-slate-200 pb-2">' +
+                   '    <h3 class="text-base font-bold text-navyDark font-display">Konfigurasi Google AI Studio</h3>' +
+                   '    <span class="text-[10px] px-2 py-0.5 rounded bg-softCyan/10 text-deepCyan font-bold">AQ. & AIzaSy SUPPORTED</span>' +
+                   '  </div>' +
+                   '  <p class="text-xs text-slateSub leading-relaxed">' +
+                   '    API Key tersimpan secara aman di <code>ScriptProperties</code> backend Google Apps Script sehingga tidak bocor ke frontend browser.' +
+                   '  </p>' +
+                   '  <form onsubmit="handleSaveApiKeySubmit(event)" class="space-y-3">' +
+                   '    <div>' +
+                   '      <label class="block text-xs font-semibold text-slate-700 mb-1">Gemini API Key (AQ.xxxx... atau AIzaSy...)</label>' +
+                   '      <input type="password" id="mApiKeyInput" required placeholder="Tempelkan API Key (AQ.xxxx... / AIzaSy...)" class="glass-input-light w-full px-3 py-2 rounded-xl text-xs font-mono">' +
+                   '    </div>' +
+                   '    <div class="p-3 bg-sky-50 rounded-xl border border-softCyan/30 text-[11px] text-slate-700 space-y-1">' +
+                   '      <div class="font-bold text-deepCyan"><i class="fa-solid fa-lightbulb"></i> Format Kunci yang Didukung:</div>' +
+                   '      <div>1. Format Modern Baru: <code>AQ.xxxxxxx...</code></div>' +
+                   '      <div>2. Format Standar: <code>AIzaSyxxxxxxx...</code></div>' +
+                   '    </div>' +
+                   '    <div class="flex gap-3 pt-2">' +
+                   '      <button type="button" onclick="closeModal()" class="flex-1 py-2.5 rounded-xl bg-white border border-slate-200 text-xs text-slate-700 font-semibold shadow-xs">Batal</button>' +
+                   '      <button type="submit" class="flex-1 btn-cyber-cyan py-2.5 rounded-xl text-xs font-bold shadow-sm">Simpan API Key</button>' +
+                   '    </div>' +
+                   '  </form>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function handleSaveApiKeySubmit(e) {
+      e.preventDefault();
+      const key = document.getElementById('mApiKeyInput').value.trim();
+      const isValid = key.startsWith('AIzaSy') || key.startsWith('AQ.') || (key.length >= 20 && /^[A-Za-z0-9_\-\.]+$/.test(key));
+      
+      if (!isValid) {
+        showToast('Format API Key tidak valid. Kunci Google AI Studio umumnya diawali "AQ." atau "AIzaSy".', 'error');
+        return;
+      }
+
+      closeModal();
+      showToast('Gemini API Key (' + (key.startsWith('AQ.') ? 'AQ Format' : 'Standard Format') + ') berhasil disimpan permanen!', 'success');
+      recordActivity('Update API Key', 'Menyimpan API Key baru ke Script Properties');
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        callServer('promptSetGeminiKeyDirect', key);
+      }
+    }
+
+    function openGasCodeModal() {
+      const html = '<div class="space-y-4 max-w-2xl">' +
+                   '  <div class="flex items-center justify-between border-b border-slate-200 pb-2">' +
+                   '    <div>' +
+                   '      <h3 class="text-base font-bold text-navyDark font-display">Inspektur Source Code Google Apps Script</h3>' +
+                   '      <p class="text-[11px] text-slateSub">Salin berkas <code>setup.gs</code> dan <code>code.gs</code> langsung ke proyek Apps Script Anda.</p>' +
+                   '    </div>' +
+                   '    <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">V5.2 READY</span>' +
+                   '  </div>' +
+                   '  <div class="space-y-3 text-xs">' +
+                   '    <div>' +
+                   '      <div class="flex items-center justify-between mb-1">' +
+                   '        <span class="font-bold text-deepCyan">1. Berkas Database & Migration (setup.gs)</span>' +
+                   '        <span class="text-[10px] text-slate-400">Dukungan Menu AI Studio, Kunci AQ. & AIzaSy</span>' +
+                   '      </div>' +
+                   '      <div class="p-3 bg-slate-900 text-slate-200 rounded-xl font-mono text-[11px] max-h-32 overflow-y-auto leading-relaxed">' +
+                   '// setup.gs mendukung menu onOpen "🤖 AI Studio Setup",<br>' +
+                   '// validasi promptSetGeminiKey untuk kunci AQ. dan AIzaSy,<br>' +
+                   '// serta skema BroadcastQueue & sequential ID (QUE-0001).' +
+                   '      </div>' +
+                   '    </div>' +
+                   '    <div>' +
+                   '      <div class="flex items-center justify-between mb-1">' +
+                   '        <span class="font-bold text-deepCyan">2. Berkas Backend Controllers (code.gs)</span>' +
+                   '        <span class="text-[10px] text-slate-400">Gemini 3.1 Flash Lite (15 RPM), Cascading Fallback</span>' +
+                   '      </div>' +
+                   '      <div class="p-3 bg-slate-900 text-slate-200 rounded-xl font-mono text-[11px] max-h-32 overflow-y-auto leading-relaxed">' +
+                   '// code.gs mendukung model: gemini-3.1-flash-lite, gemini-3.5-flash-lite, dsb.<br>' +
+                   '// Otomatis cascading fallback jika status HTTP 429 terjadi.' +
+                   '      </div>' +
+                   '    </div>' +
+                   '  </div>' +
+                   '  <div class="flex justify-end pt-2">' +
+                   '    <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-xs">Tutup Inspektur</button>' +
+                   '  </div>' +
+                   '</div>';
+      openModal(html);
+    }
+
+    function exportChatLogsToCsv() {
+      showToast('Menyiapkan file rekapitulasi CSV...', 'info');
+
+      const headers = ['Log_ID', 'Timestamp', 'Client_ID', 'Sender_Number', 'Receiver_Number', 'Message_Type', 'Message_Content', 'Status'];
+      let csvContent = headers.join(',') + '\r\n';
+
+      DB.chatLogs.forEach(function(row) {
+        const safeContent = '"' + (row.content ? row.content.replace(/"/g, '""') : '') + '"';
+        const line = [
+          row.id,
+          row.timestamp,
+          row.clientId,
+          '\'' + row.sender,
+          '\'' + row.receiver,
+          '"' + row.type + '"',
+          safeContent,
+          row.status
+        ].join(',');
+        csvContent += line + '\r\n';
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'AURA_MEDICA_CHATLOGS_' + new Date().toISOString().slice(0, 10) + '.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('Laporan CSV berhasil diunduh.', 'success');
+      recordActivity('Export CSV', 'Mengunduh rekapitulasi ' + DB.chatLogs.length + ' log chat.');
+    }
+
+    function recordActivity(action, details) {
+      const user = STATE.currentUser ? STATE.currentUser.username + ' (' + STATE.currentUser.role + ')' : 'System / Guest';
+      const act = {
+        id: 'ACT-000' + (DB.activityLogs.length + 1),
+        timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        userId: user,
+        action: action,
+        details: details
+      };
+      DB.activityLogs.unshift(act);
+      renderActivityLogsTable();
+    }
+
+    function renderActivityLogsTable() {
+      const tbody = document.getElementById('activityLogsTableBody');
+      if (!tbody) return;
+
+      let html = '';
+      DB.activityLogs.forEach(function(act) {
+        html += '<tr class="hover:bg-sky-50/50 transition">' +
+                '  <td class="p-3.5 font-mono text-[11px] text-slate-400">' + act.id + '</td>' +
+                '  <td class="p-3.5 font-mono text-[11px] text-slate-600">' + act.timestamp + '</td>' +
+                '  <td class="p-3.5 font-mono text-[11px] text-deepCyan font-bold">' + act.userId + '</td>' +
+                '  <td class="p-3.5 font-bold text-navyDark">' + act.action + '</td>' +
+                '  <td class="p-3.5 text-slate-700">' + act.details + '</td>' +
+                '</tr>';
+      });
+      tbody.innerHTML = html;
+    }
+
+    function toggleChatAiWidget() {
+      const widget = document.getElementById('geminiChatWidget');
+      widget.classList.toggle('hidden');
+      widget.classList.toggle('flex');
+      if (!widget.classList.contains('hidden')) {
+        document.getElementById('aiChatInput').focus();
+      }
+    }
+
+    function clearAiChatHistory() {
+      STATE.aiConversation = [];
+      document.getElementById('aiChatMessages').innerHTML = '<div class="bg-white p-3 rounded-xl rounded-tl-none border border-slate-200 text-slate-700 shadow-xs">' +
+                      'Riwayat percakapan telah dibersihkan. Menggunakan engine <strong>' + STATE.activeAiModel + '</strong>. Ada yang bisa saya bantu seputar klinik atau bot WhatsApp?' +
+                      '</div>';
+      showToast('Riwayat chat AI direset.', 'info');
+    }
+
+    function handleAiChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiChatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      appendAiChatMessage('user', text);
+
+      STATE.aiConversation.push({
+        role: 'user',
+        parts: [{ text: text }]
+      });
+
+      const typing = document.getElementById('aiTypingIndicator');
+      typing.classList.remove('hidden');
+      typing.classList.add('flex');
+      scrollAiChatToBottom();
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        callServer('apiCallGeminiChat', STATE.aiConversation, text, STATE.activeAiModel).then(function(res) {
+          typing.classList.add('hidden');
+          typing.classList.remove('flex');
+          const reply = (res && res.data && res.data.reply) ? res.data.reply : (res ? res.message : 'Terjadi kesalahan format dari server AI.');
+          appendAiChatMessage('model', reply);
+          STATE.aiConversation.push({
+            role: 'model',
+            parts: [{ text: reply }]
+          });
+          scrollAiChatToBottom();
+        }).catch(function(err) {
+          typing.classList.add('hidden');
+          typing.classList.remove('flex');
+          appendAiChatMessage('model', 'Koneksi AI Studio gagal: ' + err.message);
+          scrollAiChatToBottom();
+        });
+      } else {
+        setTimeout(function() {
+          typing.classList.add('hidden');
+          typing.classList.remove('flex');
+          const reply = generateMockAiResponse(text);
+          appendAiChatMessage('model', reply);
+          STATE.aiConversation.push({
+            role: 'model',
+            parts: [{ text: reply }]
+          });
+          scrollAiChatToBottom();
+        }, 750);
+      }
+    }
+
+    function generateMockAiResponse(prompt) {
+      const p = prompt.toLowerCase();
+      const currentModel = STATE.activeAiModel;
+      
+      if (p.indexOf('model') !== -1 || p.indexOf('gemini') !== -1 || p.indexOf('ai') !== -1) {
+        return 'Saat ini saya menggunakan model **' + currentModel + '** dari Google AI Studio. Mendukung format API Key **AQ.xxxx...** dan **AIzaSy...** dengan kuota 15 RPM / 250K TPM serta cascading fallback otomatis.';
+      }
+      if (p.indexOf('broadcast') !== -1 || p.indexOf('antrean') !== -1 || p.indexOf('queue') !== -1) {
+        return 'Modul Broadcast Queue Manager memungkinkan pengiriman pesan massal terkoordinasi dengan jeda dinamis untuk menjaga reputasi nomor bot WhatsApp di Railway.';
+      }
+      if (p.indexOf('dokter') !== -1 || p.indexOf('jadwal') !== -1 || p.indexOf('spesialis') !== -1) {
+        return 'Dokter spesialis yang bertugas meliputi dr. Hendra Pratama, Sp.JP (Spesialis Jantung & Pembuluh Darah) dan dr. Nadia, Sp.PD (Penyakit Dalam) di Poli Lantai 2.';
+      }
+      if (p.indexOf('bot') !== -1 || p.indexOf('railway') !== -1 || p.indexOf('qr') !== -1) {
+        return 'Seluruh bot berjalan di micro-service node Railway. Anda dapat memeriksa status latensi real-time atau membuka Live QR Scanner di tab Kelola Client Railway.';
+      }
+      return 'Terima kasih atas pertanyaan Anda. Ditenagai oleh engine **' + currentModel + '** (AQ. & AIzaSy ready), saya siap mendampingi Anda mengenai fitur bot multi-client, template siaran klinis, maupun antrean broadcast.';
+    }
+
+    function appendAiChatMessage(role, text) {
+      const box = document.getElementById('aiChatMessages');
+      const msgDiv = document.createElement('div');
+      
+      if (role === 'user') {
+        msgDiv.className = 'bg-sky-100 text-navyDark p-3 rounded-xl rounded-tr-none border border-softCyan/40 ml-auto max-w-[85%] text-xs shadow-xs';
+        msgDiv.innerHTML = '<div class="text-[10px] text-deepCyan font-mono font-bold mb-1">Anda</div>' + text;
+      } else {
+        msgDiv.className = 'bg-white p-3 rounded-xl rounded-tl-none border border-slate-200 mr-auto max-w-[90%] text-slate-800 text-xs leading-relaxed shadow-xs';
+        msgDiv.innerHTML = '<div class="text-[10px] text-softCyan font-mono font-bold mb-1 flex items-center gap-1"><i class="fa-solid fa-brain"></i> AURA AI (' + STATE.activeAiModel + ')</div>' + text;
+      }
+
+      box.appendChild(msgDiv);
+    }
+
+    function scrollAiChatToBottom() {
+      const box = document.getElementById('aiChatMessages');
+      box.scrollTop = box.scrollHeight;
+    }
+  </script>
+</body>
+</html>

@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NovaCare | Futuristic Medical Clinic Portal</title>
   
+  <!-- Web App & PWA Meta Tags -->
   <meta name="theme-color" content="#f0f7fa">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="NovaCare Portal">
   <meta name="description" content="Portal Bot WhatsApp Multi-Client & Antrean Broadcast Klinik Medis Futuristik">
 
+  <!-- Inline Dynamic PWA Manifest via Data URI -->
   <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22NovaCare%20Futuristic%20Clinic%22%2C%22short_name%22%3A%22NovaCare%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f0f7fa%22%2C%22theme_color%22%3A%22%2300b4d8%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fapi.iconify.design%2Fsolar%3Ahealth-bold-duotone.svg%3Fcolor%3D%252300b4d8%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -38,94 +41,549 @@
       --danger: #ef4444;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    body { background: var(--bg-gradient); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; overflow-x: hidden; line-height: 1.5; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: rgba(240, 247, 250, 0.7); }
     ::-webkit-scrollbar-thumb { background: rgba(0, 180, 216, 0.4); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--cyan-deep); }
 
-    .glass-panel { background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-glass); border-radius: 16px; box-shadow: var(--card-shadow); transition: box-shadow 0.25s ease, transform 0.25s ease; }
-    .glass-panel:hover { box-shadow: 0 14px 36px rgba(0, 119, 182, 0.12); }
+    /* Glassmorphism Components */
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
 
-    .cyber-btn { background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep)); color: #ffffff; border: 1px solid transparent; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s ease; text-decoration: none; box-shadow: 0 4px 14px var(--cyan-glow); }
-    .cyber-btn:hover { background: linear-gradient(135deg, #0096c7, #023e8a); box-shadow: 0 6px 20px rgba(0, 119, 182, 0.35); transform: translateY(-1px); }
+    .glass-panel:hover {
+      box-shadow: 0 14px 36px rgba(0, 119, 182, 0.12);
+    }
 
-    .cyber-btn-secondary { background: rgba(255, 255, 255, 0.9); color: var(--cyan-deep); border: 1px solid var(--border-subtle); padding: 9px 18px; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s ease; text-decoration: none; }
-    .cyber-btn-secondary:hover { background: #ffffff; border-color: var(--cyan-soft); box-shadow: 0 4px 12px rgba(0, 180, 216, 0.15); }
+    .cyber-btn {
+      background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep));
+      color: #ffffff;
+      border: 1px solid transparent;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 14px var(--cyan-glow);
+    }
 
-    .cyber-input { width: 100%; background: #ffffff; border: 1px solid rgba(0, 180, 216, 0.3); padding: 11px 14px; border-radius: 10px; color: var(--text-main); font-size: 0.9rem; font-family: inherit; outline: none; transition: border 0.2s, box-shadow 0.2s; }
-    .cyber-input:focus { border-color: var(--cyan-deep); box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2); }
+    .cyber-btn:hover {
+      background: linear-gradient(135deg, #0096c7, #023e8a);
+      box-shadow: 0 6px 20px rgba(0, 119, 182, 0.35);
+      transform: translateY(-1px);
+    }
 
-    .top-navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0, 180, 216, 0.15); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 12px rgba(0, 119, 182, 0.05); }
-    .brand-logo { display: flex; align-items: center; gap: 10px; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; color: var(--cyan-deep); }
-    .brand-logo .dot { color: var(--cyan-soft); }
-    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cyan-deep); }
+    .cyber-btn-secondary {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--cyan-deep);
+      border: 1px solid var(--border-subtle);
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
 
-    .hero-container { max-width: 1240px; margin: 36px auto; padding: 0 24px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(0, 180, 216, 0.12); border: 1px solid rgba(0, 180, 216, 0.35); border-radius: 30px; font-size: 0.82rem; color: var(--cyan-deep); font-weight: 700; margin-bottom: 16px; }
-    .hero-title { font-size: 2.7rem; font-weight: 800; line-height: 1.2; margin-bottom: 18px; color: #0f172a; }
-    .hero-title span { background: linear-gradient(135deg, var(--cyan-deep), var(--cyan-soft)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-desc { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px; max-width: 530px; }
+    .cyber-btn-secondary:hover {
+      background: #ffffff;
+      border-color: var(--cyan-soft);
+      box-shadow: 0 4px 12px rgba(0, 180, 216, 0.15);
+    }
 
-    .carousel-section { max-width: 1240px; margin: 30px auto; padding: 0 24px; }
-    .carousel-card { padding: 30px; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; }
-    .carousel-dots { display: flex; gap: 8px; margin-top: 16px; }
-    .carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(0, 180, 216, 0.25); cursor: pointer; transition: all 0.2s; }
-    .carousel-dot.active { background: var(--cyan-deep); width: 24px; border-radius: 6px; }
+    .cyber-input {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid rgba(0, 180, 216, 0.3);
+      padding: 11px 14px;
+      border-radius: 10px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
 
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1240px; margin: 40px auto; padding: 0 24px; }
-    .feature-card { padding: 24px; border-radius: 16px; }
-    .feature-icon { font-size: 2.2rem; color: var(--cyan-soft); margin-bottom: 14px; }
+    .cyber-input:focus {
+      border-color: var(--cyan-deep);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+    }
 
-    .portal-view { display: none; max-width: 1400px; margin: 24px auto; padding: 0 20px; }
-    .portal-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; margin-bottom: 20px; }
+    /* Navbar */
+    .top-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0, 119, 182, 0.05);
+    }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
-    .stat-card { padding: 18px; display: flex; align-items: center; gap: 16px; }
-    .stat-icon-wrap { width: 48px; height: 48px; border-radius: 12px; background: rgba(0, 180, 216, 0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--cyan-deep); }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--cyan-deep);
+    }
 
-    .tabs-nav { display: flex; gap: 8px; flex-wrap: wrap; }
-    .tab-btn { background: #ffffff; border: 1px solid var(--border-subtle); color: var(--text-muted); padding: 9px 18px; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
-    .tab-btn.active { background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep)); color: #ffffff; border-color: transparent; box-shadow: 0 4px 14px var(--cyan-glow); }
+    .brand-logo .dot {
+      color: var(--cyan-soft);
+    }
 
-    .status-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan-deep);
+    }
+
+    /* Hero Section */
+    .hero-container {
+      max-width: 1240px;
+      margin: 36px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(0, 180, 216, 0.12);
+      border: 1px solid rgba(0, 180, 216, 0.35);
+      border-radius: 30px;
+      font-size: 0.82rem;
+      color: var(--cyan-deep);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.7rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      color: #0f172a;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--cyan-deep), var(--cyan-soft));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+      max-width: 530px;
+    }
+
+    /* Interactive Carousel Showcase */
+    .carousel-section {
+      max-width: 1240px;
+      margin: 30px auto;
+      padding: 0 24px;
+    }
+
+    .carousel-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(0, 180, 216, 0.25);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--cyan-deep);
+      width: 24px;
+      border-radius: 6px;
+    }
+
+    /* Features Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1240px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .feature-card {
+      padding: 24px;
+      border-radius: 16px;
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      color: var(--cyan-soft);
+      margin-bottom: 14px;
+    }
+
+    /* Dashboard Layout */
+    .portal-view {
+      display: none;
+      max-width: 1400px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .portal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      margin-bottom: 20px;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 180, 216, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--cyan-deep);
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px var(--cyan-glow);
+    }
+
+    /* Status Indicator Dots */
+    .status-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
     .status-connected { background: var(--success); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
     .status-scanning { background: var(--warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     .status-disconnected { background: var(--danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
 
-    .table-responsive { overflow-x: auto; margin-top: 16px; }
-    .cyber-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; }
-    .cyber-table th { padding: 12px 16px; background: rgba(0, 119, 182, 0.06); color: var(--cyan-deep); font-weight: 700; border-bottom: 1px solid var(--border-subtle); white-space: nowrap; }
-    .cyber-table td { padding: 13px 16px; border-bottom: 1px solid rgba(0, 180, 216, 0.1); color: var(--text-main); }
-    .cyber-table tr:hover td { background: rgba(0, 180, 216, 0.03); }
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
 
-    .floating-container { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 1001; }
-    .float-circle-btn { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; box-shadow: 0 8px 24px rgba(0, 119, 182, 0.25); transition: transform 0.2s ease; border: 1px solid rgba(255, 255, 255, 0.8); text-decoration: none; }
-    .float-circle-btn:hover { transform: scale(1.08); }
-    .btn-ai-float { background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep)); color: #ffffff; }
-    .btn-wa-float { background: #25d366; color: #ffffff; }
+    .cyber-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
 
-    .ai-chat-box { position: fixed; bottom: 90px; right: 24px; width: 410px; max-width: calc(100vw - 40px); height: 550px; display: none; flex-direction: column; z-index: 1002; box-shadow: 0 16px 40px rgba(0, 119, 182, 0.2); }
-    .ai-chat-header { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 8px; background: #ffffff; border-radius: 16px 16px 0 0; }
-    .ai-chat-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem; background: rgba(240, 247, 250, 0.5); }
-    .ai-bubble { max-width: 84%; padding: 10px 14px; border-radius: 14px; line-height: 1.45; word-wrap: break-word; }
-    .bubble-user { align-self: flex-end; background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep)); color: #ffffff; border-bottom-right-radius: 2px; }
-    .bubble-model { align-self: flex-start; background: #ffffff; border: 1px solid var(--border-subtle); color: var(--text-main); border-bottom-left-radius: 2px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-    .ai-model-tag { display: inline-block; font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; padding: 1px 6px; border-radius: 4px; background: rgba(0, 180, 216, 0.12); color: var(--cyan-deep); font-weight: 700; margin-bottom: 4px; }
-    .ai-chat-footer { padding: 12px; border-top: 1px solid var(--border-subtle); background: #ffffff; border-radius: 0 0 16px 16px; display: flex; gap: 8px; }
+    .cyber-table th {
+      padding: 12px 16px;
+      background: rgba(0, 119, 182, 0.06);
+      color: var(--cyan-deep);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
 
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.45); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 16px; }
-    .modal-content { width: 100%; max-width: 540px; max-height: 90vh; overflow-y: auto; padding: 26px; background: #ffffff; }
+    .cyber-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid rgba(0, 180, 216, 0.1);
+      color: var(--text-main);
+    }
 
-    .toast-container { position: fixed; top: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
-    .toast-item { background: #ffffff; border-left: 4px solid var(--cyan-deep); padding: 12px 18px; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 119, 182, 0.15); font-size: 0.88rem; display: flex; align-items: center; gap: 10px; animation: fadeInRight 0.3s ease forwards; }
+    .cyber-table tr:hover td {
+      background: rgba(0, 180, 216, 0.03);
+    }
 
-    @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-    @media (max-width: 860px) { .hero-container { grid-template-columns: 1fr; margin-top: 20px; } .nav-links { display: none; } .hero-title { font-size: 2.1rem; } }
+    /* Floating Chat AI & WhatsApp */
+    .floating-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1001;
+    }
+
+    .float-circle-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+    }
+
+    .float-circle-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .btn-ai-float {
+      background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep));
+      color: #ffffff;
+    }
+
+    .btn-wa-float {
+      background: #25d366;
+      color: #ffffff;
+    }
+
+    /* AI Chat Modal Widget */
+    .ai-chat-box {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      width: 410px;
+      max-width: calc(100vw - 40px);
+      height: 550px;
+      display: none;
+      flex-direction: column;
+      z-index: 1002;
+      box-shadow: 0 16px 40px rgba(0, 119, 182, 0.2);
+    }
+
+    .ai-chat-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #ffffff;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .ai-chat-body {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.88rem;
+      background: rgba(240, 247, 250, 0.5);
+    }
+
+    .ai-bubble {
+      max-width: 84%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      line-height: 1.45;
+      word-wrap: break-word;
+    }
+
+    .bubble-user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--cyan-soft), var(--cyan-deep));
+      color: #ffffff;
+      border-bottom-right-radius: 2px;
+    }
+
+    .bubble-model {
+      align-self: flex-start;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      border-bottom-left-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .ai-model-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(0, 180, 216, 0.12);
+      color: var(--cyan-deep);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .ai-chat-footer {
+      padding: 12px;
+      border-top: 1px solid var(--border-subtle);
+      background: #ffffff;
+      border-radius: 0 0 16px 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Modal System */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 16px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 26px;
+      background: #ffffff;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast-item {
+      background: #ffffff;
+      border-left: 4px solid var(--cyan-deep);
+      padding: 12px 18px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.15);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeInRight 0.3s ease forwards;
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 860px) {
+      .hero-container { grid-template-columns: 1fr; margin-top: 20px; }
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.1rem; }
+    }
   </style>
 </head>
 <body>
@@ -145,18 +603,25 @@
     </ul>
 
     <div style="display: flex; align-items: center; gap: 8px;">
+      <!-- External Link: Buka Web Klinik Utama -->
       <a href="https://novacare-clinic.med.id" target="_blank" class="cyber-btn-secondary" style="padding: 7px 12px; font-size: 0.82rem;" title="Buka Website Resmi">
         <iconify-icon icon="solar:square-top-down-bold"></iconify-icon>
         <span>Web Utama</span>
       </a>
+
+      <!-- PWA Install Button (Android/Desktop) -->
       <button id="btnPwaInstall" class="cyber-btn" style="display: none; padding: 7px 14px; font-size: 0.82rem;">
         <iconify-icon icon="solar:download-square-bold"></iconify-icon>
         <span>Pasang App</span>
       </button>
+
+      <!-- PWA iOS Guide Button -->
       <button id="btnIosPwaPrompt" class="cyber-btn-secondary" style="display: none; padding: 7px 12px; font-size: 0.82rem;" onclick="openModal('iosGuideModal')">
         <iconify-icon icon="solar:smartphone-bold"></iconify-icon>
         <span>Add to Home</span>
       </button>
+
+      <!-- Portal Access Button -->
       <button id="btnPortalToggle" class="cyber-btn" onclick="handlePortalAuthNav()">
         <iconify-icon icon="solar:shield-keyhole-bold-duotone"></iconify-icon>
         <span id="txtPortalAction">Login Portal</span>
@@ -165,6 +630,7 @@
   </header>
 
   <main id="publicLandingView">
+    <!-- Hero Section -->
     <section class="hero-container" id="beranda">
       <div>
         <div class="hero-badge">
@@ -173,11 +639,17 @@
         </div>
         <h1 class="hero-title">Automasi Pelayanan Pasien dengan <span>Presisi AI Klinis</span></h1>
         <p class="hero-desc">
-          Integrasi terpadu pemantauan bot WhatsApp multi-client Railway, antrean broadcast cerdas, dan asisten telemetri multi-model Gemini berkecepatan tinggi.
+          Integrasi terpadu pemantauan bot WhatsApp multi-client Railway, antrean broadcast cerdas, dan asisten telemetri multi-model Gemini 3.8 / 3.7 / 3.5 berkecepatan tinggi.
         </p>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <a href="#reservasi" class="cyber-btn"><iconify-icon icon="solar:calendar-date-bold"></iconify-icon> Buat Janji Pasien</a>
-          <button class="cyber-btn-secondary" onclick="toggleAIChat(true)"><iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon> Konsultasi AI Klinis</button>
+          <a href="#reservasi" class="cyber-btn">
+            <iconify-icon icon="solar:calendar-date-bold"></iconify-icon>
+            Buat Janji Pasien
+          </a>
+          <button class="cyber-btn-secondary" onclick="toggleAIChat(true)">
+            <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+            Konsultasi AI Klinis
+          </button>
         </div>
       </div>
 
@@ -186,7 +658,9 @@
           <iconify-icon icon="solar:pulse-bold-duotone" style="color: var(--cyan-soft); font-size: 22px;"></iconify-icon>
           Status Jaringan Bot Klinis (Live)
         </h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 18px;">Pemantauan heartbeat waktu nyata dari cluster Railway yang aktif.</p>
+        <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 18px;">
+          Pemantauan heartbeat waktu nyata dari cluster Railway yang aktif melayani pasien.
+        </p>
         <div style="display: flex; flex-direction: column; gap: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
             <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-connected"></span>Poli Utama WhatsApp</span>
@@ -196,15 +670,22 @@
             <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-connected"></span>Rawat Inap Pod Alert</span>
             <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--success); font-weight: 700;">ONLINE (38ms)</span>
           </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-subtle);">
+            <span style="font-size: 0.85rem; font-weight: 600;"><span class="status-dot status-scanning"></span>Farmasi Dispenser Bot</span>
+            <span style="font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--warning); font-weight: 700;">SCANNING</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Interactive Carousel Showcase -->
     <section class="carousel-section" id="showcase">
       <div class="glass-panel carousel-card">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
           <div>
-            <div id="carouselTag" style="font-size: 0.78rem; font-weight: 700; color: var(--cyan-deep); text-transform: uppercase;">FITUR OTOMASI UNGGULAN</div>
+            <div id="carouselTag" style="font-size: 0.78rem; font-weight: 700; color: var(--cyan-deep); text-transform: uppercase; letter-spacing: 0.5px;">
+              FITUR OTOMASI UNGGULAN
+            </div>
             <h2 id="carouselTitle" style="font-size: 1.5rem; margin-top: 4px;">Notifikasi Pasien & Pengingat Kontrol Pintar</h2>
           </div>
           <div style="display: flex; gap: 8px;">
@@ -212,7 +693,9 @@
             <button class="cyber-btn-secondary" style="padding: 6px 12px;" onclick="rotateCarousel(1)"><iconify-icon icon="solar:arrow-right-bold"></iconify-icon></button>
           </div>
         </div>
-        <p id="carouselDesc" style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px;">Kirimkan pesan pengingat jadwal konsultasi dan visit dokter otomatis kepada ratusan pasien tepat waktu.</p>
+        <p id="carouselDesc" style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px;">
+          Kirimkan pesan pengingat jadwal konsultasi dan visit dokter otomatis kepada ratusan pasien tepat waktu melalui antrean terjadwal tanpa repot mengetik manual.
+        </p>
         <div class="carousel-dots" id="carouselDotsContainer">
           <span class="carousel-dot active" onclick="jumpCarousel(0)"></span>
           <span class="carousel-dot" onclick="jumpCarousel(1)"></span>
@@ -221,78 +704,123 @@
       </div>
     </section>
 
+    <!-- Services Grid -->
     <section class="feature-grid" id="layanan">
       <div class="glass-panel feature-card">
         <iconify-icon icon="solar:bed-bold-duotone" class="feature-icon"></iconify-icon>
         <h3 style="margin-bottom: 8px; color: var(--cyan-deep);">Monitoring Ranap Pod</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">Panduan kamar isolasi pintar dan jadwal visit dokter langsung ke WhatsApp.</p>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Pasien langsung menerima panduan kamar isolasi pintar, jadwal visit dokter, dan info visitasi langsung di WhatsApp.
+        </p>
       </div>
+
       <div class="glass-panel feature-card">
         <iconify-icon icon="solar:server-bold-duotone" class="feature-icon"></iconify-icon>
         <h3 style="margin-bottom: 8px; color: var(--cyan-deep);">Integrasi Multi-Nomor</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">Kelola instance Baileys Railway terpisah untuk tiap poli klinik tanpa risiko terblokir.</p>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Kelola instance Baileys Railway terpisah untuk tiap poli klinik tanpa bentrok antrean dan risiko nomor terblokir.
+        </p>
       </div>
+
       <div class="glass-panel feature-card">
         <iconify-icon icon="solar:cpu-bolt-bold-duotone" class="feature-icon"></iconify-icon>
         <h3 style="margin-bottom: 8px; color: var(--cyan-deep);">Multi-Model AI Engine</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);">Didukung lini lengkap Google AI Studio Gemini untuk analisa gejala klinis.</p>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Didukung Google AI Studio Gemini 3.8 / 3.7 / 3.5 Flash & Pro untuk analisa gejala awal medis pasien dengan latensi terendah.
+        </p>
       </div>
     </section>
 
+    <!-- Patient Booking Online Form -->
     <section style="max-width: 760px; margin: 50px auto; padding: 0 24px;" id="reservasi">
       <div class="glass-panel" style="padding: 32px;">
         <div style="text-align: center; margin-bottom: 24px;">
           <h2 style="font-size: 1.6rem; margin-bottom: 6px; color: var(--cyan-deep);">Pendaftaran Janji Temu Pasien</h2>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Layanan registrasi cepat rawat jalan dan pemesanan smart bed pod.</p>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">
+            Layanan registrasi cepat rawat jalan dan pemesanan smart bed pod.
+          </p>
         </div>
+
         <form id="publicBookingForm" onsubmit="event.preventDefault(); submitPublicBooking();">
           <div style="margin-bottom: 16px;">
-            <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600;">Nama Lengkap Pasien</label>
+            <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600; color: var(--text-main);">Nama Lengkap Pasien</label>
             <input type="text" id="bkPatientName" class="cyber-input" placeholder="Contoh: Rian Pratama" required>
           </div>
+
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;">
             <div>
-              <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600;">Nomor WhatsApp</label>
+              <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600; color: var(--text-main);">Nomor WhatsApp</label>
               <input type="tel" id="bkPhone" class="cyber-input" placeholder="08xxxxxxxxxx" required>
             </div>
             <div>
-              <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600;">Jenis Layanan</label>
+              <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600; color: var(--text-main);">Jenis Layanan</label>
               <select id="bkService" class="cyber-input">
                 <option value="Konsultasi Bionik AI">Konsultasi Bionik AI</option>
                 <option value="Rawat Inap Smart Pod">Rawat Inap Smart Pod</option>
                 <option value="Pemeriksaan Laboratorium">Pemeriksaan Laboratorium</option>
+                <option value="Poliklinik Spesialis">Poliklinik Spesialis</option>
               </select>
             </div>
           </div>
+
           <div style="margin-bottom: 24px;">
-            <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600;">Rencana Waktu Kunjungan</label>
+            <label style="display: block; font-size: 0.84rem; margin-bottom: 6px; font-weight: 600; color: var(--text-main);">Rencana Waktu Kunjungan</label>
             <input type="datetime-local" id="bkDateTime" class="cyber-input">
           </div>
+
           <button type="submit" id="btnSubmitBooking" class="cyber-btn" style="width: 100%; justify-content: center; padding: 12px;">
-            <iconify-icon icon="solar:check-circle-bold"></iconify-icon> Konfirmasi Pendaftaran Medis
+            <iconify-icon icon="solar:check-circle-bold"></iconify-icon>
+            Konfirmasi Pendaftaran Medis
           </button>
         </form>
       </div>
     </section>
 
+    <!-- Contact & Map Embed Section -->
     <section style="max-width: 1240px; margin: 40px auto 60px; padding: 0 24px;" id="kontak">
       <div class="glass-panel" style="padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
         <div>
           <h3 style="font-size: 1.3rem; margin-bottom: 12px; color: var(--cyan-deep);">Hubungi Layanan Terpadu NovaCare</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">Pusat Komando Medis & Telemetri Kesehatan Cyber Medika Hub Makassar.</p>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px;">
+            Pusat Komando Medis & Telemetri Kesehatan Cyber Medika Hub Makassar.
+          </p>
           <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem;">
-            <div style="display: flex; align-items: center; gap: 12px;"><iconify-icon icon="solar:point-on-map-bold" style="color: var(--cyan-soft); font-size: 20px;"></iconify-icon><span>Jl. Cyber Medika Hub No. 88, Makassar</span></div>
-            <div style="display: flex; align-items: center; gap: 12px;"><iconify-icon icon="solar:phone-bold" style="color: var(--cyan-soft); font-size: 20px;"></iconify-icon><span>Hotline WhatsApp: +62 812-3456-7890</span></div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <iconify-icon icon="solar:point-on-map-bold" style="color: var(--cyan-soft); font-size: 20px;"></iconify-icon>
+              <span>Jl. Cyber Medika Hub No. 88, Makassar, Sulawesi Selatan</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <iconify-icon icon="solar:phone-bold" style="color: var(--cyan-soft); font-size: 20px;"></iconify-icon>
+              <span>Hotline WhatsApp: +62 812-3456-7890</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <iconify-icon icon="solar:letter-bold" style="color: var(--cyan-soft); font-size: 20px;"></iconify-icon>
+              <span>care@novacare-clinic.med.id</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 24px;">
+            <a href="https://instagram.com" target="_blank" class="cyber-btn-secondary" style="padding: 8px 12px;"><iconify-icon icon="solar:camera-bold"></iconify-icon> Instagram</a>
+            <a href="https://linkedin.com" target="_blank" class="cyber-btn-secondary" style="padding: 8px 12px;"><iconify-icon icon="solar:buildings-bold"></iconify-icon> LinkedIn</a>
           </div>
         </div>
+
         <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); height: 260px;">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127163.63738096236!2d119.36290887349144!3d-5.132822180800762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf028b0f924297%3A0x6b44a86f9166f20!2sMakassar%2C%20South%20Sulawesi!5e0!3m2!1sen!2sid!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127163.63738096236!2d119.36290887349144!3d-5.132822180800762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbf028b0f924297%3A0x6b44a86f9166f20!2sMakassar%2C%20Makassar%20City%2C%20South%20Sulawesi!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </section>
   </main>
 
   <div id="portalDashboardView" class="portal-view">
+    <!-- Dashboard Top Bar -->
     <div class="glass-panel portal-header">
       <div>
         <div style="font-size: 0.8rem; color: var(--cyan-deep); font-weight: 700; letter-spacing: 0.8px;">PORTAL MONITORING KLINIS</div>
@@ -300,42 +828,78 @@
       </div>
       <div style="display: flex; align-items: center; gap: 14px;">
         <div style="text-align: right;">
-          <div id="userRoleBadge" style="font-size: 0.75rem; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--cyan-soft); color: var(--cyan-deep); padding: 2px 10px; border-radius: 20px; display: inline-block; font-weight: 700;">Superadmin</div>
+          <div id="userRoleBadge" style="font-size: 0.75rem; background: rgba(0, 180, 216, 0.15); border: 1px solid var(--cyan-soft); color: var(--cyan-deep); padding: 2px 10px; border-radius: 20px; display: inline-block; font-weight: 700;">
+            Superadmin
+          </div>
           <div id="userNameDisplay" style="font-size: 0.88rem; font-weight: 700;">Dr. Aris Thorne</div>
         </div>
-        <button class="cyber-btn-secondary" onclick="logoutAdmin()" title="Keluar"><iconify-icon icon="solar:logout-2-bold"></iconify-icon></button>
+        <button class="cyber-btn-secondary" onclick="logoutAdmin()" title="Keluar">
+          <iconify-icon icon="solar:logout-2-bold"></iconify-icon>
+        </button>
       </div>
     </div>
 
+    <!-- Statistics Grid -->
     <div class="stats-grid">
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap"><iconify-icon icon="solar:server-bold"></iconify-icon></div>
-        <div><div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Total Client Node</div><div id="statTotalClients" style="font-size: 1.5rem; font-weight: 800;">3</div></div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Total Client Node</div>
+          <div id="statTotalClients" style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">3</div>
+        </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(16, 185, 129, 0.15); color: var(--success);"><iconify-icon icon="solar:check-circle-bold"></iconify-icon></div>
-        <div><div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Connected (Aktif)</div><div id="statConnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--success);">1</div></div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Connected (Aktif)</div>
+          <div id="statConnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--success);">1</div>
+        </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(245, 158, 11, 0.15); color: var(--warning);"><iconify-icon icon="solar:qr-code-bold"></iconify-icon></div>
-        <div><div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Scanning QR</div><div id="statScanningClients" style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">1</div></div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Scanning QR</div>
+          <div id="statScanningClients" style="font-size: 1.5rem; font-weight: 800; color: var(--warning);">1</div>
+        </div>
       </div>
       <div class="glass-panel stat-card">
         <div class="stat-icon-wrap" style="background: rgba(239, 68, 68, 0.15); color: var(--danger);"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></div>
-        <div><div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Disconnected</div><div id="statDisconnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--danger);">1</div></div>
+        <div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Disconnected</div>
+          <div id="statDisconnectedClients" style="font-size: 1.5rem; font-weight: 800; color: var(--danger);">1</div>
+        </div>
       </div>
     </div>
 
+    <!-- Navigation Tabs -->
     <div class="tabs-nav" style="margin-bottom: 20px;">
-      <button class="tab-btn active" id="tabLogsBtn" onclick="switchDashboardTab('chatLogs')"><iconify-icon icon="solar:chat-line-bold"></iconify-icon> Monitoring Log Chat</button>
-      <button class="tab-btn" id="tabBroadcastBtn" onclick="switchDashboardTab('broadcast')"><iconify-icon icon="solar:plain-bold"></iconify-icon> Broadcast Queue Manager</button>
-      <button class="tab-btn" id="tabClientsBtn" onclick="switchDashboardTab('clients')"><iconify-icon icon="solar:server-bold"></iconify-icon> Client Railway Bot</button>
-      <button class="tab-btn" id="tabTemplatesBtn" onclick="switchDashboardTab('templates')"><iconify-icon icon="solar:document-text-bold"></iconify-icon> Template Klinis</button>
-      <button class="tab-btn" id="tabBookingsBtn" onclick="switchDashboardTab('bookings')"><iconify-icon icon="solar:users-group-rounded-bold"></iconify-icon> Antrean Pasien</button>
-      <button class="tab-btn" id="tabAiConfigBtn" onclick="switchDashboardTab('aiConfig')"><iconify-icon icon="solar:atom-bold"></iconify-icon> Konfigurasi AI Gemini</button>
+      <button class="tab-btn active" id="tabLogsBtn" onclick="switchDashboardTab('chatLogs')">
+        <iconify-icon icon="solar:chat-line-bold"></iconify-icon>
+        Monitoring Log Chat
+      </button>
+      <button class="tab-btn" id="tabBroadcastBtn" onclick="switchDashboardTab('broadcast')">
+        <iconify-icon icon="solar:plain-bold"></iconify-icon>
+        Broadcast Queue Manager
+      </button>
+      <button class="tab-btn" id="tabClientsBtn" onclick="switchDashboardTab('clients')">
+        <iconify-icon icon="solar:server-bold"></iconify-icon>
+        Client Railway Bot
+      </button>
+      <button class="tab-btn" id="tabTemplatesBtn" onclick="switchDashboardTab('templates')">
+        <iconify-icon icon="solar:document-text-bold"></iconify-icon>
+        Template Klinis
+      </button>
+      <button class="tab-btn" id="tabBookingsBtn" onclick="switchDashboardTab('bookings')">
+        <iconify-icon icon="solar:users-group-rounded-bold"></iconify-icon>
+        Antrean Pasien
+      </button>
+      <button class="tab-btn" id="tabAiConfigBtn" onclick="switchDashboardTab('aiConfig')">
+        <iconify-icon icon="solar:atom-bold"></iconify-icon>
+        Konfigurasi AI Gemini
+      </button>
     </div>
 
-    <!-- TAB 1: Chat Logs -->
+    <!-- TAB 1: Chat Logs Monitoring Feed -->
     <div id="tabContentLogs" class="glass-panel" style="padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
         <div style="display: flex; gap: 10px; flex-wrap: wrap; flex: 1;">
@@ -348,18 +912,40 @@
           </select>
         </div>
         <div style="display: flex; gap: 8px;">
-          <button class="cyber-btn-secondary" onclick="exportDataAction('ChatLogs')"><iconify-icon icon="solar:file-download-bold"></iconify-icon> Ekspor CSV</button>
-          <button class="cyber-btn" onclick="loadChatLogsBackend(1)"><iconify-icon icon="solar:refresh-bold"></iconify-icon> Segarkan</button>
+          <button class="cyber-btn-secondary" onclick="exportDataAction('ChatLogs')">
+            <iconify-icon icon="solar:file-download-bold"></iconify-icon>
+            Ekspor CSV
+          </button>
+          <button class="cyber-btn" onclick="loadChatLogsBackend(1)">
+            <iconify-icon icon="solar:refresh-bold"></iconify-icon>
+            Segarkan
+          </button>
         </div>
       </div>
+
       <div class="table-responsive">
         <table class="cyber-table">
-          <thead><tr><th>LOG ID</th><th>WAKTU</th><th>CLIENT BOT</th><th>PENGIRIM</th><th>PENERIMA</th><th>TIPE</th><th>KONTEN PESAN</th><th>STATUS</th><th>AKSI</th></tr></thead>
-          <tbody id="chatLogsTableBody"></tbody>
+          <thead>
+            <tr>
+              <th>LOG ID</th>
+              <th>WAKTU</th>
+              <th>CLIENT BOT</th>
+              <th>PENGIRIM</th>
+              <th>PENERIMA</th>
+              <th>TIPE</th>
+              <th>KONTEN PESAN</th>
+              <th>STATUS</th>
+              <th>AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="chatLogsTableBody">
+            <!-- Dinamis -->
+          </tbody>
         </table>
       </div>
+
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px;">
-        <span id="txtPaginationInfo" style="font-size: 0.84rem; color: var(--text-muted);">Menampilkan halaman 1</span>
+        <span id="txtPaginationInfo" style="font-size: 0.84rem; color: var(--text-muted);">Menampilkan halaman 1 dari 1</span>
         <div style="display: flex; gap: 8px;">
           <button id="btnPrevPage" class="cyber-btn-secondary" style="padding: 6px 12px;" onclick="changeChatPage(-1)" disabled>Sebelumnya</button>
           <button id="btnNextPage" class="cyber-btn-secondary" style="padding: 6px 12px;" onclick="changeChatPage(1)" disabled>Berikutnya</button>
@@ -367,85 +953,197 @@
       </div>
     </div>
 
-    <!-- TAB 2: Broadcast -->
+    <!-- TAB 2: Broadcast Queue Manager -->
     <div id="tabContentBroadcast" class="glass-panel" style="display: none; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">
-        <div><h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Manajemen Antrean Broadcast Medis</h3></div>
+        <div>
+          <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Manajemen Antrean Broadcast Medis</h3>
+          <p style="font-size: 0.84rem; color: var(--text-muted);">Monitor dan kelola antrean pengiriman pesan massal terjadwal ke pasien.</p>
+        </div>
         <div style="display: flex; gap: 8px;">
-          <button class="cyber-btn-secondary" onclick="exportDataAction('BroadcastQueue')"><iconify-icon icon="solar:file-download-bold"></iconify-icon> Ekspor CSV</button>
-          <button class="cyber-btn" onclick="openAddBroadcastModal()"><iconify-icon icon="solar:add-circle-bold"></iconify-icon> Jadwalkan Broadcast</button>
+          <button class="cyber-btn-secondary" onclick="exportDataAction('BroadcastQueue')">
+            <iconify-icon icon="solar:file-download-bold"></iconify-icon>
+            Ekspor CSV
+          </button>
+          <button class="cyber-btn" onclick="openAddBroadcastModal()">
+            <iconify-icon icon="solar:add-circle-bold"></iconify-icon>
+            Jadwalkan Broadcast
+          </button>
         </div>
       </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+        <input type="text" id="filterQueueSearch" class="cyber-input" style="max-width: 280px;" placeholder="Cari nomor/isi pesan..." oninput="debounceQueueSearch()">
+        <select id="filterQueueStatus" class="cyber-input" style="max-width: 170px;" onchange="loadBroadcastQueueBackend(1)">
+          <option value="">Semua Status</option>
+          <option value="PENDING">PENDING</option>
+          <option value="SENT">SENT</option>
+          <option value="FAILED">FAILED</option>
+        </select>
+      </div>
+
       <div class="table-responsive">
         <table class="cyber-table">
-          <thead><tr><th>QUEUE ID</th><th>CLIENT ID</th><th>NOMOR TUJUAN</th><th>PESAN BROADCAST</th><th>WAKTU JADWAL</th><th>STATUS</th><th>WAKTU KIRIM</th><th>AKSI</th></tr></thead>
-          <tbody id="broadcastQueueTableBody"></tbody>
+          <thead>
+            <tr>
+              <th>QUEUE ID</th>
+              <th>CLIENT ID</th>
+              <th>NOMOR TUJUAN</th>
+              <th>PESAN BROADCAST</th>
+              <th>WAKTU JADWAL</th>
+              <th>STATUS</th>
+              <th>WAKTU KIRIM</th>
+              <th>AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="broadcastQueueTableBody">
+            <!-- Dinamis -->
+          </tbody>
         </table>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px;">
+        <span id="txtQueuePaginationInfo" style="font-size: 0.84rem; color: var(--text-muted);">Halaman 1 dari 1</span>
+        <div style="display: flex; gap: 8px;">
+          <button id="btnQueuePrevPage" class="cyber-btn-secondary" style="padding: 6px 12px;" onclick="changeQueuePage(-1)" disabled>Sebelumnya</button>
+          <button id="btnQueueNextPage" class="cyber-btn-secondary" style="padding: 6px 12px;" onclick="changeQueuePage(1)" disabled>Berikutnya</button>
+        </div>
       </div>
     </div>
 
-    <!-- TAB 3: Clients -->
+    <!-- TAB 3: Railway Client Management -->
     <div id="tabContentClients" class="glass-panel" style="display: none; padding: 24px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <div><h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Daftar Node Client Bot WhatsApp</h3></div>
-        <button id="btnAddClientTrigger" class="cyber-btn" onclick="openAddClientModal()"><iconify-icon icon="solar:add-circle-bold"></iconify-icon> Tambah Client</button>
+        <div>
+          <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Daftar Node Client Bot WhatsApp</h3>
+          <p style="font-size: 0.84rem; color: var(--text-muted);">Kelola instance Baileys yang terpasang di platform Railway.</p>
+        </div>
+        <button id="btnAddClientTrigger" class="cyber-btn" onclick="openAddClientModal()">
+          <iconify-icon icon="solar:add-circle-bold"></iconify-icon>
+          Tambah Client
+        </button>
       </div>
+
       <div class="table-responsive">
         <table class="cyber-table">
-          <thead><tr><th>CLIENT ID</th><th>NAMA INSTANCE</th><th>NOMOR BOT</th><th>RAILWAY BASE URL</th><th>STATUS</th><th>KEDALUWARSA</th><th>HEALTH PING</th><th>AKSI</th></tr></thead>
-          <tbody id="clientsTableBody"></tbody>
+          <thead>
+            <tr>
+              <th>CLIENT ID</th>
+              <th>NAMA INSTANCE</th>
+              <th>NOMOR BOT</th>
+              <th>RAILWAY BASE URL</th>
+              <th>STATUS</th>
+              <th>KEDALUWARSA</th>
+              <th>HEALTH PING</th>
+              <th>AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="clientsTableBody">
+            <!-- Dinamis -->
+          </tbody>
         </table>
       </div>
     </div>
 
-    <!-- TAB 4: Templates -->
+    <!-- TAB 4: Clinical Templates -->
     <div id="tabContentTemplates" class="glass-panel" style="display: none; padding: 24px;">
-      <div style="margin-bottom: 20px;"><h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Template Pesan Standar Medis</h3></div>
-      <div id="templatesListContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div>
+          <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Template Pesan Standar Medis</h3>
+          <p style="font-size: 0.84rem; color: var(--text-muted);">Salin cepat template klinis terverifikasi untuk konfirmasi ranap, jadwal kontrol, dan billing.</p>
+        </div>
+      </div>
+      <div id="templatesListContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;">
+        <!-- Dinamis -->
+      </div>
     </div>
 
-    <!-- TAB 5: Bookings -->
+    <!-- TAB 5: Patient Bookings Queue -->
     <div id="tabContentBookings" class="glass-panel" style="display: none; padding: 24px;">
-      <div style="margin-bottom: 20px;"><h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Antrean Reservasi Pasien Masuk</h3></div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 1.15rem; color: var(--cyan-deep);">Antrean Reservasi Pasien Masuk</h3>
+        <p style="font-size: 0.84rem; color: var(--text-muted);">Permintaan registrasi online dari form landing page publik.</p>
+      </div>
       <div class="table-responsive">
         <table class="cyber-table">
-          <thead><tr><th>BOOKING ID</th><th>NAMA PASIEN</th><th>WHATSAPP</th><th>LAYANAN</th><th>TANGGAL JADWAL</th><th>STATUS</th><th>WAKTU DAFTAR</th></tr></thead>
-          <tbody id="bookingsTableBody"></tbody>
+          <thead>
+            <tr>
+              <th>BOOKING ID</th>
+              <th>NAMA PASIEN</th>
+              <th>WHATSAPP</th>
+              <th>LAYANAN</th>
+              <th>TANGGAL JADWAL</th>
+              <th>STATUS</th>
+              <th>WAKTU DAFTAR</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTableBody">
+            <!-- Dinamis -->
+          </tbody>
         </table>
       </div>
     </div>
 
-    <!-- TAB 6: AI Config -->
+    <!-- TAB 6: AI Gemini Multi-Model Configuration -->
     <div id="tabContentAiConfig" class="glass-panel" style="display: none; padding: 24px;">
       <div style="margin-bottom: 20px;">
         <h3 style="font-size: 1.15rem; color: var(--cyan-deep); display: flex; align-items: center; gap: 8px;">
-          <iconify-icon icon="solar:atom-bold" style="color: var(--cyan-soft); font-size: 24px;"></iconify-icon> Pengaturan Engine AI Google AI Studio
+          <iconify-icon icon="solar:atom-bold" style="color: var(--cyan-soft); font-size: 24px;"></iconify-icon>
+          Pengaturan Engine AI Google AI Studio
         </h3>
-        <p style="font-size: 0.84rem; color: var(--text-muted);">Pilih model AI default sistem klinik dan perbarui kunci API.</p>
+        <p style="font-size: 0.84rem; color: var(--text-muted);">
+          Konfigurasikan model generative AI default dan kunci API Google AI Studio untuk melayani telemetri klinik serta widget tanya-jawab.
+        </p>
       </div>
+
       <div style="max-width: 680px; display: flex; flex-direction: column; gap: 18px;">
         <div style="background: rgba(0, 180, 216, 0.05); border: 1px solid var(--border-subtle); padding: 16px; border-radius: 12px;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-bottom: 6px;">Default Klinik AI Model</label>
-          <select id="cfgDefaultAiModel" class="cyber-input" style="font-weight: 600;"></select>
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-bottom: 6px;">
+            Default Klinik AI Model
+          </label>
+          <select id="cfgDefaultAiModel" class="cyber-input" style="font-weight: 600;">
+            <!-- Dinamis dari katalog backend -->
+          </select>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
+            Model ini menjadi acuan utama sistem jika pengguna tidak memilih model spesifik di chatbox.
+          </p>
         </div>
+
         <div style="background: rgba(0, 180, 216, 0.05); border: 1px solid var(--border-subtle); padding: 16px; border-radius: 12px;">
-          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-bottom: 6px;">Google AI Studio API Key</label>
+          <label style="display: block; font-size: 0.85rem; font-weight: 700; color: var(--cyan-deep); margin-bottom: 6px;">
+            Google AI Studio API Key
+          </label>
           <input type="password" id="cfgApiKeyInput" class="cyber-input" placeholder="AIzaSy... (Ketik kunci baru untuk memperbarui)">
-          <div id="cfgApiKeyStatus" style="font-size: 0.8rem; margin-top: 6px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Status: Memuat...</div>
+          <div id="cfgApiKeyStatus" style="font-size: 0.8rem; margin-top: 6px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
+            Status: Memuat...
+          </div>
         </div>
+
         <div style="display: flex; gap: 10px;">
-          <button class="cyber-btn" onclick="saveAiConfigAction()"><iconify-icon icon="solar:disk-bold"></iconify-icon> Simpan Konfigurasi AI</button>
-          <button class="cyber-btn-secondary" onclick="testAiConnectionAction()"><iconify-icon icon="solar:pulse-bold"></iconify-icon> Uji Respon Model</button>
+          <button class="cyber-btn" onclick="saveAiConfigAction()">
+            <iconify-icon icon="solar:disk-bold"></iconify-icon>
+            Simpan Konfigurasi AI
+          </button>
+          <button class="cyber-btn-secondary" onclick="testAiConnectionAction()">
+            <iconify-icon icon="solar:pulse-bold"></iconify-icon>
+            Uji Respon Model
+          </button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="floating-container">
-    <div class="float-circle-btn btn-ai-float" onclick="toggleAIChat()" title="Tanya AI Medis"><iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon></div>
-    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20NovaCare" target="_blank" class="float-circle-btn btn-wa-float" title="WhatsApp Customer Care"><iconify-icon icon="solar:phone-calling-rounded-bold"></iconify-icon></a>
+    <div class="float-circle-btn btn-ai-float" onclick="toggleAIChat()" title="Tanya AI Medis">
+      <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+    </div>
+
+    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20NovaCare%20Clinic,%20saya%20ingin%20konsultasi%20layanan." target="_blank" class="float-circle-btn btn-wa-float" title="WhatsApp Customer Care">
+      <iconify-icon icon="solar:phone-calling-rounded-bold"></iconify-icon>
+    </a>
   </div>
 
+  <!-- AI Gemini Chatbox Modal -->
   <div id="aiChatBox" class="glass-panel ai-chat-box">
     <div class="ai-chat-header">
       <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -456,61 +1154,79 @@
             <div style="font-size: 0.72rem; color: var(--cyan-soft);">Google AI Studio Engine</div>
           </div>
         </div>
-        <button onclick="toggleAIChat(false)" style="background: none; border: none; cursor: pointer; font-size: 20px;"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <button onclick="toggleAIChat(false)" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px;">
+          <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+        </button>
       </div>
+
+      <!-- Selector Model Interaktif -->
       <div style="display: flex; align-items: center; gap: 6px; background: rgba(0, 180, 216, 0.08); padding: 4px 8px; border-radius: 8px;">
-        <span style="font-size: 0.75rem; font-weight: 700; color: var(--cyan-deep);">Model:</span>
-        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep);" onchange="onChatModelChange()"></select>
+        <span style="font-size: 0.75rem; font-weight: 700; color: var(--cyan-deep); white-space: nowrap;">Model:</span>
+        <select id="chatModelSelector" class="cyber-input" style="padding: 4px 8px; font-size: 0.76rem; height: auto; border: none; background: transparent; font-weight: 600; color: var(--cyan-deep);" onchange="onChatModelChange()">
+          <!-- Opsi Model Dinamis -->
+        </select>
       </div>
     </div>
+
     <div id="aiChatMessages" class="ai-chat-body">
       <div class="ai-bubble bubble-model">
-        <span class="ai-model-tag">Sistem Online</span><br>Halo! Saya asisten pintar NovaCare. Ada yang bisa saya bantu?
+        <span class="ai-model-tag">Sistem Online</span><br>
+        Halo! Saya asisten pintar NovaCare. Ada yang bisa saya bantu mengenai jadwal dokter, prosedur rawat inap smart pod, atau integrasi bot WhatsApp?
       </div>
     </div>
+
     <form class="ai-chat-footer" onsubmit="event.preventDefault(); sendGeminiMessage();">
       <input type="text" id="aiUserInput" class="cyber-input" style="padding: 8px 12px; font-size: 0.85rem;" placeholder="Ketik pertanyaan medis..." autocomplete="off">
-      <button type="submit" class="cyber-btn" style="padding: 8px 14px;"><iconify-icon icon="solar:plain-bold"></iconify-icon></button>
+      <button type="submit" id="btnSendAi" class="cyber-btn" style="padding: 8px 14px;">
+        <iconify-icon icon="solar:plain-bold"></iconify-icon>
+      </button>
     </form>
   </div>
 
+  <!-- Auth Login Modal -->
   <div id="authModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h3 style="font-size: 1.25rem; color: var(--cyan-deep);">Autentikasi Petugas Portal</h3>
-        <button onclick="closeModal('authModal')" style="background: none; border: none; cursor: pointer; font-size: 22px;"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <button onclick="closeModal('authModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px;">
+          <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+        </button>
       </div>
-      <div style="font-size: 0.82rem; color: var(--cyan-deep); background: rgba(0, 180, 216, 0.08); padding: 8px 12px; border-radius: 8px; margin-bottom: 16px;">
-        Default Login: <strong>superadmin</strong> / <strong>admin123</strong>
-      </div>
+
       <form onsubmit="event.preventDefault(); submitAdminLogin();">
         <div style="margin-bottom: 14px;">
-          <label style="display: block; font-size: 0.82rem; margin-bottom: 6px; font-weight: 600;">Username</label>
-          <input type="text" id="loginUsername" class="cyber-input" placeholder="superadmin" required>
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 6px; font-weight: 600; color: var(--text-muted);">Username Petugas</label>
+          <input type="text" id="loginUsername" class="cyber-input" placeholder="superadmin / operator1" required>
         </div>
         <div style="margin-bottom: 20px;">
-          <label style="display: block; font-size: 0.82rem; margin-bottom: 6px; font-weight: 600;">Password</label>
-          <input type="password" id="loginPassword" class="cyber-input" placeholder="admin123" required>
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 6px; font-weight: 600; color: var(--text-muted);">Password</label>
+          <input type="password" id="loginPassword" class="cyber-input" placeholder="••••••••" required>
         </div>
         <button type="submit" id="btnLoginSubmit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 12px;">
-          <iconify-icon icon="solar:lock-keyhole-minimalistic-bold"></iconify-icon> Masuk ke Portal
+          <iconify-icon icon="solar:lock-keyhole-minimalistic-bold"></iconify-icon>
+          Masuk ke Portal
         </button>
       </form>
     </div>
   </div>
 
+  <!-- Add Broadcast Queue Modal -->
   <div id="broadcastModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
         <h3 style="font-size: 1.2rem; color: var(--cyan-deep);">Jadwalkan Antrean Broadcast</h3>
-        <button onclick="closeModal('broadcastModal')" style="background: none; border: none; cursor: pointer; font-size: 22px;"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <button onclick="closeModal('broadcastModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px;">
+          <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+        </button>
       </div>
+
       <form onsubmit="event.preventDefault(); submitAddBroadcast();">
         <div style="margin-bottom: 12px;">
-          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Client Pengirim</label>
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Instance Client Pengirim</label>
           <select id="bcClientId" class="cyber-input" required>
             <option value="CLI-0001">CLI-0001 (NovaCare Poli Utama)</option>
             <option value="CLI-0002">CLI-0002 (NovaCare Rawat Inap AI)</option>
+            <option value="CLI-0003">CLI-0003 (NovaCare Farmasi Digital)</option>
           </select>
         </div>
         <div style="margin-bottom: 12px;">
@@ -518,136 +1234,307 @@
           <input type="tel" id="bcTargetPhone" class="cyber-input" placeholder="62812xxxxxxx" required>
         </div>
         <div style="margin-bottom: 12px;">
-          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Isi Pesan</label>
-          <textarea id="bcContent" class="cyber-input" rows="4" required></textarea>
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Isi Pesan Broadcast</label>
+          <textarea id="bcContent" class="cyber-input" rows="4" placeholder="Tuliskan pesan konfirmasi atau pengingat jadwal..." required></textarea>
         </div>
-        <button type="submit" id="btnSubmitBroadcastQueue" class="cyber-btn" style="width: 100%; justify-content: center; padding: 11px;">Simpan ke Antrean</button>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Jadwal Pengiriman</label>
+          <input type="datetime-local" id="bcScheduledTime" class="cyber-input">
+        </div>
+        <button type="submit" id="btnSubmitBroadcastQueue" class="cyber-btn" style="width: 100%; justify-content: center; padding: 11px;">
+          <iconify-icon icon="solar:calendar-add-bold"></iconify-icon>
+          Simpan ke Antrean
+        </button>
       </form>
     </div>
   </div>
 
+  <!-- Add/Edit Client Modal -->
   <div id="clientModal" class="modal-overlay">
     <div class="glass-panel modal-content">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
         <h3 id="clientModalTitle" style="font-size: 1.2rem; color: var(--cyan-deep);">Tambah Node Client Railway</h3>
-        <button onclick="closeModal('clientModal')" style="background: none; border: none; cursor: pointer; font-size: 22px;"><iconify-icon icon="solar:close-circle-bold"></iconify-icon></button>
+        <button onclick="closeModal('clientModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 22px;">
+          <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+        </button>
       </div>
+
       <form onsubmit="event.preventDefault(); submitClientForm();">
         <input type="hidden" id="modalClientId">
-        <div style="margin-bottom: 12px;"><label style="font-weight: 600; font-size: 0.82rem;">Nama Client</label><input type="text" id="clName" class="cyber-input" required></div>
-        <div style="margin-bottom: 12px;"><label style="font-weight: 600; font-size: 0.82rem;">Nomor WhatsApp</label><input type="tel" id="clPhone" class="cyber-input" required></div>
-        <div style="margin-bottom: 12px;"><label style="font-weight: 600; font-size: 0.82rem;">Railway Base URL</label><input type="url" id="clRailwayUrl" class="cyber-input" required></div>
-        <button type="submit" id="btnSaveClientSubmit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 11px;">Simpan Client</button>
+        <div style="margin-bottom: 12px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Nama Client / Poli</label>
+          <input type="text" id="clName" class="cyber-input" placeholder="NovaCare Spesialis Gigi" required>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Nomor WhatsApp Bot</label>
+          <input type="tel" id="clPhone" class="cyber-input" placeholder="62811xxxxxx" required>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Railway Base URL</label>
+          <input type="url" id="clRailwayUrl" class="cyber-input" placeholder="https://btwa-ranap-production.up.railway.app" required>
+        </div>
+        <div style="margin-bottom: 12px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Status Default</label>
+          <select id="clStatus" class="cyber-input">
+            <option value="SCANNING">SCANNING</option>
+            <option value="CONNECTED">CONNECTED</option>
+            <option value="DISCONNECTED">DISCONNECTED</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.82rem; margin-bottom: 4px; font-weight: 600;">Catatan / Deskripsi</label>
+          <input type="text" id="clNotes" class="cyber-input" placeholder="Instance poli gigi telemetri">
+        </div>
+        <button type="submit" id="btnSaveClientSubmit" class="cyber-btn" style="width: 100%; justify-content: center; padding: 11px;">
+          <iconify-icon icon="solar:disk-bold"></iconify-icon>
+          Simpan Data Client
+        </button>
       </form>
     </div>
   </div>
 
+  <!-- Railway Live QR Scanner Modal -->
   <div id="qrModal" class="modal-overlay">
     <div class="glass-panel modal-content" style="text-align: center;">
-      <h3 style="font-size: 1.2rem; margin-bottom: 8px; color: var(--cyan-deep);">Pindai Kode QR WhatsApp</h3>
-      <div style="background: #ffffff; padding: 16px; border-radius: 12px; display: inline-block; margin-bottom: 16px;">
-        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=NOVACARE-PAIRING" style="width: 210px; height: 210px;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 8px; color: var(--cyan-deep);">Pindai Kode QR WhatsApp Baileys</h3>
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 18px;">
+        Buka WhatsApp di ponsel > Perangkat Tertaut > Tautkan Perangkat.
+      </p>
+
+      <div style="background: #ffffff; padding: 16px; border-radius: 12px; display: inline-block; margin-bottom: 16px; border: 1px solid var(--border-subtle); box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=NOVACARE-AUTH-PAIRING" alt="QR Code" style="display: block; width: 210px; height: 210px;">
       </div>
-      <div id="qrStatusText" style="font-size: 0.86rem; color: var(--cyan-deep); font-weight: 600; margin-bottom: 16px;">Menunggu pemindaian...</div>
-      <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup</button>
+
+      <div id="qrStatusText" style="font-size: 0.86rem; color: var(--cyan-deep); font-weight: 600; margin-bottom: 16px;">
+        Menunggu pemindaian dari perangkat...
+      </div>
+
+      <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup Jendela</button>
     </div>
   </div>
 
+  <!-- Message Detail Modal -->
   <div id="msgDetailModal" class="modal-overlay">
     <div class="glass-panel modal-content">
-      <h3 style="font-size: 1.2rem; margin-bottom: 14px; color: var(--cyan-deep);">Detail Pesan</h3>
-      <div id="msgDetailBody" style="font-size: 0.88rem; background: rgba(0, 180, 216, 0.05); padding: 16px; border-radius: 10px; margin-bottom: 20px;"></div>
+      <h3 style="font-size: 1.2rem; margin-bottom: 14px; color: var(--cyan-deep);">Detail Pesan WhatsApp</h3>
+      <div id="msgDetailBody" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-main); background: rgba(0, 180, 216, 0.05); padding: 16px; border-radius: 10px; border: 1px solid var(--border-subtle); margin-bottom: 20px;">
+        <!-- Dinamis -->
+      </div>
       <button class="cyber-btn-secondary" onclick="closeModal('msgDetailModal')">Tutup</button>
     </div>
   </div>
 
+  <!-- iOS PWA Install Guide Modal -->
   <div id="iosGuideModal" class="modal-overlay">
     <div class="glass-panel modal-content">
-      <div style="text-align: center; margin-bottom: 16px;"><h3 style="font-size: 1.25rem; color: var(--cyan-deep);">Pasang di iPhone</h3></div>
+      <div style="text-align: center; margin-bottom: 16px;">
+        <iconify-icon icon="solar:smartphone-bold" style="font-size: 44px; color: var(--cyan-soft);"></iconify-icon>
+        <h3 style="font-size: 1.25rem; margin-top: 8px; color: var(--cyan-deep);">Pasang di Layar Utama iPhone</h3>
+      </div>
       <ol style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; padding-left: 20px; margin-bottom: 20px;">
-        <li>Buka melalui Safari.</li>
-        <li>Sentuh tombol Share.</li>
-        <li>Pilih Tambah ke Layar Utama.</li>
+        <li>Buka portal ini melalui browser <strong>Safari</strong>.</li>
+        <li>Sentuh tombol <strong>Share</strong> (ikon kotak dengan panah ke atas di bagian bawah).</li>
+        <li>Gulir ke bawah lalu pilih opsi <strong>Tambah ke Layar Utama (Add to Home Screen)</strong>.</li>
+        <li>Sentuh <strong>Tambah (Add)</strong> di pojok kanan atas untuk menyelesaikan pemasangan.</li>
       </ol>
-      <button class="cyber-btn" style="width: 100%; justify-content: center;" onclick="closeModal('iosGuideModal')">Mengerti</button>
+      <button class="cyber-btn" style="width: 100%; justify-content: center;" onclick="closeModal('iosGuideModal')">
+        Saya Mengerti
+      </button>
     </div>
   </div>
 
+  <!-- Toast Notification Container -->
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
-    var GAS_API_URL = "https://script.google.com/macros/s/AKfycbyCZcC8VXfTkivJ2o1gfDwv2iaXIKofAnJhfONNp4ZFGT_gWvDAqQAGUkdE7_fiVnG1/exec";
-
     var appState = {
-      user: null, chatPage: 1, chatTotalPages: 1, chatDebounceTimer: null,
-      queuePage: 1, queueTotalPages: 1, queueDebounceTimer: null,
-      aiHistory: [], selectedModel: 'gemini-3.5-flash', availableModels: [],
+      user: null,
+      chatPage: 1,
+      chatTotalPages: 1,
+      chatDebounceTimer: null,
+      queuePage: 1,
+      queueTotalPages: 1,
+      queueDebounceTimer: null,
+      aiHistory: [],
+      selectedModel: 'gemini-3.5-flash',
+      availableModels: [],
+      pwaDeferredPrompt: null,
       currentCarouselIndex: 0,
       carouselData: [
-        { tag: 'FITUR OTOMASI UNGGULAN', title: 'Notifikasi Pasien & Pengingat Kontrol Pintar', desc: 'Kirimkan pesan pengingat jadwal konsultasi otomatis kepada ratusan pasien tepat waktu.' },
-        { tag: 'SMART BED POD', title: 'Automasi Kamar Rawat Inap & Telemetri Real-Time', desc: 'Keluarga pasien menerima perkembangan kondisi berkala langsung ke ponsel.' },
-        { tag: 'MULTI-CLIENT', title: 'Integrasi Multi-Nomor Terisolasi di Railway Cloud', desc: 'Jalankan nomor customer service pada instance Baileys terpisah.' }
+        {
+          tag: 'FITUR OTOMASI UNGGULAN',
+          title: 'Notifikasi Pasien & Pengingat Kontrol Pintar',
+          desc: 'Kirimkan pesan pengingat jadwal konsultasi dan visit dokter otomatis kepada ratusan pasien tepat waktu melalui antrean terjadwal tanpa repot mengetik manual.'
+        },
+        {
+          tag: 'SMART BED POD MONITORING',
+          title: 'Automasi Kamar Rawat Inap & Telemetri Real-Time',
+          desc: 'Keluarga pasien menerima perkembangan kondisi berkala dan hasil telemetri langsung ke ponsel dengan enkripsi data medis tingkat lanjut.'
+        },
+        {
+          tag: 'MULTI-CLIENT ARCHITECTURE',
+          title: 'Integrasi Multi-Nomor Terisolasi di Railway Cloud',
+          desc: 'Jalankan nomor customer service poli, farmasi, dan rawat inap pada instance Baileys terpisah sehingga kinerja bot stabil tanpa risiko overload.'
+        }
       ]
     };
 
+    // Runner Aman untuk Google Apps Script maupun Gemini Canvas Preview Mode
     function runBackend(functionName, args, onSuccess, onError) {
       if (typeof google !== 'undefined' && google.script && google.script.run) {
         var runner = google.script.run
-          .withSuccessHandler(function(res) { if (typeof onSuccess === 'function') onSuccess(res); })
-          .withFailureHandler(function(err) { if (typeof onError === 'function') onError(err); else showToast(err.message, 'danger'); });
-        if (args && args.length) runner[functionName].apply(runner, args);
-        else runner[functionName]();
-      } else if (GAS_API_URL && GAS_API_URL.indexOf('http') === 0 && window.location.hostname !== 'localhost') {
-        fetch(GAS_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: functionName, args: args || [] }),
-          redirect: 'follow'
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(res) { if (typeof onSuccess === 'function') onSuccess(res); })
-        .catch(function(err) { fallbackCanvasPreview(functionName, args, onSuccess); });
+          .withSuccessHandler(function(res) {
+            if (typeof onSuccess === 'function') onSuccess(res);
+          })
+          .withFailureHandler(function(err) {
+            if (typeof onError === 'function') {
+              onError(err);
+            } else {
+              showToast('Kesalahan sistem: ' + (err.message || err), 'danger');
+            }
+          });
+
+        if (args && args.length) {
+          runner[functionName].apply(runner, args);
+        } else {
+          runner[functionName]();
+        }
       } else {
-        fallbackCanvasPreview(functionName, args, onSuccess);
+        // Fallback untuk Canvas Preview Mode
+        console.warn('Canvas Friendly Preview Mode: google.script.run tidak tersedia.');
+        setTimeout(function() {
+          if (functionName === 'getAvailableAiModels') {
+            onSuccess({
+              success: true,
+              defaultModel: 'gemini-3.5-flash',
+              models: [
+                { id: 'gemini-3.8-flash', name: 'Gemini 3.8 Flash', category: 'Gemini 3 Series', description: 'Ultra-Fast, Next-Gen Precision' },
+                { id: 'gemini-3.7-flash', name: 'Gemini 3.7 Flash', category: 'Gemini 3 Series', description: 'High Performance & Speed' },
+                { id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', category: 'Gemini 3 Series', description: 'Balanced Production Workhorse (Default)' },
+                { id: 'gemini-3.5-flash-lite', name: 'Gemini 3.5 Flash Lite', category: 'Gemini 3 Series', description: 'Lightweight & High RPM' },
+                { id: 'gemini-3.1-pro', name: 'Gemini 3.1 Pro', category: 'Gemini 3 Series', description: 'Deep Clinical Reasoning' },
+                { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', category: 'Gemini 2 & 2.5 Series', description: 'Stable Fast Conversational' },
+                { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', category: 'Gemini 2 & 2.5 Series', description: 'Complex Analytical Triage' },
+                { id: 'gemma-4-31b', name: 'Gemma 4 31B', category: 'Gemma Open Models', description: 'Open Architecture High Capability' }
+              ]
+            });
+          } else if (functionName === 'loginUser') {
+            onSuccess({ success: true, user: { adminId: 'ADM-DEMO', fullName: 'Dr. Aris Thorne', role: 'Superadmin' } });
+          } else if (functionName === 'getAiConfig') {
+            onSuccess({ success: true, currentModel: 'gemini-3.5-flash', isConfigured: true, maskedApiKey: 'AIzaSyD...xxxx' });
+          } else if (functionName === 'getChatLogsPaginated') {
+            onSuccess({
+              success: true,
+              logs: [
+                { logId: 'LOG-0001', timestamp: '03/09/2026 10:15:20', clientId: 'CLI-0001', sender: '6281299001122', receiver: '6281122334455', type: 'INCOMING', content: 'Apakah poli saraf cyber buka malam ini?', status: 'DELIVERED' },
+                { logId: 'LOG-0002', timestamp: '03/09/2026 10:15:24', clientId: 'CLI-0001', sender: '6281122334455', receiver: '6281299001122', type: 'OUTGOING', content: 'Halo! Poli Saraf Bionik buka hingga pukul 21:00 WITA.', status: 'SENT' }
+              ],
+              totalCount: 2, page: 1, totalPages: 1
+            });
+          } else if (functionName === 'getBroadcastQueuePaginated') {
+            onSuccess({
+              success: true,
+              queue: [
+                { queueId: 'QUE-0001', clientId: 'CLI-0001', targetNumber: '6281299887766', messageContent: 'Jadwal kontrol jantung besok pukul 09:00 WITA.', scheduledTime: '04/09/2026 08:00', status: 'PENDING', sentAt: '-' }
+              ],
+              totalCount: 1, page: 1, totalPages: 1
+            });
+          } else if (functionName === 'getClientsList') {
+            onSuccess({
+              success: true,
+              clients: [
+                { clientId: 'CLI-0001', name: 'NovaCare Poli Utama', phone: '6281122334455', railwayUrl: 'https://bot-novacare-poli.up.railway.app', status: 'CONNECTED', expiredDate: '31/12/2027 23:59:59', notes: 'Server utama poli' }
+              ],
+              stats: { total: 3, connected: 1, scanning: 1, disconnected: 1 }
+            });
+          } else if (functionName === 'getTemplatesList') {
+            onSuccess({
+              success: true,
+              templates: [
+                { templateId: 'TPL-0001', name: 'Konfirmasi Rawat Inap', category: 'Rawat Inap', content: 'Halo Bapak/Ibu {nama}, pendaftaran rawat inap Smart Pod Cyber telah siap.' }
+              ]
+            });
+          } else if (functionName === 'askGeminiClinic') {
+            onSuccess({
+              success: true,
+              reply: 'Halo! Ini adalah simulasi respon cerdas dari ' + (args[0].model || 'Gemini 3.5 Flash') + '. Layanan poli bionik beroperasi normal.',
+              modelUsed: args[0].model || 'gemini-3.5-flash'
+            });
+          } else {
+            onSuccess({ success: true, message: 'Operasi simulasi preview sukses.' });
+          }
+        }, 250);
       }
     }
 
-    function fallbackCanvasPreview(functionName, args, onSuccess) {
-      setTimeout(function() {
-        if (functionName === 'getAvailableAiModels') {
-          onSuccess({ success: true, defaultModel: 'gemini-3.5-flash', models: [{ id: 'gemini-3.5-flash', name: 'Gemini 3.5 Flash', category: 'Gemini 3', description: 'Default' }] });
-        } else if (functionName === 'loginUser') {
-          onSuccess({ success: true, user: { adminId: 'ADM-0001', fullName: 'Dr. Aris Thorne', role: 'Superadmin' } });
-        } else if (functionName === 'getAiConfig') {
-          onSuccess({ success: true, currentModel: 'gemini-3.5-flash', isConfigured: true, maskedApiKey: 'AIzaSyD...xxxx' });
-        } else {
-          onSuccess({ success: true, message: 'Sukses' });
-        }
-      }, 150);
-    }
-
     window.addEventListener('DOMContentLoaded', function() {
+      initPwaFeatures();
       checkSavedSession();
       renderCarouselCard();
       loadAiModelCatalog();
-      loadAiConfigBackend();
     });
+
+    function initPwaFeatures() {
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        appState.pwaDeferredPrompt = e;
+        var btn = document.getElementById('btnPwaInstall');
+        if (btn) btn.style.display = 'inline-flex';
+      });
+
+      var btnInstall = document.getElementById('btnPwaInstall');
+      if (btnInstall) {
+        btnInstall.addEventListener('click', function() {
+          if (appState.pwaDeferredPrompt) {
+            appState.pwaDeferredPrompt.prompt();
+            appState.pwaDeferredPrompt.userChoice.then(function(choice) {
+              if (choice.outcome === 'accepted') {
+                showToast('Aplikasi berhasil dipasang ke perangkat!', 'success');
+              }
+              appState.pwaDeferredPrompt = null;
+              btnInstall.style.display = 'none';
+            });
+          }
+        });
+      }
+
+      var isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      var isStandalone = window.navigator.standalone === true;
+      if (isIos && !isStandalone) {
+        var btnIos = document.getElementById('btnIosPwaPrompt');
+        if (btnIos) btnIos.style.display = 'inline-flex';
+      }
+    }
 
     function rotateCarousel(dir) {
       appState.currentCarouselIndex = (appState.currentCarouselIndex + dir + appState.carouselData.length) % appState.carouselData.length;
       renderCarouselCard();
     }
+
     function jumpCarousel(idx) {
       appState.currentCarouselIndex = idx;
       renderCarouselCard();
     }
+
     function renderCarouselCard() {
       var item = appState.carouselData[appState.currentCarouselIndex];
       document.getElementById('carouselTag').innerText = item.tag;
       document.getElementById('carouselTitle').innerText = item.title;
       document.getElementById('carouselDesc').innerText = item.desc;
+
+      var dots = document.querySelectorAll('.carousel-dot');
+      for (var i = 0; i < dots.length; i++) {
+        if (i === appState.currentCarouselIndex) {
+          dots[i].classList.add('active');
+        } else {
+          dots[i].classList.remove('active');
+        }
+      }
     }
 
+    /**
+     * Memuat katalog AI Model Google AI Studio dan membangun opsi dropdown.
+     */
     function loadAiModelCatalog() {
       runBackend('getAvailableAiModels', [], function(res) {
         if (res.success && res.models) {
@@ -661,12 +1548,16 @@
     function populateAiModelSelectors(models, defaultModelId) {
       var chatSelect = document.getElementById('chatModelSelector');
       var cfgSelect = document.getElementById('cfgDefaultAiModel');
+
       var categories = {};
       for (var i = 0; i < models.length; i++) {
         var m = models[i];
-        if (!categories[m.category]) categories[m.category] = [];
+        if (!categories[m.category]) {
+          categories[m.category] = [];
+        }
         categories[m.category].push(m);
       }
+
       var html = '';
       for (var cat in categories) {
         html += '<optgroup label="' + cat + '">';
@@ -678,6 +1569,7 @@
         }
         html += '</optgroup>';
       }
+
       if (chatSelect) chatSelect.innerHTML = html;
       if (cfgSelect) cfgSelect.innerHTML = html;
     }
@@ -694,11 +1586,16 @@
       runBackend('getAiConfig', [], function(res) {
         if (res.success) {
           var cfgSelect = document.getElementById('cfgDefaultAiModel');
-          if (cfgSelect && res.currentModel) cfgSelect.value = res.currentModel;
+          if (cfgSelect && res.currentModel) {
+            cfgSelect.value = res.currentModel;
+          }
           var statusEl = document.getElementById('cfgApiKeyStatus');
           if (statusEl) {
-            if (res.isConfigured) statusEl.innerHTML = '<span style="color: var(--success); font-weight: 700;">● Terkonfigurasi</span> (' + res.maskedApiKey + ')';
-            else statusEl.innerHTML = '<span style="color: var(--danger); font-weight: 700;">● Belum Dikonfigurasi</span>';
+            if (res.isConfigured) {
+              statusEl.innerHTML = '<span style="color: var(--success); font-weight: 700;">● Terkonfigurasi</span> (' + res.maskedApiKey + ')';
+            } else {
+              statusEl.innerHTML = '<span style="color: var(--danger); font-weight: 700;">● Belum Dikonfigurasi</span> (Masukkan API Key Google AI Studio Anda)';
+            }
           }
         }
       });
@@ -708,7 +1605,11 @@
       var modelVal = document.getElementById('cfgDefaultAiModel').value;
       var keyVal = document.getElementById('cfgApiKeyInput').value;
       var adminId = appState.user ? appState.user.adminId : 'SUPERADMIN';
-      var payload = { model: modelVal, apiKey: keyVal };
+
+      var payload = {
+        model: modelVal,
+        apiKey: keyVal
+      };
 
       runBackend('saveAiConfig', [payload, adminId], function(res) {
         if (res.success) {
@@ -724,41 +1625,86 @@
 
     function testAiConnectionAction() {
       var modelVal = document.getElementById('cfgDefaultAiModel').value;
-      showToast('Menguji latensi ke model ' + modelVal + '...', 'warning');
-      runBackend('askGeminiClinic', [{ prompt: 'Uji konektivitas sistem.', model: modelVal, history: [] }], function(res) {
-        if (res.success) showToast('Koneksi Berhasil! Respon diterima dari ' + res.modelUsed, 'success');
-        else showToast(res.message, 'danger');
+      showToast('Menguji latensi & koneksi ke model ' + modelVal + '...', 'warning');
+
+      var testPayload = {
+        prompt: 'Uji konektivitas sistem NovaCare. Mohon konfirmasi bahwa engine Anda siap bertugas.',
+        model: modelVal,
+        history: []
+      };
+
+      runBackend('askGeminiClinic', [testPayload], function(res) {
+        if (res.success) {
+          showToast('Koneksi Berhasil! Respon diterima dari ' + res.modelUsed, 'success');
+        } else {
+          showToast(res.message, 'danger');
+        }
       });
     }
 
-    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-    function showToast(msg, type) {
+    function openModal(modalId) {
+      var modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+      var modal = document.getElementById(modalId);
+      if (modal) modal.style.display = 'none';
+    }
+
+    function showToast(message, type) {
       type = type || 'success';
-      var c = document.getElementById('toastContainer');
-      var t = document.createElement('div');
-      t.className = 'toast-item';
-      t.style.borderLeftColor = type === 'danger' ? 'var(--danger)' : 'var(--cyan-deep)';
-      t.innerHTML = '<span>' + escapeHtml(msg) + '</span>';
-      c.appendChild(t);
-      setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); }, 4000);
+      var container = document.getElementById('toastContainer');
+      var toast = document.createElement('div');
+      toast.className = 'toast-item';
+
+      var borderColor = 'var(--cyan-deep)';
+      var iconName = 'solar:check-circle-bold';
+      if (type === 'danger') {
+        borderColor = 'var(--danger)';
+        iconName = 'solar:danger-triangle-bold';
+      } else if (type === 'warning') {
+        borderColor = 'var(--warning)';
+        iconName = 'solar:info-circle-bold';
+      }
+
+      toast.style.borderLeftColor = borderColor;
+      toast.innerHTML = '<iconify-icon icon="' + iconName + '" style="font-size: 20px; color: ' + borderColor + ';"></iconify-icon>' +
+        '<span>' + escapeHtml(message) + '</span>';
+
+      container.appendChild(toast);
+      setTimeout(function() {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 4000);
     }
 
     function handlePortalAuthNav() {
-      if (appState.user) togglePortalView(true);
-      else openModal('authModal');
+      if (appState.user) {
+        togglePortalView(true);
+      } else {
+        openModal('authModal');
+      }
     }
 
     function submitAdminLogin() {
       var u = document.getElementById('loginUsername').value;
       var p = document.getElementById('loginPassword').value;
+      var btn = document.getElementById('btnLoginSubmit');
+      btn.disabled = true;
+      btn.innerHTML = 'Memverifikasi...';
+
       runBackend('loginUser', [{ username: u, password: p }], function(res) {
+        btn.disabled = false;
+        btn.innerHTML = '<iconify-icon icon="solar:lock-keyhole-minimalistic-bold"></iconify-icon> Masuk ke Portal';
+
         if (res.success) {
           appState.user = res.user;
           sessionStorage.setItem('novacare_user', JSON.stringify(res.user));
           closeModal('authModal');
+          document.getElementById('loginPassword').value = '';
           showToast('Selamat datang, ' + res.user.fullName, 'success');
           togglePortalView(true);
+          applyRoleRestrictions();
           loadChatLogsBackend(1);
           loadBroadcastQueueBackend(1);
           loadClientsBackend();
@@ -771,7 +1717,12 @@
     function checkSavedSession() {
       var saved = sessionStorage.getItem('novacare_user');
       if (saved) {
-        try { appState.user = JSON.parse(saved); togglePortalView(true); } catch (e) { sessionStorage.removeItem('novacare_user'); }
+        try {
+          appState.user = JSON.parse(saved);
+          applyRoleRestrictions();
+        } catch (e) {
+          sessionStorage.removeItem('novacare_user');
+        }
       }
     }
 
@@ -779,24 +1730,56 @@
       appState.user = null;
       sessionStorage.removeItem('novacare_user');
       togglePortalView(false);
-      showToast('Sesi diakhiri.', 'warning');
+      showToast('Sesi telah diakhiri.', 'warning');
     }
 
-    function togglePortalView(show) {
-      document.getElementById('publicLandingView').style.display = show ? 'none' : 'block';
-      document.getElementById('portalDashboardView').style.display = show ? 'block' : 'none';
-      document.getElementById('txtPortalAction').innerText = show ? 'Tutup Portal' : 'Login Portal';
+    function togglePortalView(showDashboard) {
+      var landing = document.getElementById('publicLandingView');
+      var dash = document.getElementById('portalDashboardView');
+      var btnText = document.getElementById('txtPortalAction');
+
+      if (showDashboard) {
+        landing.style.display = 'none';
+        dash.style.display = 'block';
+        btnText.innerText = 'Tutup Portal';
+      } else {
+        landing.style.display = 'block';
+        dash.style.display = 'none';
+        btnText.innerText = 'Login Portal';
+      }
+    }
+
+    function applyRoleRestrictions() {
+      if (!appState.user) return;
+      document.getElementById('userNameDisplay').innerText = appState.user.fullName;
+      document.getElementById('userRoleBadge').innerText = appState.user.role;
+
+      var btnAddClient = document.getElementById('btnAddClientTrigger');
+      var tabAi = document.getElementById('tabAiConfigBtn');
+
+      if (appState.user.role === 'Operator Medis') {
+        if (btnAddClient) btnAddClient.style.display = 'none';
+        if (tabAi) tabAi.style.display = 'none';
+      } else {
+        if (btnAddClient) btnAddClient.style.display = 'inline-flex';
+        if (tabAi) tabAi.style.display = 'inline-flex';
+      }
     }
 
     function switchDashboardTab(tabId) {
       var tabs = ['chatLogs', 'broadcast', 'clients', 'templates', 'bookings', 'aiConfig'];
       for (var i = 0; i < tabs.length; i++) {
         var t = tabs[i];
-        document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn').classList.remove('active');
-        document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1)).style.display = 'none';
+        var btn = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1) + 'Btn');
+        var content = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
+        if (btn) btn.classList.remove('active');
+        if (content) content.style.display = 'none';
       }
-      document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + 'Btn').classList.add('active');
-      document.getElementById('tabContent' + tabId.charAt(0).toUpperCase() + tabId.slice(1)).style.display = 'block';
+
+      var activeBtn = document.getElementById('tab' + tabId.charAt(0).toUpperCase() + tabId.slice(1) + 'Btn');
+      var activeContent = document.getElementById('tabContent' + tabId.charAt(0).toUpperCase() + tabId.slice(1));
+      if (activeBtn) activeBtn.classList.add('active');
+      if (activeContent) activeContent.style.display = 'block';
 
       if (tabId === 'chatLogs') loadChatLogsBackend(1);
       if (tabId === 'broadcast') loadBroadcastQueueBackend(1);
@@ -807,131 +1790,424 @@
     }
 
     function loadChatLogsBackend(page) {
-      runBackend('getChatLogsPaginated', [{ page: page || 1, pageSize: 10 }], function(res) {
-        if (res.success) renderChatTable(res.logs);
+      page = page || 1;
+      var searchVal = document.getElementById('filterChatSearch').value;
+      var statusVal = document.getElementById('filterChatStatus').value;
+
+      var filterPayload = {
+        page: page,
+        pageSize: 10,
+        search: searchVal,
+        status: statusVal
+      };
+
+      runBackend('getChatLogsPaginated', [filterPayload], function(res) {
+        if (res.success) {
+          appState.chatPage = res.page;
+          appState.chatTotalPages = res.totalPages;
+          renderChatTable(res.logs);
+
+          document.getElementById('txtPaginationInfo').innerText = 'Halaman ' + res.page + ' dari ' + res.totalPages + ' (' + res.totalCount + ' total log)';
+          document.getElementById('btnPrevPage').disabled = (res.page <= 1);
+          document.getElementById('btnNextPage').disabled = (res.page >= res.totalPages);
+        } else {
+          showToast(res.message, 'danger');
+        }
       });
     }
 
     function renderChatTable(logs) {
       var tbody = document.getElementById('chatLogsTableBody');
       tbody.innerHTML = '';
+
       if (!logs || logs.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 20px;">Tidak ada log.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: var(--text-muted); padding: 30px;">Tidak ada log percakapan yang sesuai filter.</td></tr>';
         return;
       }
+
       for (var i = 0; i < logs.length; i++) {
         var l = logs[i];
         var tr = document.createElement('tr');
-        tr.innerHTML = '<td><strong>' + l.logId + '</strong></td><td>' + l.timestamp + '</td><td>' + l.clientId + '</td><td>' + l.sender + '</td><td>' + l.receiver + '</td><td>' + l.type + '</td><td>' + escapeHtml(l.content) + '</td><td>' + l.status + '</td><td><button class="cyber-btn-secondary" style="padding: 4px 8px;" onclick="viewMessageDetail(\'' + l.logId + '\', \'' + encodeURIComponent(l.content) + '\')">Detail</button></td>';
+        var previewContent = l.content.length > 40 ? l.content.substring(0, 40) + '...' : l.content;
+        var statusDotClass = l.status === 'DELIVERED' || l.status === 'SENT' ? 'status-connected' : 'status-disconnected';
+
+        tr.innerHTML = '<td><span style="font-family: \'JetBrains Mono\'; font-weight: 700; color: var(--cyan-deep);">' + l.logId + '</span></td>' +
+          '<td style="white-space: nowrap; font-size: 0.8rem;">' + l.timestamp + '</td>' +
+          '<td>' + l.clientId + '</td>' +
+          '<td>' + l.sender + '</td>' +
+          '<td>' + l.receiver + '</td>' +
+          '<td><span style="font-size: 0.76rem; padding: 2px 6px; border-radius: 4px; background: rgba(0, 180, 216, 0.1); color: var(--cyan-deep); font-weight: 600;">' + l.type + '</span></td>' +
+          '<td>' + escapeHtml(previewContent) + '</td>' +
+          '<td><span class="status-dot ' + statusDotClass + '"></span>' + l.status + '</td>' +
+          '<td><button class="cyber-btn-secondary" style="padding: 4px 8px; font-size: 0.78rem;" onclick="viewMessageDetail(\'' + l.logId + '\', \'' + encodeURIComponent(l.content) + '\', \'' + l.timestamp + '\')">Detail</button></td>';
+
         tbody.appendChild(tr);
       }
     }
 
-    function viewMessageDetail(logId, encoded) {
-      document.getElementById('msgDetailBody').innerHTML = '<strong>Log ID:</strong> ' + logId + '<br><br>' + escapeHtml(decodeURIComponent(encoded));
+    function viewMessageDetail(logId, encodedContent, timestamp) {
+      var raw = decodeURIComponent(encodedContent);
+      var body = document.getElementById('msgDetailBody');
+      body.innerHTML = '<strong>Log ID:</strong> ' + logId + '<br>' +
+        '<strong>Waktu:</strong> ' + timestamp + '<br><br>' +
+        '<strong>Isi Pesan:</strong><br>' + escapeHtml(raw);
       openModal('msgDetailModal');
     }
 
+    function debounceChatSearch() {
+      clearTimeout(appState.chatDebounceTimer);
+      appState.chatDebounceTimer = setTimeout(function() {
+        loadChatLogsBackend(1);
+      }, 400);
+    }
+
+    function changeChatPage(direction) {
+      var target = appState.chatPage + direction;
+      if (target >= 1 && target <= appState.chatTotalPages) {
+        loadChatLogsBackend(target);
+      }
+    }
+
     function loadBroadcastQueueBackend(page) {
-      runBackend('getBroadcastQueuePaginated', [{ page: page || 1, pageSize: 10 }], function(res) {
-        if (res.success) renderBroadcastTable(res.queue);
+      page = page || 1;
+      var searchVal = document.getElementById('filterQueueSearch').value;
+      var statusVal = document.getElementById('filterQueueStatus').value;
+
+      var filterPayload = {
+        page: page,
+        pageSize: 10,
+        search: searchVal,
+        status: statusVal
+      };
+
+      runBackend('getBroadcastQueuePaginated', [filterPayload], function(res) {
+        if (res.success) {
+          appState.queuePage = res.page;
+          appState.queueTotalPages = res.totalPages;
+          renderBroadcastQueueTable(res.queue);
+
+          document.getElementById('txtQueuePaginationInfo').innerText = 'Halaman ' + res.page + ' dari ' + res.totalPages + ' (' + res.totalCount + ' antrean)';
+          document.getElementById('btnQueuePrevPage').disabled = (res.page <= 1);
+          document.getElementById('btnQueueNextPage').disabled = (res.page >= res.totalPages);
+        }
       });
     }
 
-    function renderBroadcastTable(queue) {
+    function renderBroadcastQueueTable(queueList) {
       var tbody = document.getElementById('broadcastQueueTableBody');
       tbody.innerHTML = '';
-      if (!queue || queue.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">Tidak ada antrean.</td></tr>';
+
+      if (!queueList || queueList.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 30px;">Tidak ada antrean broadcast yang sesuai filter.</td></tr>';
         return;
       }
-      for (var i = 0; i < queue.length; i++) {
-        var q = queue[i];
+
+      for (var i = 0; i < queueList.length; i++) {
+        var q = queueList[i];
         var tr = document.createElement('tr');
-        tr.innerHTML = '<td><strong>' + q.queueId + '</strong></td><td>' + q.clientId + '</td><td>' + q.targetNumber + '</td><td>' + escapeHtml(q.messageContent) + '</td><td>' + q.scheduledTime + '</td><td>' + q.status + '</td><td>' + q.sentAt + '</td><td><button class="cyber-btn" style="padding: 3px 8px;" onclick="dispatchBroadcastAction(\'' + q.queueId + '\')">Kirim</button></td>';
+        var dotClass = q.status === 'SENT' ? 'status-connected' : (q.status === 'PENDING' ? 'status-scanning' : 'status-disconnected');
+        var preview = q.messageContent.length > 38 ? q.messageContent.substring(0, 38) + '...' : q.messageContent;
+
+        var actionBtns = '<button class="cyber-btn" style="padding: 3px 8px; font-size: 0.75rem;" onclick="dispatchBroadcastAction(\'' + q.queueId + '\')">Kirim</button>' +
+          '<button class="cyber-btn-secondary" style="padding: 3px 8px; font-size: 0.75rem; color: var(--danger);" onclick="deleteBroadcastAction(\'' + q.queueId + '\')">Batal</button>';
+
+        if (q.status === 'SENT') {
+          actionBtns = '<span style="font-size: 0.78rem; color: var(--success); font-weight: 700;">Terkirim</span>';
+        }
+
+        tr.innerHTML = '<td><span style="font-family: \'JetBrains Mono\'; font-weight: 700; color: var(--cyan-deep);">' + q.queueId + '</span></td>' +
+          '<td>' + q.clientId + '</td>' +
+          '<td>' + q.targetNumber + '</td>' +
+          '<td>' + escapeHtml(preview) + '</td>' +
+          '<td style="white-space: nowrap; font-size: 0.8rem;">' + q.scheduledTime + '</td>' +
+          '<td><span class="status-dot ' + dotClass + '"></span>' + q.status + '</td>' +
+          '<td style="font-size: 0.8rem;">' + q.sentAt + '</td>' +
+          '<td><div style="display: flex; gap: 6px;">' + actionBtns + '</div></td>';
+
         tbody.appendChild(tr);
       }
     }
 
-    function openAddBroadcastModal() { openModal('broadcastModal'); }
+    function debounceQueueSearch() {
+      clearTimeout(appState.queueDebounceTimer);
+      appState.queueDebounceTimer = setTimeout(function() {
+        loadBroadcastQueueBackend(1);
+      }, 400);
+    }
+
+    function changeQueuePage(direction) {
+      var target = appState.queuePage + direction;
+      if (target >= 1 && target <= appState.queueTotalPages) {
+        loadBroadcastQueueBackend(target);
+      }
+    }
+
+    function openAddBroadcastModal() {
+      document.getElementById('bcTargetPhone').value = '';
+      document.getElementById('bcContent').value = '';
+      openModal('broadcastModal');
+    }
+
     function submitAddBroadcast() {
+      var cId = document.getElementById('bcClientId').value;
+      var phone = document.getElementById('bcTargetPhone').value.trim();
+      var msg = document.getElementById('bcContent').value.trim();
+      var time = document.getElementById('bcScheduledTime').value;
+
+      var adminId = appState.user ? appState.user.adminId : 'OPERATOR';
       var payload = {
-        clientId: document.getElementById('bcClientId').value,
-        targetNumber: document.getElementById('bcTargetPhone').value.trim(),
-        messageContent: document.getElementById('bcContent').value.trim()
+        clientId: cId,
+        targetNumber: phone,
+        messageContent: msg,
+        scheduledTime: time
       };
-      runBackend('addBroadcastQueueItem', [payload, 'ADMIN'], function(res) {
-        if (res.success) { showToast(res.message, 'success'); closeModal('broadcastModal'); loadBroadcastQueueBackend(1); }
-        else showToast(res.message, 'danger');
+
+      var btn = document.getElementById('btnSubmitBroadcastQueue');
+      btn.disabled = true;
+      btn.innerHTML = 'Menjadwalkan...';
+
+      runBackend('addBroadcastQueueItem', [payload, adminId], function(res) {
+        btn.disabled = false;
+        btn.innerHTML = '<iconify-icon icon="solar:calendar-add-bold"></iconify-icon> Simpan ke Antrean';
+
+        if (res.success) {
+          showToast(res.message, 'success');
+          closeModal('broadcastModal');
+          loadBroadcastQueueBackend(1);
+        } else {
+          showToast(res.message, 'danger');
+        }
       });
     }
-    function dispatchBroadcastAction(id) {
-      runBackend('sendBroadcastNow', [id, 'ADMIN'], function(res) {
-        if (res.success) { showToast(res.message, 'success'); loadBroadcastQueueBackend(1); }
-        else showToast(res.message, 'danger');
+
+    function dispatchBroadcastAction(queueId) {
+      var adminId = appState.user ? appState.user.adminId : 'OPERATOR';
+      showToast('Memproses pengiriman broadcast ' + queueId + '...', 'warning');
+
+      runBackend('sendBroadcastNow', [queueId, adminId], function(res) {
+        if (res.success) {
+          showToast(res.message, 'success');
+          loadBroadcastQueueBackend(appState.queuePage);
+          loadChatLogsBackend(1);
+        } else {
+          showToast(res.message, 'danger');
+        }
+      });
+    }
+
+    function deleteBroadcastAction(queueId) {
+      var adminId = appState.user ? appState.user.adminId : 'OPERATOR';
+      runBackend('deleteBroadcastQueueItem', [queueId, adminId], function(res) {
+        if (res.success) {
+          showToast(res.message, 'warning');
+          loadBroadcastQueueBackend(appState.queuePage);
+        } else {
+          showToast(res.message, 'danger');
+        }
       });
     }
 
     function loadClientsBackend() {
       runBackend('getClientsList', [], function(res) {
-        if (res.success) renderClientsTable(res.clients);
+        if (res.success) {
+          renderClientsTable(res.clients);
+          if (res.stats) {
+            document.getElementById('statTotalClients').innerText = res.stats.total;
+            document.getElementById('statConnectedClients').innerText = res.stats.connected;
+            document.getElementById('statScanningClients').innerText = res.stats.scanning;
+            document.getElementById('statDisconnectedClients').innerText = res.stats.disconnected;
+          }
+        }
       });
     }
 
     function renderClientsTable(clients) {
       var tbody = document.getElementById('clientsTableBody');
       tbody.innerHTML = '';
+
+      if (!clients || clients.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 30px;">Belum ada instance Railway yang terdaftar.</td></tr>';
+        return;
+      }
+
+      var isSuperadmin = appState.user && appState.user.role === 'Superadmin';
+
       for (var i = 0; i < clients.length; i++) {
         var c = clients[i];
         var tr = document.createElement('tr');
-        tr.innerHTML = '<td><strong>' + c.clientId + '</strong></td><td>' + c.name + '</td><td>' + c.phone + '</td><td><a href="' + c.railwayUrl + '" target="_blank">' + c.railwayUrl + '</a></td><td>' + c.status + '</td><td>' + c.expiredDate + '</td><td><button class="cyber-btn-secondary" style="padding: 4px 8px;" onclick="pingClientAction(\'' + c.railwayUrl + '\', this)">Ping</button></td><td><button class="cyber-btn" style="padding: 4px 8px;" onclick="openQrModal(\'' + c.clientId + '\')">Scan QR</button></td>';
+        var dotClass = c.status === 'CONNECTED' ? 'status-connected' : (c.status === 'SCANNING' ? 'status-scanning' : 'status-disconnected');
+
+        var actionHtml = '<button class="cyber-btn" style="padding: 4px 8px; font-size: 0.78rem;" onclick="openQrModal(\'' + c.clientId + '\', \'' + c.railwayUrl + '\')">Scan QR</button>';
+        if (isSuperadmin) {
+          actionHtml += '<button class="cyber-btn-secondary" style="padding: 4px 8px; font-size: 0.78rem;" onclick="openEditClientModal(\'' + c.clientId + '\', \'' + escapeHtml(c.name) + '\', \'' + c.phone + '\', \'' + c.railwayUrl + '\', \'' + c.status + '\', \'' + escapeHtml(c.notes) + '\')">Edit</button>' +
+            '<button class="cyber-btn-secondary" style="padding: 4px 8px; font-size: 0.78rem; color: var(--danger);" onclick="deleteClientAction(\'' + c.clientId + '\')">Hapus</button>';
+        }
+
+        tr.innerHTML = '<td><span style="font-family: \'JetBrains Mono\'; font-weight: 700; color: var(--cyan-deep);">' + c.clientId + '</span></td>' +
+          '<td><strong>' + escapeHtml(c.name) + '</strong></td>' +
+          '<td>' + c.phone + '</td>' +
+          '<td><a href="' + c.railwayUrl + '" target="_blank" style="color: var(--cyan-deep); text-decoration: none; font-size: 0.8rem; font-weight: 600;">' + c.railwayUrl + '</a></td>' +
+          '<td><span class="status-dot ' + dotClass + '"></span>' + c.status + '</td>' +
+          '<td style="font-size: 0.8rem;">' + c.expiredDate + '</td>' +
+          '<td><button class="cyber-btn-secondary" style="padding: 4px 8px; font-size: 0.78rem;" onclick="pingClientAction(\'' + c.railwayUrl + '\', this)">Ping Latency</button></td>' +
+          '<td><div style="display: flex; gap: 6px;">' + actionHtml + '</div></td>';
+
         tbody.appendChild(tr);
       }
     }
 
-    function pingClientAction(url, btn) {
-      btn.innerText = '...';
-      runBackend('pingRailwayClient', [url], function(res) {
-        btn.innerText = 'Ping';
-        showToast(res.message, res.success ? 'success' : 'danger');
-      });
-    }
+    function pingClientAction(url, btnElement) {
+      var originalText = btnElement.innerText;
+      btnElement.innerText = 'Pinging...';
+      btnElement.disabled = true;
 
-    function openQrModal(clientId) {
-      openModal('qrModal');
-      runBackend('getRailwayQrPayload', [clientId], function(res) {
+      runBackend('pingRailwayClient', [url], function(res) {
+        btnElement.disabled = false;
+        btnElement.innerText = originalText;
         if (res.success) {
-          document.getElementById('qrImageElement').src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(res.fallbackQrData);
+          showToast('Latensi ' + res.latencyMs + ' ms: Server Online (' + res.statusCode + ')', 'success');
+        } else {
+          showToast(res.message, 'danger');
         }
       });
     }
 
-    function openAddClientModal() { openModal('clientModal'); }
+    function openQrModal(clientId, railwayUrl) {
+      document.getElementById('qrStatusText').innerText = 'Menghubungkan ke endpoint ' + clientId + '...';
+      openModal('qrModal');
+
+      runBackend('getRailwayQrPayload', [clientId], function(res) {
+        if (res.success) {
+          var qrImg = document.getElementById('qrImageElement');
+          qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(res.fallbackQrData);
+          document.getElementById('qrStatusText').innerText = 'Pindai kode QR untuk ' + res.clientName;
+        } else {
+          document.getElementById('qrStatusText').innerText = res.message;
+        }
+      });
+    }
+
+    function openAddClientModal() {
+      document.getElementById('clientModalTitle').innerText = 'Tambah Node Client Railway';
+      document.getElementById('modalClientId').value = '';
+      document.getElementById('clName').value = '';
+      document.getElementById('clPhone').value = '';
+      document.getElementById('clRailwayUrl').value = '';
+      document.getElementById('clNotes').value = '';
+      openModal('clientModal');
+    }
+
+    function openEditClientModal(id, name, phone, url, status, notes) {
+      document.getElementById('clientModalTitle').innerText = 'Edit Node Client ' + id;
+      document.getElementById('modalClientId').value = id;
+      document.getElementById('clName').value = name;
+      document.getElementById('clPhone').value = phone;
+      document.getElementById('clRailwayUrl').value = url;
+      document.getElementById('clStatus').value = status;
+      document.getElementById('clNotes').value = notes;
+      openModal('clientModal');
+    }
+
     function submitClientForm() {
+      var adminId = appState.user ? appState.user.adminId : 'SUPERADMIN';
       var payload = {
+        clientId: document.getElementById('modalClientId').value,
         name: document.getElementById('clName').value.trim(),
         phone: document.getElementById('clPhone').value.trim(),
-        railwayUrl: document.getElementById('clRailwayUrl').value.trim()
+        railwayUrl: document.getElementById('clRailwayUrl').value.trim(),
+        status: document.getElementById('clStatus').value,
+        notes: document.getElementById('clNotes').value.trim()
       };
-      runBackend('saveOrUpdateClient', [payload, 'ADMIN'], function(res) {
-        if (res.success) { showToast(res.message, 'success'); closeModal('clientModal'); loadClientsBackend(); }
-        else showToast(res.message, 'danger');
+
+      runBackend('saveOrUpdateClient', [payload, adminId], function(res) {
+        if (res.success) {
+          showToast(res.message, 'success');
+          closeModal('clientModal');
+          loadClientsBackend();
+        } else {
+          showToast(res.message, 'danger');
+        }
+      });
+    }
+
+    function deleteClientAction(clientId) {
+      var adminId = appState.user ? appState.user.adminId : 'SUPERADMIN';
+      runBackend('deleteClient', [clientId, adminId], function(res) {
+        if (res.success) {
+          showToast(res.message, 'warning');
+          loadClientsBackend();
+        } else {
+          showToast(res.message, 'danger');
+        }
       });
     }
 
     function loadTemplatesBackend() {
       runBackend('getTemplatesList', [], function(res) {
         if (res.success) {
-          var container = document.getElementById('templatesListContainer');
-          container.innerHTML = '';
-          for (var i = 0; i < res.templates.length; i++) {
-            var t = res.templates[i];
-            var div = document.createElement('div');
-            div.className = 'glass-panel';
-            div.style.padding = '16px';
-            div.innerHTML = '<strong>' + t.name + '</strong><p style="font-size: 0.85rem; margin-top: 6px; font-family: monospace;">' + escapeHtml(t.content) + '</p>';
-            container.appendChild(div);
-          }
+          renderTemplatesList(res.templates);
+        }
+      });
+    }
+
+    function renderTemplatesList(templates) {
+      var container = document.getElementById('templatesListContainer');
+      container.innerHTML = '';
+
+      for (var i = 0; i < templates.length; i++) {
+        var t = templates[i];
+        var card = document.createElement('div');
+        card.className = 'glass-panel';
+        card.style.padding = '18px';
+
+        card.innerHTML = '<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">' +
+          '<div>' +
+          '<span style="font-size: 0.72rem; color: var(--cyan-deep); text-transform: uppercase; font-weight: 700;">' + t.category + '</span>' +
+          '<h4 style="font-size: 1rem; margin-top: 2px; color: var(--text-main);">' + escapeHtml(t.name) + '</h4>' +
+          '</div>' +
+          '<button class="cyber-btn-secondary" style="padding: 4px 8px;" onclick="copyTemplateText(\'' + encodeURIComponent(t.content) + '\')">' +
+          '<iconify-icon icon="solar:copy-bold"></iconify-icon>' +
+          '</button>' +
+          '</div>' +
+          '<p style="font-size: 0.84rem; color: var(--text-muted); background: rgba(0, 180, 216, 0.05); padding: 10px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; border: 1px solid var(--border-subtle);">' + escapeHtml(t.content) + '</p>';
+
+        container.appendChild(card);
+      }
+    }
+
+    function copyTemplateText(encoded) {
+      var text = decodeURIComponent(encoded);
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('Template berhasil disalin ke clipboard!', 'success');
+      });
+    }
+
+    function submitPublicBooking() {
+      var pName = document.getElementById('bkPatientName').value;
+      var pPhone = document.getElementById('bkPhone').value;
+      var pService = document.getElementById('bkService').value;
+      var pDate = document.getElementById('bkDateTime').value;
+      var btn = document.getElementById('btnSubmitBooking');
+
+      btn.disabled = true;
+      btn.innerHTML = 'Mendaftarkan...';
+
+      var payload = {
+        patientName: pName,
+        phoneNumber: pPhone,
+        serviceType: pService,
+        bookingDate: pDate
+      };
+
+      runBackend('savePatientBooking', [payload], function(res) {
+        btn.disabled = false;
+        btn.innerHTML = '<iconify-icon icon="solar:check-circle-bold"></iconify-icon> Konfirmasi Pendaftaran Medis';
+
+        if (res.success) {
+          showToast(res.message, 'success');
+          document.getElementById('publicBookingForm').reset();
+        } else {
+          showToast(res.message, 'danger');
         }
       });
     }
@@ -939,71 +2215,105 @@
     function loadBookingsBackend() {
       runBackend('getBookingsList', [], function(res) {
         if (res.success) {
-          var tbody = document.getElementById('bookingsTableBody');
-          tbody.innerHTML = '';
-          for (var i = 0; i < res.bookings.length; i++) {
-            var b = res.bookings[i];
-            var tr = document.createElement('tr');
-            tr.innerHTML = '<td><strong>' + b.bookingId + '</strong></td><td>' + b.patientName + '</td><td>' + b.phoneNumber + '</td><td>' + b.serviceType + '</td><td>' + b.bookingDate + '</td><td>' + b.status + '</td><td>' + b.createdAt + '</td>';
-            tbody.appendChild(tr);
-          }
+          renderBookingsTable(res.bookings);
         }
       });
     }
 
-    function submitPublicBooking() {
-      var payload = {
-        patientName: document.getElementById('bkPatientName').value,
-        phoneNumber: document.getElementById('bkPhone').value,
-        serviceType: document.getElementById('bkService').value,
-        bookingDate: document.getElementById('bkDateTime').value
-      };
-      runBackend('savePatientBooking', [payload], function(res) {
-        if (res.success) { showToast(res.message, 'success'); document.getElementById('publicBookingForm').reset(); }
-        else showToast(res.message, 'danger');
-      });
+    function renderBookingsTable(bookings) {
+      var tbody = document.getElementById('bookingsTableBody');
+      tbody.innerHTML = '';
+
+      if (!bookings || bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">Belum ada pendaftaran pasien masuk.</td></tr>';
+        return;
+      }
+
+      for (var i = 0; i < bookings.length; i++) {
+        var b = bookings[i];
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td><span style="font-family: \'JetBrains Mono\'; font-weight: 700; color: var(--cyan-deep);">' + b.bookingId + '</span></td>' +
+          '<td><strong>' + escapeHtml(b.patientName) + '</strong></td>' +
+          '<td>' + b.phoneNumber + '</td>' +
+          '<td>' + b.serviceType + '</td>' +
+          '<td>' + b.bookingDate + '</td>' +
+          '<td><span style="padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; background: rgba(16, 185, 129, 0.15); color: var(--success); font-weight: 700;">' + b.status + '</span></td>' +
+          '<td style="font-size: 0.8rem;">' + b.createdAt + '</td>';
+        tbody.appendChild(tr);
+      }
     }
 
-    function exportDataAction(sheet) {
-      runBackend('exportDataCSV', [sheet, ''], function(res) {
+    function exportDataAction(sheetName) {
+      showToast('Menyiapkan file CSV ' + sheetName + '...', 'warning');
+      runBackend('exportDataCSV', [sheetName, ''], function(res) {
         if (res.success) {
-          var blob = new Blob([res.csvData], { type: 'text/csv' });
+          var blob = new Blob([res.csvData], { type: 'text/csv;charset=utf-8;' });
           var link = document.createElement('a');
           link.href = URL.createObjectURL(blob);
           link.download = res.fileName;
+          document.body.appendChild(link);
           link.click();
+          document.body.removeChild(link);
+          showToast('File CSV berhasil diunduh (' + res.totalExported + ' baris).', 'success');
         } else {
           showToast(res.message, 'danger');
         }
       });
     }
 
-    function toggleAIChat(open) {
+    function toggleAIChat(forceOpen) {
       var box = document.getElementById('aiChatBox');
-      box.style.display = (typeof open === 'boolean' ? open : box.style.display === 'flex' ? 'none' : 'flex');
+      if (typeof forceOpen === 'boolean') {
+        box.style.display = forceOpen ? 'flex' : 'none';
+      } else {
+        box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+      }
     }
 
     function sendGeminiMessage() {
       var input = document.getElementById('aiUserInput');
       var prompt = input.value.trim();
       if (!prompt) return;
+
+      var currentChosenModel = appState.selectedModel || 'gemini-3.5-flash';
+
       input.value = '';
+      appendAiBubble('user', prompt);
 
-      var container = document.getElementById('aiChatMessages');
-      container.innerHTML += '<div class="ai-bubble bubble-user">' + escapeHtml(prompt) + '</div>';
-      container.scrollTop = container.scrollHeight;
+      var loadingBubbleId = 'aiLoadingBubble_' + new Date().getTime();
+      appendAiBubble('model', '<i>Menghubungkan ke Google AI Studio (' + escapeHtml(currentChosenModel) + ')...</i>', loadingBubbleId);
 
-      var chosenModel = appState.selectedModel;
-      runBackend('askGeminiClinic', [{ prompt: prompt, model: chosenModel, history: appState.aiHistory }], function(res) {
+      var payload = {
+        prompt: prompt,
+        model: currentChosenModel,
+        history: appState.aiHistory
+      };
+
+      runBackend('askGeminiClinic', [payload], function(res) {
+        var loadingEl = document.getElementById(loadingBubbleId);
+        if (loadingEl && loadingEl.parentNode) {
+          loadingEl.parentNode.removeChild(loadingEl);
+        }
+
         if (res.success) {
-          container.innerHTML += '<div class="ai-bubble bubble-model"><span class="ai-model-tag">' + res.modelUsed + '</span><br>' + escapeHtml(res.reply).replace(/\n/g, '<br>') + '</div>';
+          var badgeHtml = '<span class="ai-model-tag">' + (res.modelUsed || currentChosenModel) + '</span><br>';
+          appendAiBubble('model', badgeHtml + escapeHtml(res.reply).replace(/\n/g, '<br>'));
           appState.aiHistory.push({ role: 'user', text: prompt });
           appState.aiHistory.push({ role: 'model', text: res.reply });
         } else {
-          container.innerHTML += '<div class="ai-bubble bubble-model" style="color: var(--danger);">⚠️ ' + escapeHtml(res.message) + '</div>';
+          appendAiBubble('model', '<span class="ai-model-tag" style="color: var(--danger);">' + (res.modelUsed || currentChosenModel) + ' Error</span><br>⚠️ ' + escapeHtml(res.message));
         }
-        container.scrollTop = container.scrollHeight;
       });
+    }
+
+    function appendAiBubble(role, text, customId) {
+      var container = document.getElementById('aiChatMessages');
+      var div = document.createElement('div');
+      div.className = 'ai-bubble ' + (role === 'user' ? 'bubble-user' : 'bubble-model');
+      if (customId) div.id = customId;
+      div.innerHTML = text;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
     }
 
     function escapeHtml(str) {

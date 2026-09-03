@@ -21,6 +21,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
 
+  <!-- Socket.IO Client Engine untuk Real-Time Streaming QR & Pairing Status dari Railway -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
   <style>
     :root {
       --bg-base: #f0f7fa;
@@ -367,6 +370,54 @@
     .status-connected { background: var(--success); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
     .status-scanning { background: var(--warning); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
     .status-disconnected { background: var(--danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+
+    .qr-live-wrapper {
+      position: relative;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 16px;
+      display: inline-block;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 8px 24px rgba(0, 180, 216, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    .qr-live-pulse {
+      animation: qrGlowPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes qrGlowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.45); }
+      50% { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+    }
+
+    .live-stream-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 180, 216, 0.12);
+      color: var(--cyan-deep);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      border: 1px solid var(--cyan-soft);
+    }
+
+    .live-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-deep);
+      animation: blinkDot 1.2s infinite alternate;
+    }
+
+    @keyframes blinkDot {
+      from { opacity: 0.3; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1.15); }
+    }
 
     .table-responsive {
       overflow-x: auto;
@@ -1267,26 +1318,46 @@
   </div>
 
   <div id="qrModal" class="modal-overlay">
-    <div class="glass-panel modal-content" style="text-align: center;">
-      <h3 style="font-size: 1.2rem; margin-bottom: 8px; color: var(--cyan-deep);">Pindai Kode QR WhatsApp Baileys</h3>
-      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 18px;">
-        Buka WhatsApp di ponsel > Perangkat Tertaut > Tautkan Perangkat.
+    <div class="glass-panel modal-content" style="text-align: center; max-width: 440px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 1.2rem; color: var(--cyan-deep); display: flex; align-items: center; gap: 8px;">
+          <iconify-icon icon="solar:qr-code-bold-duotone" style="font-size: 24px; color: var(--cyan-soft);"></iconify-icon>
+          Pindai QR WhatsApp Baileys
+        </h3>
+        <button onclick="closeModal('qrModal')" style="background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px;">
+          <iconify-icon icon="solar:close-circle-bold"></iconify-icon>
+        </button>
+      </div>
+
+      <div class="live-stream-badge">
+        <span class="live-pulse-dot"></span>
+        <span id="qrSocketStreamStatus">Menghubungkan WebSocket...</span>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">
+        Buka WhatsApp di ponsel > <strong>Perangkat Tertaut</strong> > <strong>Tautkan Perangkat</strong>.
       </p>
 
-      <div style="background: #ffffff; padding: 16px; border-radius: 12px; display: inline-block; margin-bottom: 16px; border: 1px solid var(--border-subtle); box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fbtwwa-akshra-production.up.railway.app%2Fqr" alt="QR Code" style="display: block; width: 210px; height: 210px;">
+      <!-- Real-Time Dynamic QR Box -->
+      <div id="qrLiveCardWrapper" class="qr-live-wrapper qr-live-pulse">
+        <img id="qrImageElement" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=Menunggu+QR+dari+Railway" alt="QR Code" style="display: block; width: 220px; height: 220px; border-radius: 8px;">
+        <div id="qrSuccessOverlay" style="display: none; position: absolute; inset: 0; background: rgba(255,255,255,0.96); border-radius: 16px; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+          <iconify-icon icon="solar:check-circle-bold" style="font-size: 64px; color: var(--success); margin-bottom: 8px;"></iconify-icon>
+          <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">Bot Terhubung!</h4>
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Sesi WhatsApp Baileys aktif.</p>
+        </div>
       </div>
 
       <div id="qrStatusText" style="font-size: 0.86rem; color: var(--cyan-deep); font-weight: 600; margin-bottom: 16px;">
-        Menunggu pemindaian dari perangkat...
+        Memuat kode QR langsung dari server Railway...
       </div>
 
       <div style="display: flex; gap: 8px; justify-content: center;">
         <a id="btnOpenRailwayLiveQr" href="https://btwwa-akshra-production.up.railway.app/qr" target="_blank" class="cyber-btn" style="padding: 7px 14px; font-size: 0.82rem;">
           <iconify-icon icon="solar:arrow-right-up-bold"></iconify-icon>
-          Buka Live Endpoint QR
+          Buka Live URL
         </a>
-        <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup Jendela</button>
+        <button class="cyber-btn-secondary" onclick="closeModal('qrModal')">Tutup</button>
       </div>
     </div>
   </div>
@@ -1328,6 +1399,9 @@
 
     var appState = {
       user: null,
+      activeQrSocket: null,
+      qrPollingTimer: null,
+      activeModalClientId: null,
       chatPage: 1,
       chatTotalPages: 1,
       chatDebounceTimer: null,
@@ -1690,6 +1764,20 @@
     function closeModal(modalId) {
       var modal = document.getElementById(modalId);
       if (modal) modal.style.display = 'none';
+
+      // Putuskan koneksi WebSocket jika modal QR ditutup agar hemat RAM & bandwidth
+      if (modalId === 'qrModal') {
+        if (appState.activeQrSocket) {
+          try {
+            appState.activeQrSocket.disconnect();
+          } catch (e) {}
+          appState.activeQrSocket = null;
+        }
+        if (appState.qrPollingTimer) {
+          clearInterval(appState.qrPollingTimer);
+          appState.qrPollingTimer = null;
+        }
+      }
     }
 
     function showToast(message, type) {
@@ -2113,23 +2201,95 @@
     }
 
     function openQrModal(clientId, railwayUrl) {
-      var targetBaseUrl = railwayUrl || DEFAULT_RAILWAY_URL;
-      var liveEndpoint = targetBaseUrl.replace(/\/$/, '') + '/qr';
+      var targetBaseUrl = (railwayUrl || DEFAULT_RAILWAY_URL).replace(/\/$/, '');
+      var liveEndpoint = targetBaseUrl + '/qr';
 
-      document.getElementById('qrStatusText').innerText = 'Menghubungkan ke endpoint ' + clientId + '...';
+      appState.activeModalClientId = clientId;
+
+      // Reset Elemen Visual
+      document.getElementById('qrLiveCardWrapper').classList.add('qr-live-pulse');
+      document.getElementById('qrSuccessOverlay').style.display = 'none';
+      document.getElementById('qrSocketStreamStatus').innerText = 'Menghubungkan WebSocket...';
+      document.getElementById('qrStatusText').innerText = 'Menghubungi endpoint ' + clientId + ' di Railway...';
       document.getElementById('btnOpenRailwayLiveQr').href = liveEndpoint;
+
       openModal('qrModal');
 
-      runBackend('getRailwayQrPayload', [clientId], function(res) {
-        if (res.success) {
-          var qrImg = document.getElementById('qrImageElement');
-          var qrData = res.fallbackQrData || liveEndpoint;
-          qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(qrData);
-          document.getElementById('qrStatusText').innerText = 'Pindai kode QR untuk ' + (res.clientName || 'Railway WhatsApp Bot');
-        } else {
-          document.getElementById('qrStatusText').innerText = res.message;
+      // 1. Inisialisasi Real-Time WebSocket via Socket.IO
+      if (typeof io !== 'undefined') {
+        try {
+          if (appState.activeQrSocket) {
+            appState.activeQrSocket.disconnect();
+          }
+
+          appState.activeQrSocket = io(targetBaseUrl, {
+            transports: ['websocket', 'polling'],
+            reconnectionAttempts: 5,
+            timeout: 10000
+          });
+
+          appState.activeQrSocket.on('connect', function() {
+            document.getElementById('qrSocketStreamStatus').innerText = 'WebSocket Terhubung (Live)';
+            document.getElementById('qrStatusText').innerText = 'Menunggu data QR Code terbaru dari Baileys...';
+          });
+
+          // Tangkap event update QR secara Real-Time langsung dari Baileys di server.js
+          appState.activeQrSocket.on('qr', function(data) {
+            var qrSrc = (typeof data === 'object' && data.qrDataUrl) ? data.qrDataUrl : (typeof data === 'string' ? data : '');
+            if (qrSrc) {
+              document.getElementById('qrImageElement').src = qrSrc;
+              document.getElementById('qrStatusText').innerText = 'Kode QR baru diterima! Silakan scan sekarang.';
+              document.getElementById('qrSocketStreamStatus').innerText = 'Live QR Streaming Aktif';
+            }
+          });
+
+          // Tangkap event ketika WhatsApp berhasil terotentikasi (Open / Ready)
+          appState.activeQrSocket.on('ready', function(payload) {
+            document.getElementById('qrLiveCardWrapper').classList.remove('qr-live-pulse');
+            document.getElementById('qrSuccessOverlay').style.display = 'flex';
+            document.getElementById('qrStatusText').innerHTML = '<span style="color: var(--success); font-weight: 700;">● Berhasil Terautentikasi!</span>';
+            document.getElementById('qrSocketStreamStatus').innerText = 'Bot Telah Terhubung';
+            showToast('WhatsApp Bot ' + clientId + ' berhasil login!', 'success');
+
+            // Segarkan tabel client
+            loadClientsBackend();
+
+            setTimeout(function() {
+              closeModal('qrModal');
+            }, 2500);
+          });
+
+          appState.activeQrSocket.on('connect_error', function(err) {
+            console.warn('[Socket.IO Fallback]: Beralih ke HTTP Poller...');
+            document.getElementById('qrSocketStreamStatus').innerText = 'Polling Mode (HTTP)';
+            startQrHttpPolling(clientId, targetBaseUrl);
+          });
+
+        } catch (e) {
+          console.warn('[Socket Error]:', e);
+          startQrHttpPolling(clientId, targetBaseUrl);
         }
-      });
+      } else {
+        startQrHttpPolling(clientId, targetBaseUrl);
+      }
+    }
+
+    function startQrHttpPolling(clientId, targetBaseUrl) {
+      if (appState.qrPollingTimer) clearInterval(appState.qrPollingTimer);
+
+      var fetchQrNow = function() {
+        runBackend('getRailwayQrPayload', [clientId], function(res) {
+          if (res.success) {
+            var qrImg = document.getElementById('qrImageElement');
+            var qrData = res.fallbackQrData || (targetBaseUrl + '/qr');
+            qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(qrData);
+            document.getElementById('qrStatusText').innerText = 'Pindai kode QR untuk ' + (res.clientName || 'Railway WhatsApp Bot');
+          }
+        });
+      };
+
+      fetchQrNow();
+      appState.qrPollingTimer = setInterval(fetchQrNow, 15000);
     }
 
     function openAddClientModal() {
